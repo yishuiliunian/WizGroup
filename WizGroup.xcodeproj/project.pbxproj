@@ -1,0 +1,267 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		737286FC1616960F005A3A6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FB1616960F005A3A6B /* UIKit.framework */; };
+		737286FE1616960F005A3A6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FD1616960F005A3A6B /* Foundation.framework */; };
+		737287001616960F005A3A6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FF1616960F005A3A6B /* CoreGraphics.framework */; };
+		737287061616960F005A3A6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 737287041616960F005A3A6B /* InfoPlist.strings */; };
+		737287081616960F005A3A6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287071616960F005A3A6B /* main.m */; };
+		7372870C1616960F005A3A6B /* WGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372870B1616960F005A3A6B /* WGAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		737286F71616960F005A3A6B /* WizGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		737286FB1616960F005A3A6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		737286FD1616960F005A3A6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		737286FF1616960F005A3A6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		737287031616960F005A3A6B /* WizGroup-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WizGroup-Info.plist"; sourceTree = "<group>"; };
+		737287051616960F005A3A6B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		737287071616960F005A3A6B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		737287091616960F005A3A6B /* WizGroup-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WizGroup-Prefix.pch"; sourceTree = "<group>"; };
+		7372870A1616960F005A3A6B /* WGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGAppDelegate.h; sourceTree = "<group>"; };
+		7372870B1616960F005A3A6B /* WGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		737286F41616960F005A3A6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				737286FC1616960F005A3A6B /* UIKit.framework in Frameworks */,
+				737286FE1616960F005A3A6B /* Foundation.framework in Frameworks */,
+				737287001616960F005A3A6B /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		737286EC1616960F005A3A6B = {
+			isa = PBXGroup;
+			children = (
+				737287011616960F005A3A6B /* WizGroup */,
+				737286FA1616960F005A3A6B /* Frameworks */,
+				737286F81616960F005A3A6B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		737286F81616960F005A3A6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				737286F71616960F005A3A6B /* WizGroup.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		737286FA1616960F005A3A6B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				737286FB1616960F005A3A6B /* UIKit.framework */,
+				737286FD1616960F005A3A6B /* Foundation.framework */,
+				737286FF1616960F005A3A6B /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		737287011616960F005A3A6B /* WizGroup */ = {
+			isa = PBXGroup;
+			children = (
+				7372870A1616960F005A3A6B /* WGAppDelegate.h */,
+				7372870B1616960F005A3A6B /* WGAppDelegate.m */,
+				737287021616960F005A3A6B /* Supporting Files */,
+			);
+			path = WizGroup;
+			sourceTree = "<group>";
+		};
+		737287021616960F005A3A6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				737287031616960F005A3A6B /* WizGroup-Info.plist */,
+				737287041616960F005A3A6B /* InfoPlist.strings */,
+				737287071616960F005A3A6B /* main.m */,
+				737287091616960F005A3A6B /* WizGroup-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		737286F61616960F005A3A6B /* WizGroup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7372870F1616960F005A3A6B /* Build configuration list for PBXNativeTarget "WizGroup" */;
+			buildPhases = (
+				737286F31616960F005A3A6B /* Sources */,
+				737286F41616960F005A3A6B /* Frameworks */,
+				737286F51616960F005A3A6B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WizGroup;
+			productName = WizGroup;
+			productReference = 737286F71616960F005A3A6B /* WizGroup.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		737286EE1616960F005A3A6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WG;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = cn.wiz;
+			};
+			buildConfigurationList = 737286F11616960F005A3A6B /* Build configuration list for PBXProject "WizGroup" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 737286EC1616960F005A3A6B;
+			productRefGroup = 737286F81616960F005A3A6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				737286F61616960F005A3A6B /* WizGroup */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		737286F51616960F005A3A6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				737287061616960F005A3A6B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		737286F31616960F005A3A6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				737287081616960F005A3A6B /* main.m in Sources */,
+				7372870C1616960F005A3A6B /* WGAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		737287041616960F005A3A6B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				737287051616960F005A3A6B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7372870D1616960F005A3A6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7372870E1616960F005A3A6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		737287101616960F005A3A6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
+				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		737287111616960F005A3A6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
+				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		737286F11616960F005A3A6B /* Build configuration list for PBXProject "WizGroup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7372870D1616960F005A3A6B /* Debug */,
+				7372870E1616960F005A3A6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7372870F1616960F005A3A6B /* Build configuration list for PBXNativeTarget "WizGroup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				737287101616960F005A3A6B /* Debug */,
+				737287111616960F005A3A6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 737286EE1616960F005A3A6B /* Project object */;
+}
