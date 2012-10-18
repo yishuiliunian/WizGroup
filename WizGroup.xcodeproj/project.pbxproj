@@ -7,15 +7,112 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		734CD8541616D9BE00FBC33C /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CD8501616D7A400FBC33C /* TreeNode.m */; };
+		734CD8551616D9F400FBC33C /* WizPadTreeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CD8531616D8BA00FBC33C /* WizPadTreeTableCell.m */; };
 		737286FC1616960F005A3A6B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FB1616960F005A3A6B /* UIKit.framework */; };
 		737286FE1616960F005A3A6B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FD1616960F005A3A6B /* Foundation.framework */; };
 		737287001616960F005A3A6B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 737286FF1616960F005A3A6B /* CoreGraphics.framework */; };
 		737287061616960F005A3A6B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 737287041616960F005A3A6B /* InfoPlist.strings */; };
 		737287081616960F005A3A6B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287071616960F005A3A6B /* main.m */; };
 		7372870C1616960F005A3A6B /* WGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372870B1616960F005A3A6B /* WGAppDelegate.m */; };
+		73728726161696DF005A3A6B /* GMGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73728716161696DF005A3A6B /* GMGridView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		73728727161696DF005A3A6B /* GMGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372871C161696DF005A3A6B /* GMGridViewCell.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		73728728161696DF005A3A6B /* GMGridViewLayoutStrategies.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372871E161696DF005A3A6B /* GMGridViewLayoutStrategies.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		73728729161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 73728720161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7372872A161696DF005A3A6B /* UIView+GMGridViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 73728722161696DF005A3A6B /* UIView+GMGridViewAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7372872F161696FC005A3A6B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7372872E161696FC005A3A6B /* QuartzCore.framework */; };
+		7372873216169A8D005A3A6B /* WGMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372873116169A8D005A3A6B /* WGMainViewController.m */; };
+		737287CE1616A093005A3A6B /* CommonString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372873E1616A093005A3A6B /* CommonString.m */; };
+		737287CF1616A093005A3A6B /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287411616A093005A3A6B /* FMDatabase.m */; };
+		737287D01616A093005A3A6B /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287431616A093005A3A6B /* FMDatabaseAdditions.m */; };
+		737287D11616A093005A3A6B /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287451616A093005A3A6B /* FMDatabasePool.m */; };
+		737287D21616A093005A3A6B /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287471616A093005A3A6B /* FMDatabaseQueue.m */; };
+		737287D31616A093005A3A6B /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287491616A093005A3A6B /* FMResultSet.m */; };
+		737287D41616A093005A3A6B /* WizMisc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7372874A1616A093005A3A6B /* WizMisc.cpp */; };
+		737287D51616A093005A3A6B /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 7372874E1616A093005A3A6B /* ioapi.c */; };
+		737287D61616A093005A3A6B /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 737287501616A093005A3A6B /* mztools.c */; };
+		737287D71616A093005A3A6B /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 737287521616A093005A3A6B /* unzip.c */; };
+		737287D81616A093005A3A6B /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 737287541616A093005A3A6B /* zip.c */; };
+		737287D91616A093005A3A6B /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 737287571616A093005A3A6B /* ZipArchive.mm */; };
+		737287DA1616A093005A3A6B /* NSDate+WizTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287591616A093005A3A6B /* NSDate+WizTools.m */; };
+		737287DB1616A093005A3A6B /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372875C1616A093005A3A6B /* NSDate-Utilities.m */; };
+		737287DC1616A093005A3A6B /* TimeFormatters.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372875E1616A093005A3A6B /* TimeFormatters.m */; };
+		737287DD1616A093005A3A6B /* NSMutableDictionary+WizDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287601616A093005A3A6B /* NSMutableDictionary+WizDocument.m */; };
+		737287DE1616A093005A3A6B /* NSString+WizString.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287621616A093005A3A6B /* NSString+WizString.m */; };
+		737287DF1616A093005A3A6B /* pinyin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 737287641616A093005A3A6B /* pinyin.cpp */; };
+		737287E01616A093005A3A6B /* README in Resources */ = {isa = PBXBuildFile; fileRef = 737287661616A093005A3A6B /* README */; };
+		737287E11616A093005A3A6B /* UIImage+WizTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287681616A093005A3A6B /* UIImage+WizTools.m */; };
+		737287E21616A093005A3A6B /* UIWebView+WizTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372876A1616A093005A3A6B /* UIWebView+WizTools.m */; };
+		737287E31616A093005A3A6B /* WizAccountManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372876C1616A093005A3A6B /* WizAccountManager.m */; };
+		737287E41616A093005A3A6B /* WizApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372876F1616A093005A3A6B /* WizApi.m */; };
+		737287E51616A093005A3A6B /* WizApiClientLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287711616A093005A3A6B /* WizApiClientLogin.m */; };
+		737287E61616A093005A3A6B /* WizApiDownloadAttachmentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287731616A093005A3A6B /* WizApiDownloadAttachmentList.m */; };
+		737287E71616A093005A3A6B /* WizApiDownloadDeletedGuids.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287751616A093005A3A6B /* WizApiDownloadDeletedGuids.m */; };
+		737287E81616A093005A3A6B /* WizApiDownloadDocumentList.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287771616A093005A3A6B /* WizApiDownloadDocumentList.m */; };
+		737287E91616A093005A3A6B /* WizApiDownloadList.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287791616A093005A3A6B /* WizApiDownloadList.m */; };
+		737287EA1616A093005A3A6B /* WizApiDownloadTagList.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372877B1616A093005A3A6B /* WizApiDownloadTagList.m */; };
+		737287EB1616A093005A3A6B /* WizApiGetAllVersions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372877D1616A093005A3A6B /* WizApiGetAllVersions.m */; };
+		737287EC1616A093005A3A6B /* WizApiRefreshGroups.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372877F1616A093005A3A6B /* WizApiRefreshGroups.m */; };
+		737287ED1616A093005A3A6B /* WizApiUploadDeletedGuids.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287811616A093005A3A6B /* WizApiUploadDeletedGuids.m */; };
+		737287EE1616A093005A3A6B /* WizApiUploadTags.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287831616A093005A3A6B /* WizApiUploadTags.m */; };
+		737287EF1616A093005A3A6B /* WizDownloadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287851616A093005A3A6B /* WizDownloadObject.m */; };
+		737287F01616A093005A3A6B /* WizGroupSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287871616A093005A3A6B /* WizGroupSync.m */; };
+		737287F11616A093005A3A6B /* WizSyncCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287891616A093005A3A6B /* WizSyncCenter.m */; };
+		737287F21616A093005A3A6B /* WizSyncDataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372878B1616A093005A3A6B /* WizSyncDataCenter.m */; };
+		737287F31616A093005A3A6B /* WizSyncDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372878D1616A093005A3A6B /* WizSyncDownload.m */; };
+		737287F41616A093005A3A6B /* WizSyncErrorCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372878F1616A093005A3A6B /* WizSyncErrorCenter.m */; };
+		737287F51616A093005A3A6B /* WizSyncMeta.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287911616A093005A3A6B /* WizSyncMeta.m */; };
+		737287F61616A093005A3A6B /* WizSyncUpload.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287931616A093005A3A6B /* WizSyncUpload.m */; };
+		737287F71616A093005A3A6B /* WizUploadObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287951616A093005A3A6B /* WizUploadObject.m */; };
+		737287F81616A093005A3A6B /* WizCore.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287971616A093005A3A6B /* WizCore.m */; };
+		737287F91616A093005A3A6B /* WizAbstractDataBaseModel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 737287991616A093005A3A6B /* WizAbstractDataBaseModel.plist */; };
+		737287FA1616A093005A3A6B /* WizDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372879B1616A093005A3A6B /* WizDataBase.m */; };
+		737287FB1616A093005A3A6B /* WizDataBaseModel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7372879C1616A093005A3A6B /* WizDataBaseModel.plist */; };
+		737287FC1616A093005A3A6B /* WizDbManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7372879E1616A093005A3A6B /* WizDbManager.mm */; };
+		737287FD1616A093005A3A6B /* WizMetaDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287A01616A093005A3A6B /* WizMetaDataBase.m */; };
+		737287FE1616A093005A3A6B /* WizSettingsDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287A31616A093005A3A6B /* WizSettingsDataBase.m */; };
+		737287FF1616A093005A3A6B /* WizSettingsDataBaseModel.plist in Resources */ = {isa = PBXBuildFile; fileRef = 737287A41616A093005A3A6B /* WizSettingsDataBaseModel.plist */; };
+		737288001616A093005A3A6B /* WizFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287A71616A093005A3A6B /* WizFileManager.m */; };
+		737288011616A093005A3A6B /* WizGlobals.mm in Sources */ = {isa = PBXBuildFile; fileRef = 737287A91616A093005A3A6B /* WizGlobals.mm */; };
+		737288021616A093005A3A6B /* WizString.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287AB1616A093005A3A6B /* WizString.m */; };
+		737288031616A093005A3A6B /* WizAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287AE1616A093005A3A6B /* WizAbstract.m */; };
+		737288041616A093005A3A6B /* WizAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287B01616A093005A3A6B /* WizAccount.m */; };
+		737288051616A093005A3A6B /* WizAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287B21616A093005A3A6B /* WizAttachment.m */; };
+		737288061616A093005A3A6B /* WizDeletedGUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287B41616A093005A3A6B /* WizDeletedGUID.m */; };
+		737288071616A093005A3A6B /* WizDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287B61616A093005A3A6B /* WizDocument.m */; };
+		737288081616A093005A3A6B /* WizGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287B81616A093005A3A6B /* WizGroup.m */; };
+		737288091616A093005A3A6B /* WizObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287BA1616A093005A3A6B /* WizObject.m */; };
+		7372880A1616A093005A3A6B /* WizSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287BC1616A093005A3A6B /* WizSearch.m */; };
+		7372880B1616A093005A3A6B /* WizSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287BE1616A093005A3A6B /* WizSetting.m */; };
+		7372880C1616A093005A3A6B /* WizTag.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287C01616A093005A3A6B /* WizTag.m */; };
+		7372880D1616A093005A3A6B /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287C31616A093005A3A6B /* GDataXMLNode.m */; };
+		7372880E1616A093005A3A6B /* XMLRPCConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287C51616A093005A3A6B /* XMLRPCConnection.m */; };
+		7372880F1616A093005A3A6B /* XMLRPCEncoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287C71616A093005A3A6B /* XMLRPCEncoder.m */; };
+		737288101616A093005A3A6B /* XMLRPCExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287C91616A093005A3A6B /* XMLRPCExtensions.m */; };
+		737288111616A093005A3A6B /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287CB1616A093005A3A6B /* XMLRPCRequest.m */; };
+		737288121616A093005A3A6B /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 737287CD1616A093005A3A6B /* XMLRPCResponse.m */; };
+		737288141616A157005A3A6B /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737288131616A157005A3A6B /* libxml2.dylib */; };
+		737288161616A15D005A3A6B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737288151616A15D005A3A6B /* libsqlite3.dylib */; };
+		737288181616A162005A3A6B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737288171616A162005A3A6B /* libz.dylib */; };
+		7372881C1616A3AE005A3A6B /* WizNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */; };
+		737288361616C706005A3A6B /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737288331616C706005A3A6B /* IIViewDeckController.m */; };
+		737288371616C706005A3A6B /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737288351616C706005A3A6B /* WrapController.m */; };
+		7372883B1616C880005A3A6B /* WGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883A1616C880005A3A6B /* WGDetailViewController.m */; };
+		7372883E1616C88C005A3A6B /* WGListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883D1616C88C005A3A6B /* WGListViewController.m */; };
+		73CE190C16227B5800DB4201 /* WGReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CE190B16227B5800DB4201 /* WGReadViewController.m */; };
+		73D7C66E162F9D1700C27478 /* WGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C66D162F9D1600C27478 /* WGGridViewCell.m */; };
+		73D7C672162F9FFC00C27478 /* a.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 73D7C671162F9FFC00C27478 /* a.PNG */; };
+		73D7C677162FA10500C27478 /* UIBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C676162FA10400C27478 /* UIBadgeView.m */; };
+		73D7C679162FA61D00C27478 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D7C678162FA61C00C27478 /* Default-568h@2x.png */; };
+		73D7C67D162FA73500C27478 /* WizSyncGropOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C67C162FA73500C27478 /* WizSyncGropOperation.m */; };
+		73DE4E74162E9897004BC0F6 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		734CD84F1616D7A400FBC33C /* TreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
+		734CD8501616D7A400FBC33C /* TreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
+		734CD8521616D8BA00FBC33C /* WizPadTreeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizPadTreeTableCell.h; sourceTree = "<group>"; };
+		734CD8531616D8BA00FBC33C /* WizPadTreeTableCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WizPadTreeTableCell.m; sourceTree = "<group>"; };
 		737286F71616960F005A3A6B /* WizGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		737286FB1616960F005A3A6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		737286FD1616960F005A3A6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -26,6 +123,183 @@
 		737287091616960F005A3A6B /* WizGroup-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WizGroup-Prefix.pch"; sourceTree = "<group>"; };
 		7372870A1616960F005A3A6B /* WGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGAppDelegate.h; sourceTree = "<group>"; };
 		7372870B1616960F005A3A6B /* WGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGAppDelegate.m; sourceTree = "<group>"; };
+		73728714161696DF005A3A6B /* GMGridView-Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridView-Constants.h"; sourceTree = "<group>"; };
+		73728715161696DF005A3A6B /* GMGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridView.h; sourceTree = "<group>"; };
+		73728716161696DF005A3A6B /* GMGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridView.m; sourceTree = "<group>"; };
+		7372871A161696DF005A3A6B /* GMGridViewCell+Extended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GMGridViewCell+Extended.h"; sourceTree = "<group>"; };
+		7372871B161696DF005A3A6B /* GMGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridViewCell.h; sourceTree = "<group>"; };
+		7372871C161696DF005A3A6B /* GMGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridViewCell.m; sourceTree = "<group>"; };
+		7372871D161696DF005A3A6B /* GMGridViewLayoutStrategies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMGridViewLayoutStrategies.h; sourceTree = "<group>"; };
+		7372871E161696DF005A3A6B /* GMGridViewLayoutStrategies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMGridViewLayoutStrategies.m; sourceTree = "<group>"; };
+		7372871F161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+GMGridViewAdditions.h"; sourceTree = "<group>"; };
+		73728720161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+GMGridViewAdditions.m"; sourceTree = "<group>"; };
+		73728721161696DF005A3A6B /* UIView+GMGridViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GMGridViewAdditions.h"; sourceTree = "<group>"; };
+		73728722161696DF005A3A6B /* UIView+GMGridViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GMGridViewAdditions.m"; sourceTree = "<group>"; };
+		7372872E161696FC005A3A6B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7372873016169A8D005A3A6B /* WGMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGMainViewController.h; path = UI/WGMainViewController.h; sourceTree = "<group>"; };
+		7372873116169A8D005A3A6B /* WGMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGMainViewController.m; path = UI/WGMainViewController.m; sourceTree = "<group>"; };
+		7372873D1616A093005A3A6B /* CommonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonString.h; sourceTree = "<group>"; };
+		7372873E1616A093005A3A6B /* CommonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonString.m; sourceTree = "<group>"; };
+		737287401616A093005A3A6B /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		737287411616A093005A3A6B /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		737287421616A093005A3A6B /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		737287431616A093005A3A6B /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		737287441616A093005A3A6B /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		737287451616A093005A3A6B /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		737287461616A093005A3A6B /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		737287471616A093005A3A6B /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		737287481616A093005A3A6B /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		737287491616A093005A3A6B /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		7372874A1616A093005A3A6B /* WizMisc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WizMisc.cpp; sourceTree = "<group>"; };
+		7372874B1616A093005A3A6B /* WizMisc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizMisc.h; sourceTree = "<group>"; };
+		7372874D1616A093005A3A6B /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		7372874E1616A093005A3A6B /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		7372874F1616A093005A3A6B /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		737287501616A093005A3A6B /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		737287511616A093005A3A6B /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		737287521616A093005A3A6B /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		737287531616A093005A3A6B /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		737287541616A093005A3A6B /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		737287551616A093005A3A6B /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		737287561616A093005A3A6B /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		737287571616A093005A3A6B /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		737287581616A093005A3A6B /* NSDate+WizTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WizTools.h"; sourceTree = "<group>"; };
+		737287591616A093005A3A6B /* NSDate+WizTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WizTools.m"; sourceTree = "<group>"; };
+		7372875B1616A093005A3A6B /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		7372875C1616A093005A3A6B /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		7372875D1616A093005A3A6B /* TimeFormatters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeFormatters.h; sourceTree = "<group>"; };
+		7372875E1616A093005A3A6B /* TimeFormatters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeFormatters.m; sourceTree = "<group>"; };
+		7372875F1616A093005A3A6B /* NSMutableDictionary+WizDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+WizDocument.h"; sourceTree = "<group>"; };
+		737287601616A093005A3A6B /* NSMutableDictionary+WizDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+WizDocument.m"; sourceTree = "<group>"; };
+		737287611616A093005A3A6B /* NSString+WizString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WizString.h"; sourceTree = "<group>"; };
+		737287621616A093005A3A6B /* NSString+WizString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WizString.m"; sourceTree = "<group>"; };
+		737287641616A093005A3A6B /* pinyin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pinyin.cpp; sourceTree = "<group>"; };
+		737287651616A093005A3A6B /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		737287661616A093005A3A6B /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		737287671616A093005A3A6B /* UIImage+WizTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WizTools.h"; sourceTree = "<group>"; };
+		737287681616A093005A3A6B /* UIImage+WizTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WizTools.m"; sourceTree = "<group>"; };
+		737287691616A093005A3A6B /* UIWebView+WizTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+WizTools.h"; sourceTree = "<group>"; };
+		7372876A1616A093005A3A6B /* UIWebView+WizTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+WizTools.m"; sourceTree = "<group>"; };
+		7372876B1616A093005A3A6B /* WizAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizAccountManager.h; sourceTree = "<group>"; };
+		7372876C1616A093005A3A6B /* WizAccountManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizAccountManager.m; sourceTree = "<group>"; };
+		7372876E1616A093005A3A6B /* WizApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApi.h; sourceTree = "<group>"; };
+		7372876F1616A093005A3A6B /* WizApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApi.m; sourceTree = "<group>"; };
+		737287701616A093005A3A6B /* WizApiClientLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiClientLogin.h; sourceTree = "<group>"; };
+		737287711616A093005A3A6B /* WizApiClientLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiClientLogin.m; sourceTree = "<group>"; };
+		737287721616A093005A3A6B /* WizApiDownloadAttachmentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiDownloadAttachmentList.h; sourceTree = "<group>"; };
+		737287731616A093005A3A6B /* WizApiDownloadAttachmentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiDownloadAttachmentList.m; sourceTree = "<group>"; };
+		737287741616A093005A3A6B /* WizApiDownloadDeletedGuids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiDownloadDeletedGuids.h; sourceTree = "<group>"; };
+		737287751616A093005A3A6B /* WizApiDownloadDeletedGuids.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiDownloadDeletedGuids.m; sourceTree = "<group>"; };
+		737287761616A093005A3A6B /* WizApiDownloadDocumentList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiDownloadDocumentList.h; sourceTree = "<group>"; };
+		737287771616A093005A3A6B /* WizApiDownloadDocumentList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiDownloadDocumentList.m; sourceTree = "<group>"; };
+		737287781616A093005A3A6B /* WizApiDownloadList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiDownloadList.h; sourceTree = "<group>"; };
+		737287791616A093005A3A6B /* WizApiDownloadList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiDownloadList.m; sourceTree = "<group>"; };
+		7372877A1616A093005A3A6B /* WizApiDownloadTagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiDownloadTagList.h; sourceTree = "<group>"; };
+		7372877B1616A093005A3A6B /* WizApiDownloadTagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiDownloadTagList.m; sourceTree = "<group>"; };
+		7372877C1616A093005A3A6B /* WizApiGetAllVersions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiGetAllVersions.h; sourceTree = "<group>"; };
+		7372877D1616A093005A3A6B /* WizApiGetAllVersions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiGetAllVersions.m; sourceTree = "<group>"; };
+		7372877E1616A093005A3A6B /* WizApiRefreshGroups.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiRefreshGroups.h; sourceTree = "<group>"; };
+		7372877F1616A093005A3A6B /* WizApiRefreshGroups.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiRefreshGroups.m; sourceTree = "<group>"; };
+		737287801616A093005A3A6B /* WizApiUploadDeletedGuids.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiUploadDeletedGuids.h; sourceTree = "<group>"; };
+		737287811616A093005A3A6B /* WizApiUploadDeletedGuids.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiUploadDeletedGuids.m; sourceTree = "<group>"; };
+		737287821616A093005A3A6B /* WizApiUploadTags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizApiUploadTags.h; sourceTree = "<group>"; };
+		737287831616A093005A3A6B /* WizApiUploadTags.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizApiUploadTags.m; sourceTree = "<group>"; };
+		737287841616A093005A3A6B /* WizDownloadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDownloadObject.h; sourceTree = "<group>"; };
+		737287851616A093005A3A6B /* WizDownloadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizDownloadObject.m; sourceTree = "<group>"; };
+		737287861616A093005A3A6B /* WizGroupSync.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizGroupSync.h; sourceTree = "<group>"; };
+		737287871616A093005A3A6B /* WizGroupSync.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizGroupSync.m; sourceTree = "<group>"; };
+		737287881616A093005A3A6B /* WizSyncCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncCenter.h; sourceTree = "<group>"; };
+		737287891616A093005A3A6B /* WizSyncCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncCenter.m; sourceTree = "<group>"; };
+		7372878A1616A093005A3A6B /* WizSyncDataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncDataCenter.h; sourceTree = "<group>"; };
+		7372878B1616A093005A3A6B /* WizSyncDataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncDataCenter.m; sourceTree = "<group>"; };
+		7372878C1616A093005A3A6B /* WizSyncDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncDownload.h; sourceTree = "<group>"; };
+		7372878D1616A093005A3A6B /* WizSyncDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncDownload.m; sourceTree = "<group>"; };
+		7372878E1616A093005A3A6B /* WizSyncErrorCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncErrorCenter.h; sourceTree = "<group>"; };
+		7372878F1616A093005A3A6B /* WizSyncErrorCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncErrorCenter.m; sourceTree = "<group>"; };
+		737287901616A093005A3A6B /* WizSyncMeta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncMeta.h; sourceTree = "<group>"; };
+		737287911616A093005A3A6B /* WizSyncMeta.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncMeta.m; sourceTree = "<group>"; };
+		737287921616A093005A3A6B /* WizSyncUpload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSyncUpload.h; sourceTree = "<group>"; };
+		737287931616A093005A3A6B /* WizSyncUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSyncUpload.m; sourceTree = "<group>"; };
+		737287941616A093005A3A6B /* WizUploadObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizUploadObject.h; sourceTree = "<group>"; };
+		737287951616A093005A3A6B /* WizUploadObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizUploadObject.m; sourceTree = "<group>"; };
+		737287961616A093005A3A6B /* WizCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizCore.h; sourceTree = "<group>"; };
+		737287971616A093005A3A6B /* WizCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizCore.m; sourceTree = "<group>"; };
+		737287991616A093005A3A6B /* WizAbstractDataBaseModel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WizAbstractDataBaseModel.plist; sourceTree = "<group>"; };
+		7372879A1616A093005A3A6B /* WizDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDataBase.h; sourceTree = "<group>"; };
+		7372879B1616A093005A3A6B /* WizDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizDataBase.m; sourceTree = "<group>"; };
+		7372879C1616A093005A3A6B /* WizDataBaseModel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WizDataBaseModel.plist; sourceTree = "<group>"; };
+		7372879D1616A093005A3A6B /* WizDbManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDbManager.h; sourceTree = "<group>"; };
+		7372879E1616A093005A3A6B /* WizDbManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizDbManager.mm; sourceTree = "<group>"; };
+		7372879F1616A093005A3A6B /* WizMetaDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizMetaDataBase.h; sourceTree = "<group>"; };
+		737287A01616A093005A3A6B /* WizMetaDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizMetaDataBase.m; sourceTree = "<group>"; };
+		737287A11616A093005A3A6B /* WizMetaDataBaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizMetaDataBaseDelegate.h; sourceTree = "<group>"; };
+		737287A21616A093005A3A6B /* WizSettingsDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSettingsDataBase.h; sourceTree = "<group>"; };
+		737287A31616A093005A3A6B /* WizSettingsDataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSettingsDataBase.m; sourceTree = "<group>"; };
+		737287A41616A093005A3A6B /* WizSettingsDataBaseModel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WizSettingsDataBaseModel.plist; sourceTree = "<group>"; };
+		737287A51616A093005A3A6B /* WizSettingsDbDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSettingsDbDelegate.h; sourceTree = "<group>"; };
+		737287A61616A093005A3A6B /* WizFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizFileManager.h; sourceTree = "<group>"; };
+		737287A71616A093005A3A6B /* WizFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizFileManager.m; sourceTree = "<group>"; };
+		737287A81616A093005A3A6B /* WizGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizGlobals.h; sourceTree = "<group>"; };
+		737287A91616A093005A3A6B /* WizGlobals.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WizGlobals.mm; sourceTree = "<group>"; };
+		737287AA1616A093005A3A6B /* WizString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizString.h; sourceTree = "<group>"; };
+		737287AB1616A093005A3A6B /* WizString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizString.m; sourceTree = "<group>"; };
+		737287AD1616A093005A3A6B /* WizAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizAbstract.h; sourceTree = "<group>"; };
+		737287AE1616A093005A3A6B /* WizAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizAbstract.m; sourceTree = "<group>"; };
+		737287AF1616A093005A3A6B /* WizAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizAccount.h; sourceTree = "<group>"; };
+		737287B01616A093005A3A6B /* WizAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizAccount.m; sourceTree = "<group>"; };
+		737287B11616A093005A3A6B /* WizAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizAttachment.h; sourceTree = "<group>"; };
+		737287B21616A093005A3A6B /* WizAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizAttachment.m; sourceTree = "<group>"; };
+		737287B31616A093005A3A6B /* WizDeletedGUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDeletedGUID.h; sourceTree = "<group>"; };
+		737287B41616A093005A3A6B /* WizDeletedGUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizDeletedGUID.m; sourceTree = "<group>"; };
+		737287B51616A093005A3A6B /* WizDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizDocument.h; sourceTree = "<group>"; };
+		737287B61616A093005A3A6B /* WizDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizDocument.m; sourceTree = "<group>"; };
+		737287B71616A093005A3A6B /* WizGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizGroup.h; sourceTree = "<group>"; };
+		737287B81616A093005A3A6B /* WizGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizGroup.m; sourceTree = "<group>"; };
+		737287B91616A093005A3A6B /* WizObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizObject.h; sourceTree = "<group>"; };
+		737287BA1616A093005A3A6B /* WizObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizObject.m; sourceTree = "<group>"; };
+		737287BB1616A093005A3A6B /* WizSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSearch.h; sourceTree = "<group>"; };
+		737287BC1616A093005A3A6B /* WizSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSearch.m; sourceTree = "<group>"; };
+		737287BD1616A093005A3A6B /* WizSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizSetting.h; sourceTree = "<group>"; };
+		737287BE1616A093005A3A6B /* WizSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizSetting.m; sourceTree = "<group>"; };
+		737287BF1616A093005A3A6B /* WizTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizTag.h; sourceTree = "<group>"; };
+		737287C01616A093005A3A6B /* WizTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizTag.m; sourceTree = "<group>"; };
+		737287C21616A093005A3A6B /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		737287C31616A093005A3A6B /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		737287C41616A093005A3A6B /* XMLRPCConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCConnection.h; sourceTree = "<group>"; };
+		737287C51616A093005A3A6B /* XMLRPCConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCConnection.m; sourceTree = "<group>"; };
+		737287C61616A093005A3A6B /* XMLRPCEncoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCEncoder.h; sourceTree = "<group>"; };
+		737287C71616A093005A3A6B /* XMLRPCEncoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCEncoder.m; sourceTree = "<group>"; };
+		737287C81616A093005A3A6B /* XMLRPCExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCExtensions.h; sourceTree = "<group>"; };
+		737287C91616A093005A3A6B /* XMLRPCExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCExtensions.m; sourceTree = "<group>"; };
+		737287CA1616A093005A3A6B /* XMLRPCRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCRequest.h; sourceTree = "<group>"; };
+		737287CB1616A093005A3A6B /* XMLRPCRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCRequest.m; sourceTree = "<group>"; };
+		737287CC1616A093005A3A6B /* XMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCResponse.h; sourceTree = "<group>"; };
+		737287CD1616A093005A3A6B /* XMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCResponse.m; sourceTree = "<group>"; };
+		737288131616A157005A3A6B /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		737288151616A15D005A3A6B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		737288171616A162005A3A6B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		7372881A1616A3AE005A3A6B /* WizNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizNotificationCenter.h; path = WizNotificationCenter/WizNotificationCenter.h; sourceTree = "<group>"; };
+		7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizNotificationCenter.m; path = WizNotificationCenter/WizNotificationCenter.m; sourceTree = "<group>"; };
+		737288321616C706005A3A6B /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
+		737288331616C706005A3A6B /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
+		737288341616C706005A3A6B /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
+		737288351616C706005A3A6B /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrapController.m; sourceTree = "<group>"; };
+		737288391616C880005A3A6B /* WGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGDetailViewController.h; path = UI/WGDetailViewController.h; sourceTree = "<group>"; };
+		7372883A1616C880005A3A6B /* WGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGDetailViewController.m; path = UI/WGDetailViewController.m; sourceTree = "<group>"; };
+		7372883C1616C88C005A3A6B /* WGListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGListViewController.h; path = UI/WGListViewController.h; sourceTree = "<group>"; };
+		7372883D1616C88C005A3A6B /* WGListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGListViewController.m; path = UI/WGListViewController.m; sourceTree = "<group>"; };
+		73CE190A16227B5800DB4201 /* WGReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGReadViewController.h; path = UI/WGReadViewController.h; sourceTree = "<group>"; };
+		73CE190B16227B5800DB4201 /* WGReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGReadViewController.m; path = UI/WGReadViewController.m; sourceTree = "<group>"; };
+		73D7C66C162F9D1600C27478 /* WGGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGGridViewCell.h; path = GMGridView/WGGridViewCell.h; sourceTree = "<group>"; };
+		73D7C66D162F9D1600C27478 /* WGGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGGridViewCell.m; path = GMGridView/WGGridViewCell.m; sourceTree = "<group>"; };
+		73D7C671162F9FFC00C27478 /* a.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = a.PNG; path = Resources/a.PNG; sourceTree = "<group>"; };
+		73D7C675162FA10400C27478 /* UIBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBadgeView.h; sourceTree = "<group>"; };
+		73D7C676162FA10400C27478 /* UIBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBadgeView.m; sourceTree = "<group>"; };
+		73D7C678162FA61C00C27478 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		73D7C67B162FA73500C27478 /* WizSyncGropOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizSyncGropOperation.h; path = WizApi/MultiProcessSync/WizSyncGropOperation.h; sourceTree = "<group>"; };
+		73D7C67C162FA73500C27478 /* WizSyncGropOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizSyncGropOperation.m; path = WizApi/MultiProcessSync/WizSyncGropOperation.m; sourceTree = "<group>"; };
+		73DE4E72162E9897004BC0F6 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
+		73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +307,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737288181616A162005A3A6B /* libz.dylib in Frameworks */,
+				737288161616A15D005A3A6B /* libsqlite3.dylib in Frameworks */,
+				737288141616A157005A3A6B /* libxml2.dylib in Frameworks */,
+				7372872F161696FC005A3A6B /* QuartzCore.framework in Frameworks */,
 				737286FC1616960F005A3A6B /* UIKit.framework in Frameworks */,
 				737286FE1616960F005A3A6B /* Foundation.framework in Frameworks */,
 				737287001616960F005A3A6B /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +323,7 @@
 		737286EC1616960F005A3A6B = {
 			isa = PBXGroup;
 			children = (
+				73D7C678162FA61C00C27478 /* Default-568h@2x.png */,
 				737287011616960F005A3A6B /* WizGroup */,
 				737286FA1616960F005A3A6B /* Frameworks */,
 				737286F81616960F005A3A6B /* Products */,
@@ -62,6 +341,10 @@
 		737286FA1616960F005A3A6B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				737288171616A162005A3A6B /* libz.dylib */,
+				737288151616A15D005A3A6B /* libsqlite3.dylib */,
+				737288131616A157005A3A6B /* libxml2.dylib */,
+				7372872E161696FC005A3A6B /* QuartzCore.framework */,
 				737286FB1616960F005A3A6B /* UIKit.framework */,
 				737286FD1616960F005A3A6B /* Foundation.framework */,
 				737286FF1616960F005A3A6B /* CoreGraphics.framework */,
@@ -72,6 +355,10 @@
 		737287011616960F005A3A6B /* WizGroup */ = {
 			isa = PBXGroup;
 			children = (
+				73D7C670162F9FC400C27478 /* Resources */,
+				7372873C1616A093005A3A6B /* WizCore */,
+				73728713161696DF005A3A6B /* GMGridView */,
+				7372871216169624005A3A6B /* UI */,
 				7372870A1616960F005A3A6B /* WGAppDelegate.h */,
 				7372870B1616960F005A3A6B /* WGAppDelegate.m */,
 				737287021616960F005A3A6B /* Supporting Files */,
@@ -88,6 +375,331 @@
 				737287091616960F005A3A6B /* WizGroup-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7372871216169624005A3A6B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				73DE4E70162E986F004BC0F6 /* OtherFrameWork */,
+				737288381616C72F005A3A6B /* detail */,
+				7372873016169A8D005A3A6B /* WGMainViewController.h */,
+				7372873116169A8D005A3A6B /* WGMainViewController.m */,
+				73D7C66C162F9D1600C27478 /* WGGridViewCell.h */,
+				73D7C66D162F9D1600C27478 /* WGGridViewCell.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		73728713161696DF005A3A6B /* GMGridView */ = {
+			isa = PBXGroup;
+			children = (
+				73728714161696DF005A3A6B /* GMGridView-Constants.h */,
+				73728715161696DF005A3A6B /* GMGridView.h */,
+				73728716161696DF005A3A6B /* GMGridView.m */,
+				7372871A161696DF005A3A6B /* GMGridViewCell+Extended.h */,
+				7372871B161696DF005A3A6B /* GMGridViewCell.h */,
+				7372871C161696DF005A3A6B /* GMGridViewCell.m */,
+				7372871D161696DF005A3A6B /* GMGridViewLayoutStrategies.h */,
+				7372871E161696DF005A3A6B /* GMGridViewLayoutStrategies.m */,
+				7372871F161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.h */,
+				73728720161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.m */,
+				73728721161696DF005A3A6B /* UIView+GMGridViewAdditions.h */,
+				73728722161696DF005A3A6B /* UIView+GMGridViewAdditions.m */,
+			);
+			path = GMGridView;
+			sourceTree = "<group>";
+		};
+		7372873C1616A093005A3A6B /* WizCore */ = {
+			isa = PBXGroup;
+			children = (
+				73D7C67A162FA6E000C27478 /* MultiProcessSync */,
+				737288191616A37A005A3A6B /* WizNotificationCenter */,
+				7372873D1616A093005A3A6B /* CommonString.h */,
+				7372873E1616A093005A3A6B /* CommonString.m */,
+				7372873F1616A093005A3A6B /* FMDB */,
+				7372874C1616A093005A3A6B /* minizip */,
+				737287581616A093005A3A6B /* NSDate+WizTools.h */,
+				737287591616A093005A3A6B /* NSDate+WizTools.m */,
+				7372875A1616A093005A3A6B /* NSDateAddtion */,
+				7372875F1616A093005A3A6B /* NSMutableDictionary+WizDocument.h */,
+				737287601616A093005A3A6B /* NSMutableDictionary+WizDocument.m */,
+				737287611616A093005A3A6B /* NSString+WizString.h */,
+				737287621616A093005A3A6B /* NSString+WizString.m */,
+				737287631616A093005A3A6B /* Pinyin */,
+				737287661616A093005A3A6B /* README */,
+				737287671616A093005A3A6B /* UIImage+WizTools.h */,
+				737287681616A093005A3A6B /* UIImage+WizTools.m */,
+				737287691616A093005A3A6B /* UIWebView+WizTools.h */,
+				7372876A1616A093005A3A6B /* UIWebView+WizTools.m */,
+				7372876B1616A093005A3A6B /* WizAccountManager.h */,
+				7372876C1616A093005A3A6B /* WizAccountManager.m */,
+				7372876D1616A093005A3A6B /* WizApi */,
+				737287961616A093005A3A6B /* WizCore.h */,
+				737287971616A093005A3A6B /* WizCore.m */,
+				737287981616A093005A3A6B /* WizDbManger */,
+				737287A61616A093005A3A6B /* WizFileManager.h */,
+				737287A71616A093005A3A6B /* WizFileManager.m */,
+				737287A81616A093005A3A6B /* WizGlobals.h */,
+				737287A91616A093005A3A6B /* WizGlobals.mm */,
+				737287AA1616A093005A3A6B /* WizString.h */,
+				737287AB1616A093005A3A6B /* WizString.m */,
+				737287AC1616A093005A3A6B /* WizStruct */,
+				737287C11616A093005A3A6B /* xml-rpc */,
+			);
+			name = WizCore;
+			path = ../../../WizCoreFunc/WizCoreFunc/WizCore;
+			sourceTree = "<group>";
+		};
+		7372873F1616A093005A3A6B /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				737287401616A093005A3A6B /* FMDatabase.h */,
+				737287411616A093005A3A6B /* FMDatabase.m */,
+				737287421616A093005A3A6B /* FMDatabaseAdditions.h */,
+				737287431616A093005A3A6B /* FMDatabaseAdditions.m */,
+				737287441616A093005A3A6B /* FMDatabasePool.h */,
+				737287451616A093005A3A6B /* FMDatabasePool.m */,
+				737287461616A093005A3A6B /* FMDatabaseQueue.h */,
+				737287471616A093005A3A6B /* FMDatabaseQueue.m */,
+				737287481616A093005A3A6B /* FMResultSet.h */,
+				737287491616A093005A3A6B /* FMResultSet.m */,
+				7372874A1616A093005A3A6B /* WizMisc.cpp */,
+				7372874B1616A093005A3A6B /* WizMisc.h */,
+			);
+			path = FMDB;
+			sourceTree = "<group>";
+		};
+		7372874C1616A093005A3A6B /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				7372874D1616A093005A3A6B /* crypt.h */,
+				7372874E1616A093005A3A6B /* ioapi.c */,
+				7372874F1616A093005A3A6B /* ioapi.h */,
+				737287501616A093005A3A6B /* mztools.c */,
+				737287511616A093005A3A6B /* mztools.h */,
+				737287521616A093005A3A6B /* unzip.c */,
+				737287531616A093005A3A6B /* unzip.h */,
+				737287541616A093005A3A6B /* zip.c */,
+				737287551616A093005A3A6B /* zip.h */,
+				737287561616A093005A3A6B /* ZipArchive.h */,
+				737287571616A093005A3A6B /* ZipArchive.mm */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		7372875A1616A093005A3A6B /* NSDateAddtion */ = {
+			isa = PBXGroup;
+			children = (
+				7372875B1616A093005A3A6B /* NSDate-Utilities.h */,
+				7372875C1616A093005A3A6B /* NSDate-Utilities.m */,
+				7372875D1616A093005A3A6B /* TimeFormatters.h */,
+				7372875E1616A093005A3A6B /* TimeFormatters.m */,
+			);
+			path = NSDateAddtion;
+			sourceTree = "<group>";
+		};
+		737287631616A093005A3A6B /* Pinyin */ = {
+			isa = PBXGroup;
+			children = (
+				737287641616A093005A3A6B /* pinyin.cpp */,
+				737287651616A093005A3A6B /* pinyin.h */,
+			);
+			path = Pinyin;
+			sourceTree = "<group>";
+		};
+		7372876D1616A093005A3A6B /* WizApi */ = {
+			isa = PBXGroup;
+			children = (
+				7372876E1616A093005A3A6B /* WizApi.h */,
+				7372876F1616A093005A3A6B /* WizApi.m */,
+				737287701616A093005A3A6B /* WizApiClientLogin.h */,
+				737287711616A093005A3A6B /* WizApiClientLogin.m */,
+				737287721616A093005A3A6B /* WizApiDownloadAttachmentList.h */,
+				737287731616A093005A3A6B /* WizApiDownloadAttachmentList.m */,
+				737287741616A093005A3A6B /* WizApiDownloadDeletedGuids.h */,
+				737287751616A093005A3A6B /* WizApiDownloadDeletedGuids.m */,
+				737287761616A093005A3A6B /* WizApiDownloadDocumentList.h */,
+				737287771616A093005A3A6B /* WizApiDownloadDocumentList.m */,
+				737287781616A093005A3A6B /* WizApiDownloadList.h */,
+				737287791616A093005A3A6B /* WizApiDownloadList.m */,
+				7372877A1616A093005A3A6B /* WizApiDownloadTagList.h */,
+				7372877B1616A093005A3A6B /* WizApiDownloadTagList.m */,
+				7372877C1616A093005A3A6B /* WizApiGetAllVersions.h */,
+				7372877D1616A093005A3A6B /* WizApiGetAllVersions.m */,
+				7372877E1616A093005A3A6B /* WizApiRefreshGroups.h */,
+				7372877F1616A093005A3A6B /* WizApiRefreshGroups.m */,
+				737287801616A093005A3A6B /* WizApiUploadDeletedGuids.h */,
+				737287811616A093005A3A6B /* WizApiUploadDeletedGuids.m */,
+				737287821616A093005A3A6B /* WizApiUploadTags.h */,
+				737287831616A093005A3A6B /* WizApiUploadTags.m */,
+				737287841616A093005A3A6B /* WizDownloadObject.h */,
+				737287851616A093005A3A6B /* WizDownloadObject.m */,
+				737287861616A093005A3A6B /* WizGroupSync.h */,
+				737287871616A093005A3A6B /* WizGroupSync.m */,
+				737287881616A093005A3A6B /* WizSyncCenter.h */,
+				737287891616A093005A3A6B /* WizSyncCenter.m */,
+				7372878A1616A093005A3A6B /* WizSyncDataCenter.h */,
+				7372878B1616A093005A3A6B /* WizSyncDataCenter.m */,
+				7372878C1616A093005A3A6B /* WizSyncDownload.h */,
+				7372878D1616A093005A3A6B /* WizSyncDownload.m */,
+				7372878E1616A093005A3A6B /* WizSyncErrorCenter.h */,
+				7372878F1616A093005A3A6B /* WizSyncErrorCenter.m */,
+				737287901616A093005A3A6B /* WizSyncMeta.h */,
+				737287911616A093005A3A6B /* WizSyncMeta.m */,
+				737287921616A093005A3A6B /* WizSyncUpload.h */,
+				737287931616A093005A3A6B /* WizSyncUpload.m */,
+				737287941616A093005A3A6B /* WizUploadObject.h */,
+				737287951616A093005A3A6B /* WizUploadObject.m */,
+			);
+			path = WizApi;
+			sourceTree = "<group>";
+		};
+		737287981616A093005A3A6B /* WizDbManger */ = {
+			isa = PBXGroup;
+			children = (
+				737287991616A093005A3A6B /* WizAbstractDataBaseModel.plist */,
+				7372879A1616A093005A3A6B /* WizDataBase.h */,
+				7372879B1616A093005A3A6B /* WizDataBase.m */,
+				7372879C1616A093005A3A6B /* WizDataBaseModel.plist */,
+				7372879D1616A093005A3A6B /* WizDbManager.h */,
+				7372879E1616A093005A3A6B /* WizDbManager.mm */,
+				7372879F1616A093005A3A6B /* WizMetaDataBase.h */,
+				737287A01616A093005A3A6B /* WizMetaDataBase.m */,
+				737287A11616A093005A3A6B /* WizMetaDataBaseDelegate.h */,
+				737287A21616A093005A3A6B /* WizSettingsDataBase.h */,
+				737287A31616A093005A3A6B /* WizSettingsDataBase.m */,
+				737287A41616A093005A3A6B /* WizSettingsDataBaseModel.plist */,
+				737287A51616A093005A3A6B /* WizSettingsDbDelegate.h */,
+			);
+			path = WizDbManger;
+			sourceTree = "<group>";
+		};
+		737287AC1616A093005A3A6B /* WizStruct */ = {
+			isa = PBXGroup;
+			children = (
+				737287AD1616A093005A3A6B /* WizAbstract.h */,
+				737287AE1616A093005A3A6B /* WizAbstract.m */,
+				737287AF1616A093005A3A6B /* WizAccount.h */,
+				737287B01616A093005A3A6B /* WizAccount.m */,
+				737287B11616A093005A3A6B /* WizAttachment.h */,
+				737287B21616A093005A3A6B /* WizAttachment.m */,
+				737287B31616A093005A3A6B /* WizDeletedGUID.h */,
+				737287B41616A093005A3A6B /* WizDeletedGUID.m */,
+				737287B51616A093005A3A6B /* WizDocument.h */,
+				737287B61616A093005A3A6B /* WizDocument.m */,
+				737287B71616A093005A3A6B /* WizGroup.h */,
+				737287B81616A093005A3A6B /* WizGroup.m */,
+				737287B91616A093005A3A6B /* WizObject.h */,
+				737287BA1616A093005A3A6B /* WizObject.m */,
+				737287BB1616A093005A3A6B /* WizSearch.h */,
+				737287BC1616A093005A3A6B /* WizSearch.m */,
+				737287BD1616A093005A3A6B /* WizSetting.h */,
+				737287BE1616A093005A3A6B /* WizSetting.m */,
+				737287BF1616A093005A3A6B /* WizTag.h */,
+				737287C01616A093005A3A6B /* WizTag.m */,
+			);
+			path = WizStruct;
+			sourceTree = "<group>";
+		};
+		737287C11616A093005A3A6B /* xml-rpc */ = {
+			isa = PBXGroup;
+			children = (
+				737287C21616A093005A3A6B /* GDataXMLNode.h */,
+				737287C31616A093005A3A6B /* GDataXMLNode.m */,
+				737287C41616A093005A3A6B /* XMLRPCConnection.h */,
+				737287C51616A093005A3A6B /* XMLRPCConnection.m */,
+				737287C61616A093005A3A6B /* XMLRPCEncoder.h */,
+				737287C71616A093005A3A6B /* XMLRPCEncoder.m */,
+				737287C81616A093005A3A6B /* XMLRPCExtensions.h */,
+				737287C91616A093005A3A6B /* XMLRPCExtensions.m */,
+				737287CA1616A093005A3A6B /* XMLRPCRequest.h */,
+				737287CB1616A093005A3A6B /* XMLRPCRequest.m */,
+				737287CC1616A093005A3A6B /* XMLRPCResponse.h */,
+				737287CD1616A093005A3A6B /* XMLRPCResponse.m */,
+			);
+			path = "xml-rpc";
+			sourceTree = "<group>";
+		};
+		737288191616A37A005A3A6B /* WizNotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				7372881A1616A3AE005A3A6B /* WizNotificationCenter.h */,
+				7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */,
+			);
+			name = WizNotificationCenter;
+			sourceTree = "<group>";
+		};
+		737288311616C706005A3A6B /* ViewDeck */ = {
+			isa = PBXGroup;
+			children = (
+				737288321616C706005A3A6B /* IIViewDeckController.h */,
+				737288331616C706005A3A6B /* IIViewDeckController.m */,
+				737288341616C706005A3A6B /* WrapController.h */,
+				737288351616C706005A3A6B /* WrapController.m */,
+			);
+			path = ViewDeck;
+			sourceTree = "<group>";
+		};
+		737288381616C72F005A3A6B /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				734CD8521616D8BA00FBC33C /* WizPadTreeTableCell.h */,
+				734CD8531616D8BA00FBC33C /* WizPadTreeTableCell.m */,
+				734CD84F1616D7A400FBC33C /* TreeNode.h */,
+				734CD8501616D7A400FBC33C /* TreeNode.m */,
+				737288391616C880005A3A6B /* WGDetailViewController.h */,
+				7372883A1616C880005A3A6B /* WGDetailViewController.m */,
+				7372883C1616C88C005A3A6B /* WGListViewController.h */,
+				7372883D1616C88C005A3A6B /* WGListViewController.m */,
+				73CE190A16227B5800DB4201 /* WGReadViewController.h */,
+				73CE190B16227B5800DB4201 /* WGReadViewController.m */,
+			);
+			name = detail;
+			sourceTree = "<group>";
+		};
+		73D7C670162F9FC400C27478 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				73D7C671162F9FFC00C27478 /* a.PNG */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		73D7C674162FA10400C27478 /* UIBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				73D7C675162FA10400C27478 /* UIBadgeView.h */,
+				73D7C676162FA10400C27478 /* UIBadgeView.m */,
+			);
+			path = UIBadgeView;
+			sourceTree = "<group>";
+		};
+		73D7C67A162FA6E000C27478 /* MultiProcessSync */ = {
+			isa = PBXGroup;
+			children = (
+				73D7C67B162FA73500C27478 /* WizSyncGropOperation.h */,
+				73D7C67C162FA73500C27478 /* WizSyncGropOperation.m */,
+			);
+			name = MultiProcessSync;
+			sourceTree = "<group>";
+		};
+		73DE4E70162E986F004BC0F6 /* OtherFrameWork */ = {
+			isa = PBXGroup;
+			children = (
+				73D7C674162FA10400C27478 /* UIBadgeView */,
+				73DE4E71162E9897004BC0F6 /* PPRevealSideViewController */,
+				737288311616C706005A3A6B /* ViewDeck */,
+			);
+			name = OtherFrameWork;
+			sourceTree = "<group>";
+		};
+		73DE4E71162E9897004BC0F6 /* PPRevealSideViewController */ = {
+			isa = PBXGroup;
+			children = (
+				73DE4E72162E9897004BC0F6 /* PPRevealSideViewController.h */,
+				73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */,
+			);
+			path = PPRevealSideViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +755,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				737287061616960F005A3A6B /* InfoPlist.strings in Resources */,
+				737287E01616A093005A3A6B /* README in Resources */,
+				737287F91616A093005A3A6B /* WizAbstractDataBaseModel.plist in Resources */,
+				737287FB1616A093005A3A6B /* WizDataBaseModel.plist in Resources */,
+				737287FF1616A093005A3A6B /* WizSettingsDataBaseModel.plist in Resources */,
+				73D7C672162F9FFC00C27478 /* a.PNG in Resources */,
+				73D7C679162FA61D00C27478 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +771,91 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				734CD8551616D9F400FBC33C /* WizPadTreeTableCell.m in Sources */,
+				734CD8541616D9BE00FBC33C /* TreeNode.m in Sources */,
 				737287081616960F005A3A6B /* main.m in Sources */,
 				7372870C1616960F005A3A6B /* WGAppDelegate.m in Sources */,
+				73728726161696DF005A3A6B /* GMGridView.m in Sources */,
+				73728727161696DF005A3A6B /* GMGridViewCell.m in Sources */,
+				73728728161696DF005A3A6B /* GMGridViewLayoutStrategies.m in Sources */,
+				73728729161696DF005A3A6B /* UIGestureRecognizer+GMGridViewAdditions.m in Sources */,
+				7372872A161696DF005A3A6B /* UIView+GMGridViewAdditions.m in Sources */,
+				7372873216169A8D005A3A6B /* WGMainViewController.m in Sources */,
+				737287CE1616A093005A3A6B /* CommonString.m in Sources */,
+				737287CF1616A093005A3A6B /* FMDatabase.m in Sources */,
+				737287D01616A093005A3A6B /* FMDatabaseAdditions.m in Sources */,
+				737287D11616A093005A3A6B /* FMDatabasePool.m in Sources */,
+				737287D21616A093005A3A6B /* FMDatabaseQueue.m in Sources */,
+				737287D31616A093005A3A6B /* FMResultSet.m in Sources */,
+				737287D41616A093005A3A6B /* WizMisc.cpp in Sources */,
+				737287D51616A093005A3A6B /* ioapi.c in Sources */,
+				737287D61616A093005A3A6B /* mztools.c in Sources */,
+				737287D71616A093005A3A6B /* unzip.c in Sources */,
+				737287D81616A093005A3A6B /* zip.c in Sources */,
+				737287D91616A093005A3A6B /* ZipArchive.mm in Sources */,
+				737287DA1616A093005A3A6B /* NSDate+WizTools.m in Sources */,
+				737287DB1616A093005A3A6B /* NSDate-Utilities.m in Sources */,
+				737287DC1616A093005A3A6B /* TimeFormatters.m in Sources */,
+				737287DD1616A093005A3A6B /* NSMutableDictionary+WizDocument.m in Sources */,
+				737287DE1616A093005A3A6B /* NSString+WizString.m in Sources */,
+				737287DF1616A093005A3A6B /* pinyin.cpp in Sources */,
+				737287E11616A093005A3A6B /* UIImage+WizTools.m in Sources */,
+				737287E21616A093005A3A6B /* UIWebView+WizTools.m in Sources */,
+				737287E31616A093005A3A6B /* WizAccountManager.m in Sources */,
+				737287E41616A093005A3A6B /* WizApi.m in Sources */,
+				737287E51616A093005A3A6B /* WizApiClientLogin.m in Sources */,
+				737287E61616A093005A3A6B /* WizApiDownloadAttachmentList.m in Sources */,
+				737287E71616A093005A3A6B /* WizApiDownloadDeletedGuids.m in Sources */,
+				737287E81616A093005A3A6B /* WizApiDownloadDocumentList.m in Sources */,
+				737287E91616A093005A3A6B /* WizApiDownloadList.m in Sources */,
+				737287EA1616A093005A3A6B /* WizApiDownloadTagList.m in Sources */,
+				737287EB1616A093005A3A6B /* WizApiGetAllVersions.m in Sources */,
+				737287EC1616A093005A3A6B /* WizApiRefreshGroups.m in Sources */,
+				737287ED1616A093005A3A6B /* WizApiUploadDeletedGuids.m in Sources */,
+				737287EE1616A093005A3A6B /* WizApiUploadTags.m in Sources */,
+				737287EF1616A093005A3A6B /* WizDownloadObject.m in Sources */,
+				737287F01616A093005A3A6B /* WizGroupSync.m in Sources */,
+				737287F11616A093005A3A6B /* WizSyncCenter.m in Sources */,
+				737287F21616A093005A3A6B /* WizSyncDataCenter.m in Sources */,
+				737287F31616A093005A3A6B /* WizSyncDownload.m in Sources */,
+				737287F41616A093005A3A6B /* WizSyncErrorCenter.m in Sources */,
+				737287F51616A093005A3A6B /* WizSyncMeta.m in Sources */,
+				737287F61616A093005A3A6B /* WizSyncUpload.m in Sources */,
+				737287F71616A093005A3A6B /* WizUploadObject.m in Sources */,
+				737287F81616A093005A3A6B /* WizCore.m in Sources */,
+				737287FA1616A093005A3A6B /* WizDataBase.m in Sources */,
+				737287FC1616A093005A3A6B /* WizDbManager.mm in Sources */,
+				737287FD1616A093005A3A6B /* WizMetaDataBase.m in Sources */,
+				737287FE1616A093005A3A6B /* WizSettingsDataBase.m in Sources */,
+				737288001616A093005A3A6B /* WizFileManager.m in Sources */,
+				737288011616A093005A3A6B /* WizGlobals.mm in Sources */,
+				737288021616A093005A3A6B /* WizString.m in Sources */,
+				737288031616A093005A3A6B /* WizAbstract.m in Sources */,
+				737288041616A093005A3A6B /* WizAccount.m in Sources */,
+				737288051616A093005A3A6B /* WizAttachment.m in Sources */,
+				737288061616A093005A3A6B /* WizDeletedGUID.m in Sources */,
+				737288071616A093005A3A6B /* WizDocument.m in Sources */,
+				737288081616A093005A3A6B /* WizGroup.m in Sources */,
+				737288091616A093005A3A6B /* WizObject.m in Sources */,
+				7372880A1616A093005A3A6B /* WizSearch.m in Sources */,
+				7372880B1616A093005A3A6B /* WizSetting.m in Sources */,
+				7372880C1616A093005A3A6B /* WizTag.m in Sources */,
+				7372880D1616A093005A3A6B /* GDataXMLNode.m in Sources */,
+				7372880E1616A093005A3A6B /* XMLRPCConnection.m in Sources */,
+				7372880F1616A093005A3A6B /* XMLRPCEncoder.m in Sources */,
+				737288101616A093005A3A6B /* XMLRPCExtensions.m in Sources */,
+				737288111616A093005A3A6B /* XMLRPCRequest.m in Sources */,
+				737288121616A093005A3A6B /* XMLRPCResponse.m in Sources */,
+				7372881C1616A3AE005A3A6B /* WizNotificationCenter.m in Sources */,
+				737288361616C706005A3A6B /* IIViewDeckController.m in Sources */,
+				737288371616C706005A3A6B /* WrapController.m in Sources */,
+				7372883B1616C880005A3A6B /* WGDetailViewController.m in Sources */,
+				7372883E1616C88C005A3A6B /* WGListViewController.m in Sources */,
+				73CE190C16227B5800DB4201 /* WGReadViewController.m in Sources */,
+				73DE4E74162E9897004BC0F6 /* PPRevealSideViewController.m in Sources */,
+				73D7C66E162F9D1700C27478 /* WGGridViewCell.m in Sources */,
+				73D7C677162FA10500C27478 /* UIBadgeView.m in Sources */,
+				73D7C67D162FA73500C27478 /* WizSyncGropOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +894,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
 			};
@@ -212,6 +914,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
@@ -260,6 +963,7 @@
 				737287111616960F005A3A6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

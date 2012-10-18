@@ -7,6 +7,8 @@
 //
 
 #import "WGAppDelegate.h"
+#import "WGMainViewController.h"
+#import "WizAccountManager.h"
 
 @implementation WGAppDelegate
 
@@ -20,6 +22,18 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
+    WGMainViewController* mainController = [[WGMainViewController alloc] init];
+    
+    WizAccountManager* accountManager = [WizAccountManager defaultManager];
+    [accountManager updateAccount:@"yishuiliunian@gmail.com" password:@"654321"];
+    [accountManager registerActiveAccount:@"yishuiliunian@gmail.com"];
+    
+    UINavigationController* root = [[UINavigationController alloc] initWithRootViewController:mainController];
+    
+    [mainController release];
+    self.rootControll = root;
+    [root release];
+    [self.window addSubview:self.rootControll.view];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

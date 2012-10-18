@@ -10,6 +10,7 @@
 
 @interface WGAppDelegate : UIResponder <UIApplicationDelegate>
 
+@property (nonatomic, retain) UINavigationController* rootControll;
 @property (strong, nonatomic) UIWindow *window;
 
 @end
