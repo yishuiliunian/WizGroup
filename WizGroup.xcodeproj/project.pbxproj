@@ -412,39 +412,16 @@
 		7372873C1616A093005A3A6B /* WizCore */ = {
 			isa = PBXGroup;
 			children = (
+				73D7C67F162FB86200C27478 /* Managers */,
+				737287661616A093005A3A6B /* README */,
+				73D7C67E162FB82600C27478 /* WizTools */,
 				73D7C67A162FA6E000C27478 /* MultiProcessSync */,
 				737288191616A37A005A3A6B /* WizNotificationCenter */,
-				7372873D1616A093005A3A6B /* CommonString.h */,
-				7372873E1616A093005A3A6B /* CommonString.m */,
-				7372873F1616A093005A3A6B /* FMDB */,
-				7372874C1616A093005A3A6B /* minizip */,
-				737287581616A093005A3A6B /* NSDate+WizTools.h */,
-				737287591616A093005A3A6B /* NSDate+WizTools.m */,
-				7372875A1616A093005A3A6B /* NSDateAddtion */,
-				7372875F1616A093005A3A6B /* NSMutableDictionary+WizDocument.h */,
-				737287601616A093005A3A6B /* NSMutableDictionary+WizDocument.m */,
-				737287611616A093005A3A6B /* NSString+WizString.h */,
-				737287621616A093005A3A6B /* NSString+WizString.m */,
-				737287631616A093005A3A6B /* Pinyin */,
-				737287661616A093005A3A6B /* README */,
-				737287671616A093005A3A6B /* UIImage+WizTools.h */,
-				737287681616A093005A3A6B /* UIImage+WizTools.m */,
-				737287691616A093005A3A6B /* UIWebView+WizTools.h */,
-				7372876A1616A093005A3A6B /* UIWebView+WizTools.m */,
-				7372876B1616A093005A3A6B /* WizAccountManager.h */,
-				7372876C1616A093005A3A6B /* WizAccountManager.m */,
 				7372876D1616A093005A3A6B /* WizApi */,
 				737287961616A093005A3A6B /* WizCore.h */,
 				737287971616A093005A3A6B /* WizCore.m */,
 				737287981616A093005A3A6B /* WizDbManger */,
-				737287A61616A093005A3A6B /* WizFileManager.h */,
-				737287A71616A093005A3A6B /* WizFileManager.m */,
-				737287A81616A093005A3A6B /* WizGlobals.h */,
-				737287A91616A093005A3A6B /* WizGlobals.mm */,
-				737287AA1616A093005A3A6B /* WizString.h */,
-				737287AB1616A093005A3A6B /* WizString.m */,
 				737287AC1616A093005A3A6B /* WizStruct */,
-				737287C11616A093005A3A6B /* xml-rpc */,
 			);
 			name = WizCore;
 			path = ../../../WizCoreFunc/WizCoreFunc/WizCore;
@@ -681,6 +658,45 @@
 				73D7C67C162FA73500C27478 /* WizSyncGropOperation.m */,
 			);
 			name = MultiProcessSync;
+			sourceTree = "<group>";
+		};
+		73D7C67E162FB82600C27478 /* WizTools */ = {
+			isa = PBXGroup;
+			children = (
+				7372873D1616A093005A3A6B /* CommonString.h */,
+				7372873E1616A093005A3A6B /* CommonString.m */,
+				7372873F1616A093005A3A6B /* FMDB */,
+				7372874C1616A093005A3A6B /* minizip */,
+				737287581616A093005A3A6B /* NSDate+WizTools.h */,
+				737287591616A093005A3A6B /* NSDate+WizTools.m */,
+				7372875A1616A093005A3A6B /* NSDateAddtion */,
+				7372875F1616A093005A3A6B /* NSMutableDictionary+WizDocument.h */,
+				737287601616A093005A3A6B /* NSMutableDictionary+WizDocument.m */,
+				737287611616A093005A3A6B /* NSString+WizString.h */,
+				737287621616A093005A3A6B /* NSString+WizString.m */,
+				737287631616A093005A3A6B /* Pinyin */,
+				737287671616A093005A3A6B /* UIImage+WizTools.h */,
+				737287681616A093005A3A6B /* UIImage+WizTools.m */,
+				737287691616A093005A3A6B /* UIWebView+WizTools.h */,
+				7372876A1616A093005A3A6B /* UIWebView+WizTools.m */,
+				737287A81616A093005A3A6B /* WizGlobals.h */,
+				737287A91616A093005A3A6B /* WizGlobals.mm */,
+				737287AA1616A093005A3A6B /* WizString.h */,
+				737287AB1616A093005A3A6B /* WizString.m */,
+				737287C11616A093005A3A6B /* xml-rpc */,
+			);
+			name = WizTools;
+			sourceTree = "<group>";
+		};
+		73D7C67F162FB86200C27478 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7372876B1616A093005A3A6B /* WizAccountManager.h */,
+				7372876C1616A093005A3A6B /* WizAccountManager.m */,
+				737287A61616A093005A3A6B /* WizFileManager.h */,
+				737287A71616A093005A3A6B /* WizFileManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		73DE4E70162E986F004BC0F6 /* OtherFrameWork */ = {

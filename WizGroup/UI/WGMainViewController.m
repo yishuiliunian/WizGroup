@@ -164,8 +164,7 @@
     WizSyncCenter* center = [WizSyncCenter defaultCenter];
     NSString* activeAccountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
     for (WizGroup* each in groupsArray) {
-//        [center refreshGroupData:each.kbguid accountUserId:activeAccountUserId];
-        [center testSyncKb:each.kbguid accountUserId:activeAccountUserId];
+        [center refreshGroupData:each.kbguid accountUserId:activeAccountUserId];
         break;
     }
 }

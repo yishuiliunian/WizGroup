@@ -219,7 +219,7 @@
 
 	CGContextSetFillColorWithColor(context, [HEXCOLOR(0x000000ff) CGColor]);
 	
-	
+
 	CGContextRestoreGState(context);
 }
 
