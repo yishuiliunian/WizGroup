@@ -12,6 +12,9 @@
 #import "WizDbManager.h"
 #import "WGReadViewController.h"
 
+
+#import "WGDetailListCell.h"
+
 @interface WGListViewController () <WGReadListDelegate>
 {
     NSMutableArray* documentsArray;
@@ -117,12 +120,22 @@
     [super viewDidDisappear:animated];
 }
 
+- (void) showLeftController
+{
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     UIBarButtonItem* backHome = [[UIBarButtonItem alloc] initWithTitle:@"home" style:UIBarButtonItemStyleBordered target:self action:@selector(backToHome)];
     self.navigationItem.rightBarButtonItem = backHome;
+    [backHome release];
+    
+    UIBarButtonItem* showLeftItem = [[UIBarButtonItem alloc] initWithTitle:@"lest" style:UIBarButtonItemStyleBordered target:self action:@selector(showLeftController)];
+    self.navigationItem.leftBarButtonItem = showLeftItem;
+    [showLeftItem release];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -157,18 +170,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"ListCell";
+    WGDetailListCell *cell = (WGDetailListCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (nil == cell) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[WGDetailListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     WizDocument* doc = [documentsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = doc.strTitle;
+    cell.documentGuid = doc.strGuid;
+    cell.kbGuid = self.kbGuid;
+    cell.accountUserId = self.accountUserId;
     return cell;
 }
 
-
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+}
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -228,4 +246,8 @@
     return nil;
 }
 
+- (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell setNeedsDisplay];
+}
 @end

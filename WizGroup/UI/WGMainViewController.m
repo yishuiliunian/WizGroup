@@ -19,6 +19,11 @@
 #import "WGListViewController.h"
 
 #import "WizSyncCenter.h"
+
+#import "WGGlobalCache.h"
+
+#import "UINavigationBar+WizCustom.h"
+
 @interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 {
     GMGridView* groupGridView;
@@ -49,8 +54,8 @@
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.style = GMGridViewStylePush;
-    gmGridView.itemSpacing = 5;
-    gmGridView.minEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    gmGridView.itemSpacing = 10;
+    gmGridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     gmGridView.centerGrid = YES;
     gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
     [self.view addSubview:gmGridView];
@@ -82,6 +87,9 @@
     self.navigationItem.rightBarButtonItem = refresh;
     [refresh release];
 	// Do any additional setup after loading the view.
+    UIImage* image = [UIImage imageNamed:@"loginButtonBackgroud.png"];
+
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
 }
 
 - (NSInteger) numberOfItemsInGMGridView:(GMGridView *)gridView
@@ -105,12 +113,26 @@
     }
     
     WizGroup* group = [groupsArray objectAtIndex:index];
-    
     cell.textLabel.text =  group.kbName;
-    cell.imageView.image = [UIImage imageNamed:@"a.PNG"];
+    
+    MULTIBACK(^(void){
+        UIImage* image =  [[WGGlobalCache shareInstance] imageForGroupKbguid:group.kbguid];
+        if (image == nil) {
+            if ([[WGGlobalCache shareInstance] generateImageForKbguid:group.kbguid]) {
+                image = [[WGGlobalCache shareInstance] imageForGroupKbguid:group.kbguid];
+            }
+        }
+        MULTIMAIN(^(void){
+            cell.imageView.image = image;
+        });
+    });
+    
+    
+
     [cell setBadgeCount:3];
     return cell;
 }
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -165,7 +187,6 @@
     NSString* activeAccountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
     for (WizGroup* each in groupsArray) {
         [center refreshGroupData:each.kbguid accountUserId:activeAccountUserId];
-        break;
     }
 }
 
