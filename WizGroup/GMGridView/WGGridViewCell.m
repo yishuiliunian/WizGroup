@@ -7,29 +7,32 @@
 //
 
 #import "WGGridViewCell.h"
-#import "UIBadgeView.h"
+#import "JSBadgeView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WizNotificationCenter.h"
 
 #define FONT_SIZE   16
 
 @interface WGGridViewCell ()
 {
-    UIBadgeView* badgeView;
+    JSBadgeView* badgeView;
     CGSize _size;
+    UIImageView* coverView;
+    UIActivityIndicatorView* activityIndicatorView;
 }
 @end
 
 @implementation WGGridViewCell
 @synthesize imageView = _imageView;
 @synthesize textLabel = _textLabel;
-
+@synthesize kbguid;
 
 //计算文本所占高度
 //2个参数：宽度和文本内容
 -(CGFloat)calculateTextHeight:(CGFloat)widthInput Content:(NSString *)strContent{
     CGSize constraint = CGSizeMake(widthInput, 20000.0f);
-    CGSize size = [strContent sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
-    CGFloat height = MAX(size.height, 44.0f);
+    CGSize size = [strContent sizeWithFont:[UIFont boldSystemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+    CGFloat height = size.height;
     return height;
 }
 
@@ -37,10 +40,14 @@
 - (void) dealloc
 
 {
+    [[WizNotificationCenter defaultCenter] removeObserver:self];
     [self removeObserver:self forKeyPath:@"textLabel.text" context:nil];
+    [coverView release];
     [badgeView release];
     [_textLabel release];
     [_imageView release];
+    [activityIndicatorView release];
+    [kbguid release];
     [super dealloc];
 }
 
@@ -51,25 +58,32 @@
         
         _size = size;
         
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, size.width, size.height)];
+        CGRect imageRect = CGRectMake(0.0, 0.0, size.width, size.height);
+        _imageView = [[UIImageView alloc] initWithFrame:imageRect];
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 60, size.width, 20)];
     
         _textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _textLabel.textAlignment = UITextAlignmentCenter;
         _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.textColor = [UIColor blackColor];
-        _textLabel.highlightedTextColor = [UIColor whiteColor];
+        _textLabel.textColor = [UIColor whiteColor];
+        _textLabel.highlightedTextColor = [UIColor lightGrayColor];
         _textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
         _textLabel.numberOfLines = 0;
-        
+        _textLabel.shadowColor = [UIColor lightGrayColor];
+        _textLabel.shadowOffset = CGSizeMake(0.5, 0.5);
         
         
         [_imageView addSubview:_textLabel];
         
-        badgeView = [[UIBadgeView alloc] initWithFrame:CGRectMake(size.width - 5, -15, 30, 30)];
-        [_imageView addSubview:badgeView];
+        badgeView = [[JSBadgeView alloc] initWithParentView:_imageView alignment:JSBadgeViewAlignmentTopRight];
         badgeView.hidden = YES;
+        
+        //
+        coverView = [[UIImageView alloc] initWithFrame:imageRect];
+        coverView.image = [UIImage imageNamed:@"menban"];
+        [_imageView addSubview:coverView];
+        //
         
         self.contentView = _imageView;
         self.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
@@ -77,28 +91,70 @@
         
         //
         CALayer* layer = _imageView.layer;
-        layer.borderColor = [UIColor grayColor].CGColor;
-        layer.borderWidth = 0.5f;
+
         layer.shadowColor = [UIColor grayColor].CGColor;
         layer.shadowOffset = CGSizeMake(2, 2);
         layer.shadowOpacity = 0.5;
         layer.shadowRadius = 2;
         layer.cornerRadius = 5;
-        
+        [_imageView bringSubviewToFront:_textLabel];
         [self addObserver:self forKeyPath:@"textLabel.text" options:NSKeyValueObservingOptionNew context:nil];
-        
+        //
+        float activityViewHeight = 40;
+        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((size.width - activityViewHeight)/2, (size.height - activityViewHeight)/2, activityViewHeight, activityViewHeight)];
+        [_imageView addSubview:activityIndicatorView];
+        [_imageView bringSubviewToFront:activityIndicatorView];
+        //
+        WizNotificationCenter* center = [WizNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(startSync:) name:WizNMSyncGroupStart object:nil];
+        [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupEnd object:nil];
+        [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupError object:nil];
     }
     return self;
+}
+- (void) startSync:(NSNotification*)nc
+{
+    NSString* guid = [WizNotificationCenter getGuidFromNc:nc];
+    if ([guid isEqualToString:self.kbguid]) {
+        NSLog(@"start %@",guid);
+        MULTIMAIN(^(void)
+          {
+              [activityIndicatorView startAnimating];
+          });
+        
+    }
+}
+- (void) endSync:(NSNotification*)nc
+{
+    NSString* guid = [WizNotificationCenter getGuidFromNc:nc];
+    if ([guid isEqualToString:self.kbguid]) {
+        MULTIMAIN(^(void)
+      {
+          NSLog(@"end %@",guid);
+            [activityIndicatorView stopAnimating];
+      });
+      
+    }
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"textLabel.text"]) {
-        NSString* text = [change objectForKey:@"new"];
-        CGFloat height = [self calculateTextHeight:_size.width Content:text];
-        NSLog(@"content height is %f  viewwidth %f",height, _size.width);
+        MULTIBACK(^(void)
+          {
+            CGFloat height = 0;
+            @synchronized(self)
+            {
+                  NSString* text = [change objectForKey:@"new"];
+                  height = [self calculateTextHeight:_size.width Content:text];
+            }
+            MULTIMAIN(^(void)
+            {
+                NSLog(@"size.height is %f height is %f", _size.height ,height);
+                 _textLabel.frame = CGRectMake(0.0, self.contentView.frame.size.height - height - 8, self.contentView.frame.size.width, height);
+            });
+          });
         
-//        _textLabel.frame = CGRectMake(0.0, 0.0, self.contentView.frame.size.width, height);
     }
 }
 - (id)initWithFrame:(CGRect)frame
@@ -118,7 +174,7 @@
     else
     {
         badgeView.hidden = NO;
-        badgeView.badgeString = [NSString stringWithFormat:@"%d",count];
+        badgeView.badgeText = [NSString stringWithFormat:@"%d",count];
     }
 }
 

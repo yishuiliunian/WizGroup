@@ -29,6 +29,7 @@
     GMGridView* groupGridView;
     NSMutableArray* groupsArray;
 }
+@property (atomic, assign) NSInteger numberOfSyncingGroups;
 @end
 
 @implementation WGMainViewController
@@ -39,18 +40,42 @@
     [groupsArray release];
     [super dealloc];
 }
+- (void) startSync:(NSNotification*)nc
+{
+    self.numberOfSyncingGroups ++;
+    if (self.numberOfSyncingGroups != 0) {
+        [self showActivityIndicator];
+    }
+}
+- (void) endSync:(NSNotification*)nc
+{
+    self.numberOfSyncingGroups --;
+    if (self.numberOfSyncingGroups == 0) {
+        [self showReloadButton];
+    }
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGroupView) name:WizNMDidUpdataGroupList object:nil];
+        
+        WizNotificationCenter* center = [WizNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(startSync:) name:WizNMSyncGroupStart object:nil];
+        [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupEnd object:nil];
+        [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupError object:nil];
     }
     return self;
 }
 - (void) loadView
 {
     [super loadView];
+    UIImageView* backgroudView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gridBackgroud"]];
+    backgroudView.frame = [UIScreen mainScreen].bounds;
+    [self.view addSubview:backgroudView];
+    [backgroudView release];
+    //
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.style = GMGridViewStylePush;
@@ -72,6 +97,14 @@
     [groupsArray addObjectsFromArray:groups];
     [groupGridView reloadData];
 }
+- (void) drawBackgroud
+{
+    
+}
+- (void) settingApp
+{
+    
+}
 
 - (void)viewDidLoad
 {
@@ -86,10 +119,15 @@
     UIBarButtonItem* refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshGroupData)];
     self.navigationItem.rightBarButtonItem = refresh;
     [refresh release];
-	// Do any additional setup after loading the view.
-    UIImage* image = [UIImage imageNamed:@"loginButtonBackgroud.png"];
+    //
+    UIBarButtonItem* setItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingApp)];
+	self.navigationItem.leftBarButtonItem = setItem;
+    [setItem release];
+    //
+    UIImage* image = [UIImage imageNamed:@"navigationBackGroud"];
 
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 - (NSInteger) numberOfItemsInGMGridView:(GMGridView *)gridView
@@ -127,7 +165,7 @@
         });
     });
     
-    
+    cell.kbguid = group.kbguid;
 
     [cell setBadgeCount:3];
     return cell;
@@ -180,7 +218,25 @@
     [ppSideController release];
     [centerNav release];
 }
+- (void)showReloadButton {
+    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc]
+                                    initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
+                                    target:self
+                                    action:@selector(refreshGroupData)];
+    self.navigationItem.rightBarButtonItem = refreshItem;
+    [refreshItem release];
+}
 
+- (void)showActivityIndicator {
+    UIActivityIndicatorView *activityIndicator =
+    [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [activityIndicator startAnimating];
+    UIBarButtonItem *activityItem =
+    [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    [activityIndicator release];
+    self.navigationItem.rightBarButtonItem = activityItem;
+    [activityItem release];
+}
 - (void) refreshGroupData
 {
     WizSyncCenter* center = [WizSyncCenter defaultCenter];

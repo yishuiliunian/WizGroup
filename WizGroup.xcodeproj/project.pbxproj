@@ -97,8 +97,6 @@
 		737288161616A15D005A3A6B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737288151616A15D005A3A6B /* libsqlite3.dylib */; };
 		737288181616A162005A3A6B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 737288171616A162005A3A6B /* libz.dylib */; };
 		7372881C1616A3AE005A3A6B /* WizNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */; };
-		737288361616C706005A3A6B /* IIViewDeckController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737288331616C706005A3A6B /* IIViewDeckController.m */; };
-		737288371616C706005A3A6B /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 737288351616C706005A3A6B /* WrapController.m */; };
 		7372883B1616C880005A3A6B /* WGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883A1616C880005A3A6B /* WGDetailViewController.m */; };
 		7372883E1616C88C005A3A6B /* WGListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883D1616C88C005A3A6B /* WGListViewController.m */; };
 		73CE190C16227B5800DB4201 /* WGReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CE190B16227B5800DB4201 /* WGReadViewController.m */; };
@@ -109,6 +107,10 @@
 		73D7C67D162FA73500C27478 /* WizSyncGropOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C67C162FA73500C27478 /* WizSyncGropOperation.m */; };
 		73D7C683162FEAF500C27478 /* WGGlobalCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C682162FEAF500C27478 /* WGGlobalCache.m */; };
 		73D7C687162FF53D00C27478 /* WizTempDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C685162FEFDC00C27478 /* WizTempDataBase.m */; };
+		73D9AB4C16362C4E004D6B8D /* JSBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D9AB4B16362C4E004D6B8D /* JSBadgeView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		73D9AB4F1636342F004D6B8D /* menban.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB4E1636342F004D6B8D /* menban.png */; };
+		73D9AB55163643AB004D6B8D /* navigationBackGroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB54163643AB004D6B8D /* navigationBackGroud.png */; };
+		73D9AB5B16364853004D6B8D /* gridBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB5A16364853004D6B8D /* gridBackgroud.png */; };
 		73DE4E74162E9897004BC0F6 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -287,10 +289,6 @@
 		737288171616A162005A3A6B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7372881A1616A3AE005A3A6B /* WizNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizNotificationCenter.h; path = WizNotificationCenter/WizNotificationCenter.h; sourceTree = "<group>"; };
 		7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizNotificationCenter.m; path = WizNotificationCenter/WizNotificationCenter.m; sourceTree = "<group>"; };
-		737288321616C706005A3A6B /* IIViewDeckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IIViewDeckController.h; sourceTree = "<group>"; };
-		737288331616C706005A3A6B /* IIViewDeckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IIViewDeckController.m; sourceTree = "<group>"; };
-		737288341616C706005A3A6B /* WrapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapController.h; sourceTree = "<group>"; };
-		737288351616C706005A3A6B /* WrapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WrapController.m; sourceTree = "<group>"; };
 		737288391616C880005A3A6B /* WGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGDetailViewController.h; path = UI/WGDetailViewController.h; sourceTree = "<group>"; };
 		7372883A1616C880005A3A6B /* WGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGDetailViewController.m; path = UI/WGDetailViewController.m; sourceTree = "<group>"; };
 		7372883C1616C88C005A3A6B /* WGListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGListViewController.h; path = UI/WGListViewController.h; sourceTree = "<group>"; };
@@ -310,6 +308,11 @@
 		73D7C684162FEFDB00C27478 /* WizTempDataBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizTempDataBase.h; sourceTree = "<group>"; };
 		73D7C685162FEFDC00C27478 /* WizTempDataBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WizTempDataBase.m; sourceTree = "<group>"; };
 		73D7C686162FEFED00C27478 /* WizTemporaryDataBaseDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizTemporaryDataBaseDelegate.h; sourceTree = "<group>"; };
+		73D9AB4A16362C4E004D6B8D /* JSBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSBadgeView.h; sourceTree = "<group>"; };
+		73D9AB4B16362C4E004D6B8D /* JSBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSBadgeView.m; sourceTree = "<group>"; };
+		73D9AB4E1636342F004D6B8D /* menban.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menban.png; sourceTree = "<group>"; };
+		73D9AB54163643AB004D6B8D /* navigationBackGroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBackGroud.png; sourceTree = "<group>"; };
+		73D9AB5A16364853004D6B8D /* gridBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridBackgroud.png; sourceTree = "<group>"; };
 		73DE4E72162E9897004BC0F6 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
 		73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -641,17 +644,6 @@
 			name = WizNotificationCenter;
 			sourceTree = "<group>";
 		};
-		737288311616C706005A3A6B /* ViewDeck */ = {
-			isa = PBXGroup;
-			children = (
-				737288321616C706005A3A6B /* IIViewDeckController.h */,
-				737288331616C706005A3A6B /* IIViewDeckController.m */,
-				737288341616C706005A3A6B /* WrapController.h */,
-				737288351616C706005A3A6B /* WrapController.m */,
-			);
-			path = ViewDeck;
-			sourceTree = "<group>";
-		};
 		737288381616C72F005A3A6B /* detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +665,9 @@
 		73D7C670162F9FC400C27478 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73D9AB54163643AB004D6B8D /* navigationBackGroud.png */,
+				73D9AB4E1636342F004D6B8D /* menban.png */,
+				73D9AB5A16364853004D6B8D /* gridBackgroud.png */,
 				7362A3A81634E1460031CFEE /* loginButtonBackgroud.png */,
 				73D7C671162F9FFC00C27478 /* a.PNG */,
 			);
@@ -743,12 +738,21 @@
 			name = WGCaches;
 			sourceTree = "<group>";
 		};
+		73D9AB4916362C4E004D6B8D /* JSBadgeView */ = {
+			isa = PBXGroup;
+			children = (
+				73D9AB4A16362C4E004D6B8D /* JSBadgeView.h */,
+				73D9AB4B16362C4E004D6B8D /* JSBadgeView.m */,
+			);
+			path = JSBadgeView;
+			sourceTree = "<group>";
+		};
 		73DE4E70162E986F004BC0F6 /* OtherFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				73D9AB4916362C4E004D6B8D /* JSBadgeView */,
 				73D7C674162FA10400C27478 /* UIBadgeView */,
 				73DE4E71162E9897004BC0F6 /* PPRevealSideViewController */,
-				737288311616C706005A3A6B /* ViewDeck */,
 			);
 			name = OtherFrameWork;
 			sourceTree = "<group>";
@@ -822,6 +826,9 @@
 				73D7C672162F9FFC00C27478 /* a.PNG in Resources */,
 				73D7C679162FA61D00C27478 /* Default-568h@2x.png in Resources */,
 				7362A3A91634E1460031CFEE /* loginButtonBackgroud.png in Resources */,
+				73D9AB4F1636342F004D6B8D /* menban.png in Resources */,
+				73D9AB55163643AB004D6B8D /* navigationBackGroud.png in Resources */,
+				73D9AB5B16364853004D6B8D /* gridBackgroud.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,8 +915,6 @@
 				737288111616A093005A3A6B /* XMLRPCRequest.m in Sources */,
 				737288121616A093005A3A6B /* XMLRPCResponse.m in Sources */,
 				7372881C1616A3AE005A3A6B /* WizNotificationCenter.m in Sources */,
-				737288361616C706005A3A6B /* IIViewDeckController.m in Sources */,
-				737288371616C706005A3A6B /* WrapController.m in Sources */,
 				7372883B1616C880005A3A6B /* WGDetailViewController.m in Sources */,
 				7372883E1616C88C005A3A6B /* WGListViewController.m in Sources */,
 				73CE190C16227B5800DB4201 /* WGReadViewController.m in Sources */,
@@ -920,6 +925,7 @@
 				73D7C683162FEAF500C27478 /* WGGlobalCache.m in Sources */,
 				7362A3A71634DEC40031CFEE /* UINavigationBar+WizCustom.m in Sources */,
 				7362A3B01634E4CD0031CFEE /* WGDetailListCell.m in Sources */,
+				73D9AB4C16362C4E004D6B8D /* JSBadgeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

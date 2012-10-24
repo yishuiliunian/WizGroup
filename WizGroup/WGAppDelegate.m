@@ -9,6 +9,8 @@
 #import "WGAppDelegate.h"
 #import "WGMainViewController.h"
 #import "WizAccountManager.h"
+#import "WizSettingsDataBase.h"
+#import "WizFileManager.h"
 
 @implementation WGAppDelegate
 

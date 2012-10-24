@@ -129,18 +129,18 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem* backHome = [[UIBarButtonItem alloc] initWithTitle:@"home" style:UIBarButtonItemStyleBordered target:self action:@selector(backToHome)];
-    self.navigationItem.rightBarButtonItem = backHome;
-    [backHome release];
+    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
+    cusButton.backgroundColor = [UIColor redColor];
+    [cusButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* backToHome = [[UIBarButtonItem alloc] initWithCustomView:cusButton];
+    [cusButton release];
+    self.navigationItem.rightBarButtonItem  = backToHome;
+    [backToHome release];
     
+
     UIBarButtonItem* showLeftItem = [[UIBarButtonItem alloc] initWithTitle:@"lest" style:UIBarButtonItemStyleBordered target:self action:@selector(showLeftController)];
     self.navigationItem.leftBarButtonItem = showLeftItem;
     [showLeftItem release];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload

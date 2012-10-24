@@ -11,6 +11,7 @@
 @interface WGGridViewCell : GMGridViewCell
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UILabel*      textLabel;
+@property (nonatomic, retain) NSString*     kbguid;
 - (id) initWithSize:(CGSize)size;
 - (void) setBadgeCount:(NSInteger)count;
 @end
