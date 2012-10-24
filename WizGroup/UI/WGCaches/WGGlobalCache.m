@@ -61,8 +61,8 @@
         UIImage* image = [UIImage imageNamed:@"a.PNG"];
         @synchronized(image)
         {
-            UIImage* imageData =  [image compressedImageWidth:120];
-            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
+//            UIImage* imageData =  [image compressedImageWidth:120];
+//            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
             WizAbstract* abstract =  [db abstractFoGuid:kbguid];
             [self setObject:abstract.uiImage forKey:kbguid];
         }
