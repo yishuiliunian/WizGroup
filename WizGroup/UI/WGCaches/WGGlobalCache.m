@@ -56,18 +56,13 @@
 {
     id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
 
-    @synchronized(db)
-    {
-        UIImage* image = [UIImage imageNamed:@"a.PNG"];
-        @synchronized(image)
-        {
-//            UIImage* imageData =  [image compressedImageWidth:120];
-//            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
-            WizAbstract* abstract =  [db abstractFoGuid:kbguid];
-            [self setObject:abstract.uiImage forKey:kbguid];
-        }
-
-    }
+    UIImage* image = [UIImage imageNamed:@"a.PNG"];
+    UIImage* imageData =  [image compressedImageWidth:120];
+//    [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
+//        WizAbstract* abstract =  [db abstractFoGuid:kbguid];
+//    if (abstract != nil) {
+//         [self setObject:abstract.uiImage forKey:kbguid];
+//    }
     return YES;
 }
 

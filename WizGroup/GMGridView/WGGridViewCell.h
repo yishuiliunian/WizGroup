@@ -12,6 +12,8 @@
 @property (nonatomic, retain) UIImageView* imageView;
 @property (nonatomic, retain) UILabel*      textLabel;
 @property (nonatomic, retain) NSString*     kbguid;
+@property (nonatomic, retain) NSString*     accountUserId;
+@property (nonatomic, retain) UIActivityIndicatorView* activityIndicator;
 - (id) initWithSize:(CGSize)size;
-- (void) setBadgeCount:(NSInteger)count;
+- (void) setBadgeCount;
 @end

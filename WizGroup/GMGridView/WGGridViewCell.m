@@ -10,6 +10,8 @@
 #import "JSBadgeView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WizNotificationCenter.h"
+#import "WizSyncCenter.h"
+#import "WizDbManager.h"
 
 #define FONT_SIZE   16
 
@@ -19,6 +21,8 @@
     CGSize _size;
     UIImageView* coverView;
     UIActivityIndicatorView* activityIndicatorView;
+    //
+    NSInteger countItem;
 }
 @end
 
@@ -26,7 +30,8 @@
 @synthesize imageView = _imageView;
 @synthesize textLabel = _textLabel;
 @synthesize kbguid;
-
+@synthesize accountUserId;
+@synthesize activityIndicator = activityIndicatorView;
 //计算文本所占高度
 //2个参数：宽度和文本内容
 -(CGFloat)calculateTextHeight:(CGFloat)widthInput Content:(NSString *)strContent{
@@ -48,6 +53,7 @@
     [_imageView release];
     [activityIndicatorView release];
     [kbguid release];
+    [accountUserId release];
     [super dealloc];
 }
 
@@ -56,6 +62,9 @@
     self = [self init];
     if (self) {
         
+        static NSInteger _count = 0;
+        countItem = _count++;
+        //
         _size = size;
         
         CGRect imageRect = CGRectMake(0.0, 0.0, size.width, size.height);
@@ -116,12 +125,10 @@
 {
     NSString* guid = [WizNotificationCenter getGuidFromNc:nc];
     if ([guid isEqualToString:self.kbguid]) {
-        NSLog(@"start %@",guid);
         MULTIMAIN(^(void)
           {
               [activityIndicatorView startAnimating];
           });
-        
     }
 }
 - (void) endSync:(NSNotification*)nc
@@ -130,11 +137,10 @@
     if ([guid isEqualToString:self.kbguid]) {
         MULTIMAIN(^(void)
       {
-          NSLog(@"end %@",guid);
             [activityIndicatorView stopAnimating];
       });
-      
     }
+    [self setBadgeCount];
 }
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -150,11 +156,9 @@
             }
             MULTIMAIN(^(void)
             {
-                NSLog(@"size.height is %f height is %f", _size.height ,height);
                  _textLabel.frame = CGRectMake(0.0, self.contentView.frame.size.height - height - 8, self.contentView.frame.size.width, height);
             });
           });
-        
     }
 }
 - (id)initWithFrame:(CGRect)frame
@@ -166,16 +170,32 @@
     return self;
 }
 
-- (void) setBadgeCount:(NSInteger)count
+- (void) setBadgeCount
 {
-    if (count <= 0) {
-        badgeView.hidden = YES;
-    }
-    else
+    __block int64_t count;
+    MULTIBACK(^(void)
     {
-        badgeView.hidden = NO;
-        badgeView.badgeText = [NSString stringWithFormat:@"%d",count];
-    }
+          id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbguid];
+          count = [db documentUnReadCount];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (count <= 0) {
+                badgeView.hidden = YES;
+            }
+            else
+            {
+                badgeView.hidden = NO;
+                if (count > 99) {
+                    badgeView.badgeText = [NSString stringWithFormat:@"99+"];
+                }
+                else
+                {
+                    badgeView.badgeText = [NSString stringWithFormat:@"%lld",count];
+                }
+            }
+        });
+    });
+
+
 }
 
 @end

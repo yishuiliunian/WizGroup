@@ -24,6 +24,8 @@
 
 #import "UINavigationBar+WizCustom.h"
 
+#import "WizDbManager.h"
+
 @interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
 {
     GMGridView* groupGridView;
@@ -166,10 +168,19 @@
     });
     
     cell.kbguid = group.kbguid;
-
-    [cell setBadgeCount:3];
+    cell.accountUserId = group.accountUserId;
+    [cell setBadgeCount];
+    if ([[WizSyncCenter defaultCenter] isSyncingGrop:group.kbguid accountUserId:group.accountUserId]) {
+        [cell.activityIndicator startAnimating];
+    }
+    else
+    {
+        [cell.activityIndicator stopAnimating];
+    }
     return cell;
 }
+
+
 
 - (void)viewDidUnload
 {
