@@ -67,6 +67,12 @@
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
     [documentsArray addObjectsFromArray:[db documentsByTag:self.listKey]];
 }
+
+- (void) loadUnreadDocument
+{
+    id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
+    [documentsArray addObjectsFromArray:[db unreadDocuments]];
+}
 - (void) reloadAllData
 {
     [documentsArray removeAllObjects];
@@ -76,6 +82,9 @@
             break;
         case WGListTypeTag:
             [self loadTagDocument];
+            break;
+        case WGListTypeUnread:
+            [self loadUnreadDocument];
             break;
         default:
             [self loadRecentsDocument];
@@ -205,23 +214,6 @@
     }   
 }
 
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -237,6 +229,7 @@
     self.revealSideViewController.panInteractionsWhenClosed = PPRevealSideInteractionNone;
     [readController release];
 }
+// read deleagte
 
 - (WizDocument*) currentDocument
 {
@@ -244,6 +237,40 @@
         return [documentsArray objectAtIndex:self.lastIndexPath.row];
     }
     return nil;
+}
+
+- (BOOL) shouldCheckNextDocument
+{
+    if (self.lastIndexPath != nil) {
+        if (self.lastIndexPath.row + 1 < [documentsArray count]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void) moveToNextDocument
+{
+    if ([self shouldCheckNextDocument]) {
+        self.lastIndexPath = [NSIndexPath indexPathForRow:self.lastIndexPath.row+1 inSection:0];
+    }
+}
+
+- (BOOL) shouldCheckPreDocument
+{
+    if (self.lastIndexPath != nil) {
+        if (self.lastIndexPath.row - 1 >= 0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void) moveToPreDocument
+{
+    if ([self shouldCheckPreDocument]) {
+        self.lastIndexPath = [NSIndexPath indexPathForRow:self.lastIndexPath.row -1 inSection:0];
+    }
 }
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -11,8 +11,10 @@
 @protocol WGReadListDelegate <NSObject>
 
 - (WizDocument*) currentDocument;
-- (WizDocument*) nextDocument;
-- (WizDocument*) preDocument;
+- (BOOL) shouldCheckNextDocument;
+- (void) moveToNextDocument;
+- (BOOL) shouldCheckPreDocument;
+- (void) moveToPreDocument;
 
 @end
 

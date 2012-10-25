@@ -112,6 +112,7 @@
 		73D9AB55163643AB004D6B8D /* navigationBackGroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB54163643AB004D6B8D /* navigationBackGroud.png */; };
 		73D9AB5B16364853004D6B8D /* gridBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB5A16364853004D6B8D /* gridBackgroud.png */; };
 		73DE4E74162E9897004BC0F6 /* PPRevealSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */; };
+		73FCE6111638ECF8006F597C /* WGTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FCE6101638ECF8006F597C /* WGTreeNode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -315,6 +316,8 @@
 		73D9AB5A16364853004D6B8D /* gridBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gridBackgroud.png; sourceTree = "<group>"; };
 		73DE4E72162E9897004BC0F6 /* PPRevealSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPRevealSideViewController.h; sourceTree = "<group>"; };
 		73DE4E73162E9897004BC0F6 /* PPRevealSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPRevealSideViewController.m; sourceTree = "<group>"; };
+		73FCE60F1638ECF8006F597C /* WGTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGTreeNode.h; path = UI/WGTreeNode.h; sourceTree = "<group>"; };
+		73FCE6101638ECF8006F597C /* WGTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGTreeNode.m; path = UI/WGTreeNode.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -658,6 +661,8 @@
 				7372883D1616C88C005A3A6B /* WGListViewController.m */,
 				73CE190A16227B5800DB4201 /* WGReadViewController.h */,
 				73CE190B16227B5800DB4201 /* WGReadViewController.m */,
+				73FCE60F1638ECF8006F597C /* WGTreeNode.h */,
+				73FCE6101638ECF8006F597C /* WGTreeNode.m */,
 			);
 			name = detail;
 			sourceTree = "<group>";
@@ -926,6 +931,7 @@
 				7362A3A71634DEC40031CFEE /* UINavigationBar+WizCustom.m in Sources */,
 				7362A3B01634E4CD0031CFEE /* WGDetailListCell.m in Sources */,
 				73D9AB4C16362C4E004D6B8D /* JSBadgeView.m in Sources */,
+				73FCE6111638ECF8006F597C /* WGTreeNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,10 +35,15 @@
 //计算文本所占高度
 //2个参数：宽度和文本内容
 -(CGFloat)calculateTextHeight:(CGFloat)widthInput Content:(NSString *)strContent{
-    CGSize constraint = CGSizeMake(widthInput, 20000.0f);
-    CGSize size = [strContent sizeWithFont:[UIFont boldSystemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
-    CGFloat height = size.height;
-    return height;
+    
+    @synchronized(self)
+    {
+        CGSize constraint = CGSizeMake(widthInput, 20000.0f);
+        CGSize size = [strContent sizeWithFont:[UIFont boldSystemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeCharacterWrap];
+        CGFloat height = size.height;
+        return height;
+    }
+
 }
 
 

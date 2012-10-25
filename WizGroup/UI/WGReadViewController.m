@@ -11,6 +11,7 @@
 #import "WizAccountManager.h"
 #import "WizSyncCenter.h"
 #import "WizNotificationCenter.h"
+#import "WizDbManager.h"
 
 @interface WGReadViewController ()
 @property (nonatomic, retain)   UIWebView* detailWebView;
@@ -60,7 +61,38 @@
     }
     return self;
 }
+- (void) downloadDocument:(WizDocument*)doc
+{
+    [[WizSyncCenter defaultCenter] downloadDocument:doc kbguid:self.kbguid accountUserId:self.accountUserId];
+}
 
+- (void) checkCurrentDocument
+{
+    WizDocument* currentDoc = [self.listDelegate currentDocument];
+    if (currentDoc) {
+        if (currentDoc.bServerChanged == NO) {
+            [self loadDocument:currentDoc];
+        }
+        else
+        {
+            [self downloadDocument:currentDoc];
+        }
+    }
+}
+- (void) checkNextDocument
+{
+    if ([self.listDelegate shouldCheckNextDocument]) {
+        [self.listDelegate moveToNextDocument];
+        [self checkCurrentDocument];
+    }
+}
+- (void) checkPreDocument
+{
+    if ([self.listDelegate shouldCheckPreDocument]) {
+        [self.listDelegate moveToPreDocument];
+        [self checkCurrentDocument];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -68,7 +100,21 @@
     self.detailWebView = webView;
     [self.view addSubview:webView];
     [webView release];
+    [self checkCurrentDocument];
+    
+//    NSArray* controls = @[@"N",@"P"];
+//    UISegmentedControl* moveControl  = [[ UISegmentedControl alloc] initWithItems:controls];
+//    UIBarButtonItem* moveItem = [[UIBarButtonItem alloc] initWithCustomView:moveControl];
+//    self.navigationItem.rightBarButtonItem = moveItem;
+//    [moveControl release ];
+//    [moveItem release];
 	// Do any additional setup after loading the view.
+#warning  need fix to ios4
+    UIBarButtonItem* nextItem = [[UIBarButtonItem alloc] initWithTitle:@"N" style:UIBarButtonItemStyleBordered target:self action:@selector(checkNextDocument)];
+    UIBarButtonItem* preItem = [[UIBarButtonItem alloc] initWithTitle:@"P" style:UIBarButtonItemStyleBordered target:self action:@selector(checkPreDocument)];
+    self.navigationItem.rightBarButtonItems = @[preItem,nextItem];
+    [nextItem release];
+    [preItem release];
 }
 
 - (void) downloadCurrentDocument
@@ -88,9 +134,12 @@
             NSURL* url = [NSURL fileURLWithPath:indexPath];
             NSURLRequest* request = [NSURLRequest requestWithURL:url];
             [self.detailWebView loadRequest:request];
+            id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbguid];
+            [db updateDocumentReadCount:doc.strGuid];
         }
     }
 }
+
 
 - (void) viewWillAppear:(BOOL)animated
 {
