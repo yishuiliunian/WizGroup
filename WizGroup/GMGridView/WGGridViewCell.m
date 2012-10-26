@@ -12,10 +12,11 @@
 #import "WizNotificationCenter.h"
 #import "WizSyncCenter.h"
 #import "WizDbManager.h"
+#import "WGGlobalCache.h"
 
 #define FONT_SIZE   16
 
-@interface WGGridViewCell ()
+@interface WGGridViewCell () <WizUnreadCountDelegate, WGIMageCacheObserver>
 {
     JSBadgeView* badgeView;
     CGSize _size;
@@ -50,7 +51,7 @@
 
 {
     [[WizNotificationCenter defaultCenter] removeObserver:self];
-    [self removeObserver:self forKeyPath:@"textLabel.text" context:nil];
+//    [self removeObserver:self forKeyPath:@"textLabel.text" context:nil];
     [coverView release];
     [badgeView release];
     [_textLabel release];
@@ -83,6 +84,7 @@
         _textLabel.highlightedTextColor = [UIColor lightGrayColor];
         _textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
         _textLabel.numberOfLines = 0;
+        _textLabel.frame = CGRectMake(0.0, _imageView.frame.size.height/2 - 20, size.width, 20);
 //        _textLabel.shadowColor = [UIColor lightGrayColor];
 //        _textLabel.shadowOffset = CGSizeMake(0.5, 0.5);
         
@@ -111,7 +113,7 @@
 //        layer.shadowRadius = 2;
 //        layer.cornerRadius = 5;
         [_imageView bringSubviewToFront:_textLabel];
-        [self addObserver:self forKeyPath:@"textLabel.text" options:NSKeyValueObservingOptionNew context:nil];
+//        [self addObserver:self forKeyPath:@"textLabel.text" options:NSKeyValueObservingOptionNew context:nil];
         //
         float activityViewHeight = 40;
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((size.width - activityViewHeight)/2, (size.height - activityViewHeight)/2, activityViewHeight, activityViewHeight)];
@@ -147,24 +149,24 @@
     [self setBadgeCount];
 }
 
-- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"textLabel.text"]) {
-        MULTIBACK(^(void)
-          {
-            CGFloat height = 0;
-            @synchronized(self)
-            {
-                  NSString* text = [change objectForKey:@"new"];
-                  height = [self calculateTextHeight:_size.width Content:text];
-            }
-            MULTIMAIN(^(void)
-            {
-                 _textLabel.frame = CGRectMake(0.0, self.contentView.frame.size.height - height - 8, self.contentView.frame.size.width, height);
-            });
-          });
-    }
-}
+//- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    if ([keyPath isEqualToString:@"textLabel.text"]) {
+//        MULTIBACK(^(void)
+//          {
+//            CGFloat height = 0;
+//            @synchronized(self)
+//            {
+//                  NSString* text = [change objectForKey:@"new"];
+//                  height = [self calculateTextHeight:_size.width Content:text];
+//            }
+//            MULTIMAIN(^(void)
+//            {
+//                 _textLabel.frame = CGRectMake(0.0, self.contentView.frame.size.height - height - 8, self.contentView.frame.size.width, height);
+//            });
+//          });
+//    }
+//}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -173,33 +175,39 @@
     }
     return self;
 }
+- (void) didGetUnreadCountForKbguid:(NSString*)guid  unreadCount:(int64_t)count
+{
+    if (![guid isEqualToString:self.kbguid]) {
+        return;
+    }
+    if (count <= 0) {
+        badgeView.hidden = YES;
+    }
+    else
+    {
+        badgeView.hidden = NO;
+        if (count > 99) {
+            badgeView.badgeText = [NSString stringWithFormat:@"99+"];
+        }
+        else
+        {
+            badgeView.badgeText = [NSString stringWithFormat:@"%lld",count];
+        }
+    }
+}
+
+- (void) didGetImage:(UIImage *)image forKbguid:(NSString *)guid
+{
+    if (![guid isEqualToString:self.kbguid]) {
+        return;
+    }
+    _imageView.image = image;
+}
 
 - (void) setBadgeCount
 {
-    __block int64_t count;
-    MULTIBACK(^(void)
-    {
-          id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbguid];
-          count = [db documentUnReadCount];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            if (count <= 0) {
-                badgeView.hidden = YES;
-            }
-            else
-            {
-                badgeView.hidden = NO;
-                if (count > 99) {
-                    badgeView.badgeText = [NSString stringWithFormat:@"99+"];
-                }
-                else
-                {
-                    badgeView.badgeText = [NSString stringWithFormat:@"%lld",count];
-                }
-            }
-        });
-    });
-
-
+    [WGGlobalCache getUnreadCountByKbguid:self.kbguid accountUserId:self.accountUserId observer:self];
+    [[WGGlobalCache shareInstance] getAbstractImageForKbguid:self.kbguid accountUserId:self.accountUserId observer:self];
 }
 
 @end

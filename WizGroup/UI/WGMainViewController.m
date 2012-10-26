@@ -163,19 +163,7 @@
     
     WizGroup* group = [groupsArray objectAtIndex:index];
     cell.textLabel.text =  group.kbName;
-    
-    MULTIBACK(^(void){
-        UIImage* image =  [[WGGlobalCache shareInstance] imageForGroupKbguid:group.kbguid];
-        if (image == nil) {
-            if ([[WGGlobalCache shareInstance] generateImageForKbguid:group.kbguid]) {
-                image = [[WGGlobalCache shareInstance] imageForGroupKbguid:group.kbguid];
-            }
-        }
-        MULTIMAIN(^(void){
-            cell.imageView.image = image;
-        });
-    });
-    
+
     cell.kbguid = group.kbguid;
     cell.accountUserId = group.accountUserId;
     [cell setBadgeCount];
@@ -265,5 +253,9 @@
         [center refreshGroupData:each.kbguid accountUserId:activeAccountUserId];
     }
 }
-
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [groupGridView reloadData];
+}
 @end

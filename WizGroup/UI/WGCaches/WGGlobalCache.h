@@ -10,13 +10,29 @@
 #import "WizAbstract.h"
 
 @protocol WGIMageCacheObserver <NSObject>
-- (void) didGetImage:(UIImage*)image;
+- (void) didGetImage:(UIImage*)image forKbguid:(NSString*)kbguid;
+@end
+
+@protocol WizUnreadCountDelegate <NSObject>
+- (void) didGetUnreadCountForKbguid:(NSString*)kbguid  unreadCount:(int64_t)count;
 @end
 
 @interface WGGlobalCache : NSCache
-- (BOOL) generateImageForKbguid:(NSString*)kbguid;
-- (UIImage*) imageForGroupKbguid:(NSString *)kbguid;
+
+- (void) getAbstractImageForKbguid:(NSString*)kbguid
+                     accountUserId:(NSString*)accountUserId
+                          observer:(id<WGIMageCacheObserver>)observer;
+- (void) clearAbstractImageForKbguid:(NSString*)kbguid
+                       accountUserId:(NSString*)accountUserId;
+//
 + (id) shareInstance;
 - (WizAbstract*) abstractForGuid:(NSString*)guid;
-- (BOOL) generateAbstractForDocument:(NSString*)documengGuid    accountUserId:(NSString*)accountUserId;
+- (BOOL) generateAbstractForDocument:(NSString*)documengGuid
+                       accountUserId:(NSString*)accountUserId;
+
++ (void) getUnreadCountByKbguid:(NSString*) kbguid
+                     accountUserId:(NSString*)accountUserId
+                          observer:(id<WizUnreadCountDelegate>)delegate;
++ (void)    clearUnreadCountByKbguid:(NSString*) kbguid
+                       accountUserId:(NSString*)userId;
 @end

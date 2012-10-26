@@ -12,6 +12,8 @@
 #import "WizDbManager.h"
 #import "WizFileManager.h"
 
+#define WGUnreadCountClearKey   -1
+
 @interface WGGlobalCache ()
 {
     NSMutableDictionary* observersDictionary;
@@ -52,25 +54,39 @@
     return [NSString stringWithFormat:@"%@%@%@",@"groupImage",kbguid,accountUserId];
 }
 
-- (BOOL) generateImageForKbguid:(NSString*)kbguid
+- (void) clearAbstractImageForKbguid:(NSString *)kbguid accountUserId:(NSString *)accountUserId
 {
-    id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
-
-    UIImage* image = [UIImage imageNamed:@"a.PNG"];
-    UIImage* imageData =  [image compressedImageWidth:120];
-//    [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
-//        WizAbstract* abstract =  [db abstractFoGuid:kbguid];
-//    if (abstract != nil) {
-//         [self setObject:abstract.uiImage forKey:kbguid];
-//    }
-    return YES;
+    NSString* key = [self imageKeyForGropuKbguid:kbguid accountUserId:accountUserId];
+    [self removeObjectForKey:key];
 }
 
-
-- (UIImage*) imageForGroupKbguid:(NSString *)kbguid 
+- (void) getAbstractImageForKbguid:(NSString*)kbguid  accountUserId:(NSString*)accountUserId observer:(id<WGIMageCacheObserver>)observer
 {
-    UIImage* image = [self objectForKey:kbguid];
-    return image;
+    NSString* key = [self imageKeyForGropuKbguid:kbguid accountUserId:accountUserId];
+    UIImage* image = [[WGGlobalCache shareInstance] objectForKey:key];
+    if (image) {
+        [observer didGetImage:image forKbguid:kbguid];
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
+        
+        UIImage* image = [UIImage imageNamed:@"a.PNG"];
+        UIImage* imageData =  [image compressedImageWidth:120];
+        @synchronized(self)
+        {
+            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
+            WizAbstract* abstract =  [db abstractFoGuid:kbguid];
+            if (abstract != nil) {
+                [self setObject:abstract.uiImage forKey:kbguid];
+            }
+            [self setObject:image forKey:key];
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [observer didGetImage:image forKbguid:kbguid];
+        });
+    });
 }
 
 
@@ -168,5 +184,31 @@
 {
     WizAbstract* abstract = [self objectForKey:guid];
     return abstract;
+}
++ (NSString*) unreadCountKey:(NSString*)kbguid  accountUserId:(NSString*)userId
+{
+    return [NSString stringWithFormat:@"unreandcount%@-%@",kbguid,userId];
+}
++ (void) getUnreadCountByKbguid:(NSString *)kbguid accountUserId:(NSString *)accountUserId observer:(id<WizUnreadCountDelegate>)delegate
+{
+    NSString* key = [self unreadCountKey:kbguid accountUserId:accountUserId];
+    NSNumber* unreadCount = [[WGGlobalCache shareInstance] objectForKey:key];
+    if (unreadCount && [unreadCount intValue] != WGUnreadCountClearKey) {
+        [delegate didGetUnreadCountForKbguid:kbguid unreadCount:[unreadCount intValue]];
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:accountUserId kbGuid:kbguid];
+        int64_t count = [db documentUnReadCount];
+        [[self shareInstance] setObject:[NSNumber numberWithInt:count] forKey:key];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [delegate didGetUnreadCountForKbguid:kbguid unreadCount:count];
+        });
+    });
+}
++ (void) clearUnreadCountByKbguid:(NSString *)kbguid accountUserId:(NSString *)userId
+{
+    NSString* key = [self unreadCountKey:kbguid accountUserId:userId];
+    [[WGGlobalCache shareInstance] setObject:[NSNumber numberWithInt:WGUnreadCountClearKey] forKey:key];
 }
 @end
