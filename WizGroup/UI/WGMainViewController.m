@@ -12,6 +12,7 @@
 #import "GMGridViewLayoutStrategies.h"
 #import <QuartzCore/QuartzCore.h>
 #import "WizAccountManager.h"
+#import "WGLoginViewController.h"
 
 #import "PPRevealSideViewController.h"
 
@@ -38,6 +39,7 @@
 
 - (void) dealloc
 {
+    [[WizNotificationCenter defaultCenter] removeObserver:self];
     [groupGridView release];
     [groupsArray release];
     [super dealloc];
@@ -62,7 +64,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGroupView) name:WizNMDidUpdataGroupList object:nil];
-        
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(clearGroupView) name:WizNMWillUpdateGroupList object:nil];
         WizNotificationCenter* center = [WizNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(startSync:) name:WizNMSyncGroupStart object:nil];
         [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupEnd object:nil];
@@ -83,12 +85,16 @@
     gmGridView.style = GMGridViewStylePush;
     gmGridView.itemSpacing = 10;
     gmGridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
-    gmGridView.centerGrid = YES;
+    gmGridView.centerGrid = NO;
     gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
 }
-
+- (void) clearGroupView
+{
+    [groupsArray removeAllObjects];
+    [groupGridView reloadData];
+}
 
 - (void) reloadGroupView
 {
@@ -96,16 +102,19 @@
     NSString* accountUserId = [accountManager activeAccountUserId];
     NSArray* groups = [accountManager groupsForAccount:accountUserId];
     [groupsArray removeAllObjects];
+//    for (int i = 0 ; i < 20; ++i) {
+//        [groupsArray addObjectsFromArray:groups];
+//    
+//    }
     [groupsArray addObjectsFromArray:groups];
     [groupGridView reloadData];
 }
-- (void) drawBackgroud
-{
-    
-}
+
 - (void) settingApp
 {
-    
+    WGLoginViewController* login = [[WGLoginViewController alloc] init];
+    [self.navigationController pushViewController:login animated:YES];
+    [login release];
 }
 
 - (void)viewDidLoad

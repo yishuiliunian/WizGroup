@@ -106,11 +106,6 @@ enum WGFolderListIndex {
     [tagRootNode removeAllChildrenNodes];
     
     for (WizTag* each in tagArray) {
-        if ([each.strGuid isEqualToString:@"62bd7730-6442-4632-a9fb-e559d0b81949"]) {
-            
-            NSLog(@"asdfasd");
-            
-        }
         if (each.strTitle != nil && ![each.strTitle isEqualToString:@""]) {
             [self addTagTreeNodeToParent:each rootNode:tagRootNode allTags:tagArray];
         }
@@ -127,18 +122,11 @@ enum WGFolderListIndex {
     [self.needDisplayNodesArray removeAllObjects];
     [self.needDisplayNodesArray addObjectsFromArray:[rootTreeNode allExpandedChildrenNodes]];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-    
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self reloadAllData];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 

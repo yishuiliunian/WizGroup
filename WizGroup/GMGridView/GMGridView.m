@@ -102,7 +102,6 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 - (void)transformingGestureDidBeginWithGesture:(UIGestureRecognizer *)gesture;
 - (void)transformingGestureDidFinish;
 - (BOOL)isInTransformingState;
-
 // Helpers & more
 - (void)recomputeSizeAnimated:(BOOL)animated;
 - (void)relayoutItemsAnimated:(BOOL)animated;

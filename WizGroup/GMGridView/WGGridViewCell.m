@@ -43,7 +43,6 @@
         CGFloat height = size.height;
         return height;
     }
-
 }
 
 
@@ -84,8 +83,8 @@
         _textLabel.highlightedTextColor = [UIColor lightGrayColor];
         _textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
         _textLabel.numberOfLines = 0;
-        _textLabel.shadowColor = [UIColor lightGrayColor];
-        _textLabel.shadowOffset = CGSizeMake(0.5, 0.5);
+//        _textLabel.shadowColor = [UIColor lightGrayColor];
+//        _textLabel.shadowOffset = CGSizeMake(0.5, 0.5);
         
         
         [_imageView addSubview:_textLabel];
@@ -104,13 +103,13 @@
         self.deleteButtonOffset = CGPointMake(-15, -15);
         
         //
-        CALayer* layer = _imageView.layer;
-
-        layer.shadowColor = [UIColor grayColor].CGColor;
-        layer.shadowOffset = CGSizeMake(2, 2);
-        layer.shadowOpacity = 0.5;
-        layer.shadowRadius = 2;
-        layer.cornerRadius = 5;
+//        CALayer* layer = _imageView.layer;
+//
+//        layer.shadowColor = [UIColor grayColor].CGColor;
+//        layer.shadowOffset = CGSizeMake(2, 2);
+//        layer.shadowOpacity = 0.5;
+//        layer.shadowRadius = 2;
+//        layer.cornerRadius = 5;
         [_imageView bringSubviewToFront:_textLabel];
         [self addObserver:self forKeyPath:@"textLabel.text" options:NSKeyValueObservingOptionNew context:nil];
         //
