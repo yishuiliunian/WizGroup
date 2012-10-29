@@ -176,7 +176,6 @@
     abs.uiImage = compassImage;
     id<WizTemporaryDataBaseDelegate> cacheDb = [[WizDbManager shareInstance] getGlobalCacheDb];
     [self setObject:abs forKey:documengGuid];
-    [abs release];
     return [cacheDb updateAbstract:abstractText imageData:imageData guid:documengGuid type:@"" kbguid:nil];
 }
 

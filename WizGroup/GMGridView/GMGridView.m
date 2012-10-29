@@ -186,7 +186,7 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 
 - (void)commonInit
 {
-    refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0, -30, 320, 30)];
+    refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0, -480, 320, 480)];
     [self addSubview:refreshHeaderView];
     //
     _tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureUpdated:)];
@@ -1275,7 +1275,9 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     [self.layoutStrategy rebaseWithItemCount:_numberTotalItems insideOfBounds:self.bounds];
     
     CGSize contentSize = [self.layoutStrategy contentSize];
-    contentSize = CGSizeMake(contentSize.width, contentSize.height + WizNavigationTtitleHeaderHeight);
+    float contentHeight = contentSize.height + WizNavigationTtitleHeaderHeight > [UIScreen mainScreen].bounds.size.height ? contentSize.height + WizNavigationTtitleHeaderHeight : [UIScreen mainScreen].bounds.size.height;
+    contentSize = CGSizeMake(contentSize.width, contentHeight);
+    
     
     _minPossibleContentOffset = CGPointMake(0, 0);
     _maxPossibleContentOffset = CGPointMake(contentSize.width - self.bounds.size.width + self.contentInset.right, 

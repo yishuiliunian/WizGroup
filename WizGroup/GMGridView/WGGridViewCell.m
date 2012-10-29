@@ -74,7 +74,7 @@
         
         CGRect imageRect = CGRectMake(0.0, 0.0, size.width, size.height);
         _imageView = [[UIImageView alloc] initWithFrame:imageRect];
-        _imageView.backgroundColor = [UIColor blueColor];
+        _imageView.backgroundColor = [UIColor colorWithRed:99/255.0 green:181.0/255.0 blue:220.0/255.0 alpha:1.0];
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 60, size.width, 20)];
     

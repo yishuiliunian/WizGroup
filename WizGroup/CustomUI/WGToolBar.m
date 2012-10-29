@@ -24,6 +24,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    self.tintColor = [UIColor whiteColor];
     UIImage* image = [UIImage imageNamed:@"toolbarBackgroud"];
     [image drawInRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
 }

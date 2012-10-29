@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WizAccountManager.h"
 #import "WGLoginViewController.h"
+#import "WGSettingViewController.h"
 
 #import "PPRevealSideViewController.h"
 
@@ -122,7 +123,7 @@
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - 44)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.style = GMGridViewStylePush;
-    gmGridView.itemSpacing = 10;
+    gmGridView.itemSpacing = 5;
     gmGridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     gmGridView.centerGrid = NO;
     gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
@@ -131,26 +132,28 @@
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
     //
-    titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, WizNavigationTtitleHeaderHeight)];
-    titleView.backgroundColor = [UIColor redColor];
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, self.view.frame.size.width-20, WizNavigationTtitleHeaderHeight)];
+
     [groupGridView addSubview:titleView];
     
     UIImageView* logolImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 40, WizNavigationTtitleHeaderHeight)];
-    logolImageView.image = [UIImage imageNamed:@""];
-    logolImageView.backgroundColor = [UIColor blueColor];
+    logolImageView.image = [UIImage imageNamed:@"logloImage"];
+
     [titleView addSubview:logolImageView];
     [logolImageView release];
     UIButton* logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     float logoButtonWidth = 90;
     UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 20, logoButtonWidth, 20)];
-    loginLabel.backgroundColor = [UIColor greenColor];
+
     loginLabel.highlightedTextColor = [UIColor lightTextColor];
     loginLabel.text = NSLocalizedString(@"Login", nil);
+    loginLabel.textAlignment = UITextAlignmentCenter;
     [logoButton addSubview:loginLabel];
     [loginLabel release];
     
     UIImageView* logoWordImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, logoButtonWidth, 20)];
     logoWordImageView.backgroundColor = [UIColor lightGrayColor];
+    logoWordImageView.image = [UIImage imageNamed:@"logoWords"];
     [logoButton addSubview:logoWordImageView];
     [logoWordImageView release];
     
@@ -185,9 +188,10 @@
 
 - (void) settingApp
 {
-   
+    WGSettingViewController* settingController = [[WGSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController pushViewController:settingController animated:YES];
+    [settingController release];
 }
-
 
 - (void) clientLogin
 {
@@ -198,7 +202,15 @@
 
 - (void) setupToolBar
 {
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:nil];
+    
+    UIButton* setButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    setButton.frame = CGRectMake(0.0, 0.0, 30, 30);
+    [setButton setBackgroundImage:[UIImage imageNamed:@"settingButtonImageClicked"] forState:UIControlStateHighlighted];
+    [setButton addTarget:self action:@selector(settingApp) forControlEvents:UIControlEventTouchUpInside];
+    [setButton setImage:[UIImage imageNamed:@"settingButtonImage"] forState:UIControlStateNormal];
+    [setButton setTitle:@"ss" forState:UIControlStateNormal];
+    
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:setButton];
     WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
     [toolBar setItems:@[item]];
     [self.view addSubview:toolBar];
@@ -239,15 +251,13 @@
 }
 - (CGSize) GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return CGSizeMake(140 , 140);
+    return CGSizeMake(147.5 , 147.5);
 }
 
 - (GMGridViewCell*) GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
     CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
-    
     WGGridViewCell *cell = (WGGridViewCell*)[gridView dequeueReusableCell];
-    
     if (!cell)
     {
         cell = [[[WGGridViewCell alloc] initWithSize:size] autorelease];
@@ -255,7 +265,6 @@
     
     WizGroup* group = [groupsArray objectAtIndex:index];
     cell.textLabel.text =  group.kbName;
-
     cell.kbguid = group.kbguid;
     cell.accountUserId = group.accountUserId;
     [cell setBadgeCount];

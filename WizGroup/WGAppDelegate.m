@@ -12,6 +12,8 @@
 #import "WizSettingsDataBase.h"
 #import "WizFileManager.h"
 
+
+
 @implementation WGAppDelegate
 
 - (void)dealloc
@@ -27,8 +29,15 @@
     WGMainViewController* mainController = [[WGMainViewController alloc] init];
     
     WizAccountManager* accountManager = [WizAccountManager defaultManager];
-    [accountManager updateAccount:@"yishuiliunian@gmail.com" password:@"654321"];
-    [accountManager registerActiveAccount:@"yishuiliunian@gmail.com"];
+    NSString* activeAccountUserId = [accountManager activeAccountUserId];
+    if (activeAccountUserId == nil) {
+        [accountManager updateAccount:WGDefaultChineseUserName password:WGDefaultChinesePassword];
+        [accountManager registerActiveAccount:WGDefaultChineseUserName];
+    }
+    else
+    {
+        [accountManager registerActiveAccount:activeAccountUserId];
+    }
     
     UINavigationController* root = [[UINavigationController alloc] initWithRootViewController:mainController];
     
