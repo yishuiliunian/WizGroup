@@ -68,25 +68,25 @@
         [observer didGetImage:image forKbguid:kbguid];
         return;
     }
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
-        
-        UIImage* image = [UIImage imageNamed:@"a.PNG"];
-        UIImage* imageData =  [image compressedImageWidth:120];
-        @synchronized(self)
-        {
-            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
-            WizAbstract* abstract =  [db abstractFoGuid:kbguid];
-            if (abstract != nil) {
-                [self setObject:abstract.uiImage forKey:kbguid];
-            }
-            [self setObject:image forKey:key];
-        }
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [observer didGetImage:image forKbguid:kbguid];
-        });
-    });
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
+//        
+//        UIImage* image = [UIImage imageNamed:@"a.PNG"];
+//        UIImage* imageData =  [image compressedImageWidth:120];
+//        @synchronized(self)
+//        {
+//            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
+//            WizAbstract* abstract =  [db abstractFoGuid:kbguid];
+//            if (abstract != nil) {
+//                [self setObject:abstract.uiImage forKey:kbguid];
+//            }
+//            [self setObject:image forKey:key];
+//        }
+//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [observer didGetImage:image forKbguid:kbguid];
+//        });
+//    });
 }
 
 

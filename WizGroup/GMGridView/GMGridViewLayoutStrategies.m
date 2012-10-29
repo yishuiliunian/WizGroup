@@ -180,8 +180,8 @@
         origin = CGPointMake(col * (self.itemSize.width + self.itemSpacing) + self.edgeInsets.left,
                              row * (self.itemSize.height + self.itemSpacing) + self.edgeInsets.top);
     }
-    
-    return origin;
+    return CGPointMake(origin.x, origin.y + WizNavigationTtitleHeaderHeight);
+//    return origin;
 }
 
 - (NSInteger)itemPositionFromLocation:(CGPoint)location

@@ -29,6 +29,7 @@
 #import <UIKit/UIKit.h>
 #import "GMGridView-Constants.h"
 #import "GMGridViewCell.h"
+#import "EGORefreshTableHeaderView.h"
 
 @protocol GMGridViewDataSource;
 @protocol GMGridViewActionDelegate;
@@ -87,6 +88,9 @@ typedef enum
 @property (nonatomic) BOOL enableEditOnLongPress;                     // Default is NO
 @property (nonatomic) BOOL disableEditOnEmptySpaceTap;                // Default is NO
 
+//pull refresh
+@property (nonatomic) EGORefreshTableHeaderView* refreshHeaderView;
+//
 @property (nonatomic, readonly) UIScrollView *scrollView __attribute__((deprecated)); // The grid now inherits directly from UIScrollView
 
 // Reusable cells

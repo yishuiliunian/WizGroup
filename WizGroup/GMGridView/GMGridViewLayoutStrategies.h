@@ -30,6 +30,8 @@
 #import <UIKit/UIKit.h>
 #import "GMGridView-Constants.h"
 
+#define WizNavigationTtitleHeaderHeight     44
+
 @protocol GMGridViewLayoutStrategy;
 
 

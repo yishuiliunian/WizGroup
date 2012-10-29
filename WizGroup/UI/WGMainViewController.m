@@ -26,13 +26,19 @@
 #import "UINavigationBar+WizCustom.h"
 
 #import "WizDbManager.h"
+//
+#import "WGToolBar.h"
 
-@interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate>
+@interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
     GMGridView* groupGridView;
     NSMutableArray* groupsArray;
+    //
+    UIView*     titleView;
+    BOOL    isRefreshing;
 }
 @property (atomic, assign) NSInteger numberOfSyncingGroups;
+
 @end
 
 @implementation WGMainViewController
@@ -40,6 +46,7 @@
 - (void) dealloc
 {
     [[WizNotificationCenter defaultCenter] removeObserver:self];
+    [titleView release];
     [groupGridView release];
     [groupsArray release];
     [super dealloc];
@@ -55,16 +62,48 @@
 {
     self.numberOfSyncingGroups --;
     if (self.numberOfSyncingGroups == 0) {
-        [self showReloadButton];
+        [self doneLoadingTableViewData];
     }
+}
+
+- (void) doneLoadingTableViewData
+{
+    isRefreshing = NO;
+    [groupGridView.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:groupGridView];
+}
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [groupGridView.refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [groupGridView.refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
+{
+    isRefreshing = YES;
+    NSString* accountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+    [[WizSyncCenter defaultCenter] refreshGroupsListFor:accountUserId];
+}
+
+- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+{
+    return isRefreshing;
+}
+
+- (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
+{
+    return [NSDate date];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadGroupView) name:WizNMDidUpdataGroupList object:nil];
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAllGroups) name:WizNMDidUpdataGroupList object:nil];
         [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(clearGroupView) name:WizNMWillUpdateGroupList object:nil];
+        
         WizNotificationCenter* center = [WizNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(startSync:) name:WizNMSyncGroupStart object:nil];
         [center addObserver:self selector:@selector(endSync:) name:WizNMSyncGroupEnd object:nil];
@@ -77,23 +116,61 @@
     [super loadView];
     UIImageView* backgroudView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gridBackgroud"]];
     backgroudView.frame = [UIScreen mainScreen].bounds;
-    [self.view addSubview:backgroudView];
+//    [self.view addSubview:backgroudView];
     [backgroudView release];
     //
-    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:self.view.bounds];
+    GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - 44)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     gmGridView.style = GMGridViewStylePush;
     gmGridView.itemSpacing = 10;
     gmGridView.minEdgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
     gmGridView.centerGrid = NO;
     gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
+    gmGridView.refreshHeaderView.delegate = self;
+    gmGridView.delegate = self;
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
+    //
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, WizNavigationTtitleHeaderHeight)];
+    titleView.backgroundColor = [UIColor redColor];
+    [groupGridView addSubview:titleView];
+    
+    UIImageView* logolImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 40, WizNavigationTtitleHeaderHeight)];
+    logolImageView.image = [UIImage imageNamed:@""];
+    logolImageView.backgroundColor = [UIColor blueColor];
+    [titleView addSubview:logolImageView];
+    [logolImageView release];
+    UIButton* logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    float logoButtonWidth = 90;
+    UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 20, logoButtonWidth, 20)];
+    loginLabel.backgroundColor = [UIColor greenColor];
+    loginLabel.highlightedTextColor = [UIColor lightTextColor];
+    loginLabel.text = NSLocalizedString(@"Login", nil);
+    [logoButton addSubview:loginLabel];
+    [loginLabel release];
+    
+    UIImageView* logoWordImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, logoButtonWidth, 20)];
+    logoWordImageView.backgroundColor = [UIColor lightGrayColor];
+    [logoButton addSubview:logoWordImageView];
+    [logoWordImageView release];
+    
+    //
+    [logoButton addTarget:self action:@selector(clientLogin) forControlEvents:UIControlEventTouchUpInside];
+    logoButton.frame = CGRectMake(40, 0.0, logoButtonWidth, WizNavigationTtitleHeaderHeight);
+    [titleView addSubview:logoButton];
+    
+    [gmGridView addSubview:titleView];
 }
 - (void) clearGroupView
 {
     [groupsArray removeAllObjects];
     [groupGridView reloadData];
+}
+
+- (void) reloadAllGroups
+{
+    [self reloadGroupView];
+//    [groupGridView.refreshHeaderView startLoadingAnimation:groupGridView];
 }
 
 - (void) reloadGroupView
@@ -102,28 +179,44 @@
     NSString* accountUserId = [accountManager activeAccountUserId];
     NSArray* groups = [accountManager groupsForAccount:accountUserId];
     [groupsArray removeAllObjects];
-//    for (int i = 0 ; i < 20; ++i) {
-//        [groupsArray addObjectsFromArray:groups];
-//    
-//    }
     [groupsArray addObjectsFromArray:groups];
     [groupGridView reloadData];
 }
 
 - (void) settingApp
 {
+   
+}
+
+
+- (void) clientLogin
+{
     WGLoginViewController* login = [[WGLoginViewController alloc] init];
     [self.navigationController pushViewController:login animated:YES];
     [login release];
 }
 
+- (void) setupToolBar
+{
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:nil];
+    WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
+    [toolBar setItems:@[item]];
+    [self.view addSubview:toolBar];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupToolBar];
+    
     groupGridView.mainSuperView = self.navigationController.view;
     groupGridView.dataSource = self;
     groupGridView.actionDelegate = self;
-    groupsArray = [[NSMutableArray alloc] init];
+    if (groupsArray == nil) {
+        groupsArray = [[NSMutableArray alloc] init];
+    }
+
     [self reloadGroupView];
     
     //
@@ -135,10 +228,9 @@
 	self.navigationItem.leftBarButtonItem = setItem;
     [setItem release];
     //
-    UIImage* image = [UIImage imageNamed:@"navigationBackGroud"];
-
-    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     
+    //
+
 }
 
 - (NSInteger) numberOfItemsInGMGridView:(GMGridView *)gridView
@@ -247,15 +339,13 @@
 }
 - (void) refreshGroupData
 {
-    WizSyncCenter* center = [WizSyncCenter defaultCenter];
-    NSString* activeAccountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
-    for (WizGroup* each in groupsArray) {
-        [center refreshGroupData:each.kbguid accountUserId:activeAccountUserId];
-    }
+    NSString* userId = [[WizAccountManager defaultManager] activeAccountUserId];
+    [[WizSyncCenter defaultCenter] refreshGroupsListFor:userId];
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [groupGridView reloadData];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 @end

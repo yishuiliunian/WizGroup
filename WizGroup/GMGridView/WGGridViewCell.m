@@ -74,6 +74,7 @@
         
         CGRect imageRect = CGRectMake(0.0, 0.0, size.width, size.height);
         _imageView = [[UIImageView alloc] initWithFrame:imageRect];
+        _imageView.backgroundColor = [UIColor blueColor];
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 60, size.width, 20)];
     
@@ -186,8 +187,8 @@
     else
     {
         badgeView.hidden = NO;
-        if (count > 99) {
-            badgeView.badgeText = [NSString stringWithFormat:@"99+"];
+        if (count > 9) {
+            badgeView.badgeText = [NSString stringWithFormat:@"9+"];
         }
         else
         {

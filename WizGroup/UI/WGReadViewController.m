@@ -13,12 +13,21 @@
 #import "WizNotificationCenter.h"
 #import "WizDbManager.h"
 
-@interface WGReadViewController ()
-@property (nonatomic, retain)   UIWebView* detailWebView;
+@interface WGReadViewController () <UIScrollViewDelegate>
+{
+    UILabel* titleLabel;
+    UIWebView*  readWebView;
+    UIScrollView* backgroudScrollView;
+    
+    //
+    UIBarButtonItem* checkNextButtonItem;
+    UIBarButtonItem* checkPreButtonItem;
+}
+
 @end
 
 @implementation WGReadViewController
-@synthesize detailWebView;
+
 @synthesize listDelegate;
 @synthesize accountUserId;
 @synthesize kbguid;
@@ -26,10 +35,36 @@
 {
     [[WizNotificationCenter defaultCenter] removeObserver:self];
     listDelegate = nil;
-    [detailWebView release];
     [accountUserId release];
     [kbguid release];
+    //
+    [titleLabel release];
+    [readWebView release];
+    [backgroudScrollView release];
+    //
     [super dealloc];
+}
+
+- (void) setCheckNextDocumentButtonEnable
+{
+    if ([self.listDelegate shouldCheckNextDocument]) {
+        [checkNextButtonItem setEnabled:YES];
+    }
+    else
+    {
+        [checkNextButtonItem setEnabled:NO];
+    }
+}
+
+- (void) setCheckPreDocumentButtonEnable
+{
+    if ([self.listDelegate shouldCheckPreDocument]) {
+        [checkPreButtonItem setEnabled:YES];
+    }
+    else
+    {
+        [checkPreButtonItem setEnabled:NO];
+    }
 }
 
 - (void) didDownloadDocument:(NSNotification*)nc
@@ -40,7 +75,6 @@
         if ([doc.strGuid isEqualToString:guid]) {
             [self loadDocument:doc];
         }
-      
     }
 }
 
@@ -49,6 +83,11 @@
     self = [super init];
     if (self) {
         [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadDocument:) name:WizNMDidDownloadDocument object:nil];
+        readWebView = [[UIWebView alloc] init];
+        readWebView.scrollView.delegate = self;
+        //
+        titleLabel = [[UILabel alloc] init];
+        backgroudScrollView = [[UIScrollView alloc] init];
     }
     return self;
 }
@@ -78,6 +117,8 @@
             [self downloadDocument:currentDoc];
         }
     }
+     [self setCheckNextDocumentButtonEnable];
+     [self setCheckPreDocumentButtonEnable];
 }
 - (void) checkNextDocument
 {
@@ -85,7 +126,9 @@
         [self.listDelegate moveToNextDocument];
         [self checkCurrentDocument];
     }
+   
 }
+//
 - (void) checkPreDocument
 {
     if ([self.listDelegate shouldCheckPreDocument]) {
@@ -96,10 +139,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)];
-    self.detailWebView = webView;
-    [self.view addSubview:webView];
-    [webView release];
+
+    CGSize contentSize = [self contentViewSize];
+    float titleLabelHeight = 80;
+    
+    readWebView.frame = CGRectMake(0.0, titleLabelHeight +1, contentSize.width, contentSize.height);
+    readWebView.scrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    titleLabel.frame = CGRectMake(0.0, 0.0, contentSize.width, titleLabelHeight);
+    [backgroudScrollView addSubview:readWebView];
+    [backgroudScrollView addSubview:titleLabel];
+    backgroudScrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+    backgroudScrollView.frame= CGRectMake(0.0, 0.0, contentSize.width, contentSize.height-10);
+    backgroudScrollView.contentSize= CGSizeMake(contentSize.width, contentSize.height + titleLabelHeight-10);
+    [self.view addSubview:backgroudScrollView];
+    
     [self checkCurrentDocument];
     
 //    NSArray* controls = @[@"N",@"P"];
@@ -113,6 +166,10 @@
     UIBarButtonItem* nextItem = [[UIBarButtonItem alloc] initWithTitle:@"N" style:UIBarButtonItemStyleBordered target:self action:@selector(checkNextDocument)];
     UIBarButtonItem* preItem = [[UIBarButtonItem alloc] initWithTitle:@"P" style:UIBarButtonItemStyleBordered target:self action:@selector(checkPreDocument)];
     self.navigationItem.rightBarButtonItems = @[preItem,nextItem];
+    
+    checkNextButtonItem = nextItem;
+    checkPreButtonItem = preItem;
+    
     [nextItem release];
     [preItem release];
 }
@@ -131,9 +188,10 @@
     if (doc.bServerChanged == 0) {
         NSString* indexPath = [[WizFileManager shareManager] getDocumentFilePath:DocumentFileIndexName documentGUID:doc.strGuid accountUserId:self.accountUserId];
         if ([[WizFileManager shareManager] fileExistsAtPath:indexPath]) {
+            titleLabel.text = doc.strTitle;
             NSURL* url = [NSURL fileURLWithPath:indexPath];
             NSURLRequest* request = [NSURLRequest requestWithURL:url];
-            [self.detailWebView loadRequest:request];
+            [readWebView loadRequest:request];
             id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbguid];
             [db updateDocumentReadCount:doc.strGuid];
         }
@@ -157,5 +215,15 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([scrollView isEqual:readWebView.scrollView]) {
+        if (scrollView.contentOffset.y < 0) {
+            [backgroudScrollView scrollRectToVisible:CGRectMake(0.0, 0.0, 60, 60) animated:YES];
+        }
+    }
+}
+
 
 @end
