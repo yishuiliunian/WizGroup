@@ -112,9 +112,22 @@
     }
     return self;
 }
+- (void) testMulti
+{
+    __block int testInt = 0;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"m start %d",testInt++);
+        NSLog(@"m end");
+        for (int i = 0; i< 10000; i++) {
+            ;
+        }
+    });
+    NSLog(@"end %d",testInt);
+}
 - (void) loadView
 {
     [super loadView];
+    //
     UIImageView* backgroudView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gridBackgroud"]];
     backgroudView.frame = [UIScreen mainScreen].bounds;
 //    [self.view addSubview:backgroudView];
@@ -146,7 +159,16 @@
     UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 20, logoButtonWidth, 20)];
 
     loginLabel.highlightedTextColor = [UIColor lightTextColor];
-    loginLabel.text = NSLocalizedString(@"Login", nil);
+    loginLabel.adjustsFontSizeToFitWidth = YES;
+    NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+    if ([activeUserId isEqualToString:WGDefaultChineseUserName]) {
+        loginLabel.text = NSLocalizedString(@"Login", nil);
+    }
+    else
+    {
+        loginLabel.text = activeUserId;
+    }
+    
     loginLabel.textAlignment = UITextAlignmentCenter;
     [logoButton addSubview:loginLabel];
     [loginLabel release];
@@ -188,6 +210,14 @@
 
 - (void) settingApp
 {
+    CATransition *tran = [CATransition animation];
+    tran.duration = .4f;
+    tran.type = @"oglFlip";
+    tran.subtype = kCATransitionFromLeft; //Bottom for the opposite direction
+    tran.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    tran.removedOnCompletion  = YES;
+    [self.navigationController.view.layer addAnimation:tran forKey:@"oglFlip"];
+    
     WGSettingViewController* settingController = [[WGSettingViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:settingController animated:YES];
     [settingController release];

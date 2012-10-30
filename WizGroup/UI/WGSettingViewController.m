@@ -7,6 +7,7 @@
 //
 
 #import "WGSettingViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface WGSettingViewController ()
 
@@ -26,6 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"back", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(popSelf)];
+    self.navigationItem.leftBarButtonItem = backItem;
+    [backItem release];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -65,7 +70,17 @@
     
     return cell;
 }
-
+- (void) popSelf
+{
+    CATransition *tran = [CATransition animation];
+    tran.duration = .4f;
+    tran.type = @"oglFlip";
+    tran.subtype = kCATransitionFromLeft; //Bottom for the opposite direction
+    tran.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    tran.removedOnCompletion  = YES;
+    [self.navigationController.view.layer addAnimation:tran forKey:@"oglFlip"];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

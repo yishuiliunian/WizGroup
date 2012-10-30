@@ -26,7 +26,6 @@
                        accountUserId:(NSString*)accountUserId;
 //
 + (id) shareInstance;
-- (WizAbstract*) abstractForGuid:(NSString*)guid;
 - (BOOL) generateAbstractForDocument:(NSString*)documengGuid
                        accountUserId:(NSString*)accountUserId;
 
@@ -35,4 +34,8 @@
                           observer:(id<WizUnreadCountDelegate>)delegate;
 + (void)    clearUnreadCountByKbguid:(NSString*) kbguid
                        accountUserId:(NSString*)userId;
+
+
++ (WizAbstract*) abstractForDoc:(NSString*)docguid kbguid:(NSString*)kbguid accountUserId:(NSString*)userId;
++ (void) clearAbstractForDocument:(NSString*)docguid;
 @end

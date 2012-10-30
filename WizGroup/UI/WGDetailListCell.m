@@ -33,6 +33,7 @@ static UIFont* timeFont = nil;
 
 - (void) dealloc
 {
+    [[WizNotificationCenter defaultCenter] removeObserver:self];
     [titleLabel release];
     [timeLabel release];
     [authorLabel release];
@@ -74,82 +75,88 @@ static UIFont* timeFont = nil;
         //
         abstractImageView = [[UIImageView alloc] init];
         [self.contentView addSubview:abstractImageView];
+        
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadUI:) name:WizNMUIDidGenerateAbstract object:nil];
     }
     return self;
 }
 
+
+- (void) reloadUI:(NSNotification*)nc
+{
+    NSString* hasAbsDocGuid = [WizNotificationCenter getDocumentGuidFromNc:nc];
+    if ([self.documentGuid isEqualToString:hasAbsDocGuid]) {
+        [self performSelectorOnMainThread:@selector(doReloadUI) withObject:nil waitUntilDone:NO];
+    }
+}
+
+- (void) doReloadUI
+{
+    id<WizMetaDataBaseDelegate> metaDb = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
+    WizDocument* doc = [metaDb documentFromGUID:self.documentGuid];
+
+    WizAbstract* abstract = [WGGlobalCache abstractForDoc:self.documentGuid kbguid:self.kbGuid accountUserId:self.accountUserId];
+    
+    static float startX = 10;
+    
+    CGSize cellSize = self.contentView.frame.size;
+    float endX = cellSize.width - 20;
+    //
+    float imageWidth = 0;
+    float imageHeight = 0;
+    float imageStartX = cellSize.width - 10 - cellSize.height;
+    if (abstract && abstract.uiImage) {
+        imageWidth = cellSize.height;
+        imageHeight = cellSize.height;
+        endX = cellSize.width - 10 - imageWidth;
+        imageStartX = endX;
+    }
+    //
+    float titleWidth = endX - startX;
+    float titleHeight = 20;
+    //
+    float timeWidth = 80 - startX;
+    float timeHeight = 15;
+    //
+    
+    float authorWidth = 80;
+    float authorStartx = endX - authorWidth;
+    float authorHeight = 15;
+    //
+    float detaiWidth = titleWidth;
+    float detailHeight = 50;
+    //
+    CGRect titleRect = CGRectMake(startX, 0.0, titleWidth , titleHeight);
+    CGRect timeRect = CGRectMake(startX, titleHeight, timeWidth, timeHeight);
+    CGRect authorRect = CGRectMake(authorStartx, titleHeight, authorWidth, authorHeight);
+    CGRect detailRect = CGRectMake(startX, titleHeight + timeHeight, detaiWidth, detailHeight);
+    CGRect imageRect = CGRectMake(imageStartX, 0, imageWidth, imageHeight);
+    NSString* authorStr = doc.strOwner;
+    if (authorStr) {
+        NSInteger indexOf = [authorStr indexOf:@"@"];
+        if (indexOf != NSNotFound) {
+            authorStr = [authorStr substringToIndex:indexOf];
+        }
+    }
+    titleLabel.frame = titleRect;
+    titleLabel.text = doc.strTitle;
+    //
+    timeLabel.frame = timeRect;
+    timeLabel.text = [doc.dateModified stringLocal];
+    //
+    abstractLabel.frame = detailRect;
+    abstractLabel.text = abstract.strText;
+    //
+    authorLabel.frame = authorRect;
+    authorLabel.text = authorStr;
+    //
+    abstractImageView.frame = imageRect;
+    abstractImageView.image = abstract.uiImage;
+}
+
 - (void) drawRect:(CGRect)rect
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        id<WizMetaDataBaseDelegate> metaDb = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
-        WizDocument* doc = [metaDb documentFromGUID:self.documentGuid];
-        
-        WGGlobalCache* shareCache = [WGGlobalCache shareInstance];
-        WizAbstract* abstract = [shareCache abstractForGuid:self.documentGuid];
-        if (abstract == nil && doc.bServerChanged == NO) {
-            if ([shareCache generateAbstractForDocument:self.documentGuid accountUserId:self.accountUserId]) {
-                abstract = [shareCache abstractForGuid:self.documentGuid];
-            }
-        }
-
-        static float startX = 10;
-        
-        CGSize cellSize = self.contentView.frame.size;
-        float endX = cellSize.width - 20;
-        //
-        float imageWidth = 0;
-        float imageHeight = 0;
-        float imageStartX = cellSize.width - 10 - cellSize.height;
-        if (abstract && abstract.uiImage) {
-             imageWidth = cellSize.height;
-             imageHeight = cellSize.height;
-             endX = cellSize.width - 10 - imageWidth;
-            imageStartX = endX;
-        }
-        //
-        float titleWidth = endX - startX;
-        float titleHeight = 20;
-        //
-        float timeWidth = 80 - startX;
-        float timeHeight = 15;
-        //
-
-        float authorWidth = 80;
-        float authorStartx = endX - authorWidth;
-        float authorHeight = 15;
-        //
-        float detaiWidth = titleWidth;
-        float detailHeight = 50;
-        //
-        CGRect titleRect = CGRectMake(startX, 0.0, titleWidth , titleHeight);
-        CGRect timeRect = CGRectMake(startX, titleHeight, timeWidth, timeHeight);
-        CGRect authorRect = CGRectMake(authorStartx, titleHeight, authorWidth, authorHeight);
-        CGRect detailRect = CGRectMake(startX, titleHeight + timeHeight, detaiWidth, detailHeight);
-        CGRect imageRect = CGRectMake(imageStartX, 0, imageWidth, imageHeight);
-        NSString* authorStr = doc.strOwner;
-        if (authorStr) {
-            NSInteger indexOf = [authorStr indexOf:@"@"];
-            if (indexOf != NSNotFound) {
-                authorStr = [authorStr substringToIndex:indexOf];
-            }
-        }
-        dispatch_async(dispatch_get_main_queue(), ^{
-            titleLabel.frame = titleRect;
-            titleLabel.text = doc.strTitle;
-            //
-            timeLabel.frame = timeRect;
-            timeLabel.text = [doc.dateModified stringLocal];
-            //
-            abstractLabel.frame = detailRect;
-            abstractLabel.text = abstract.strText;
-            //
-            authorLabel.frame = authorRect;
-            authorLabel.text = authorStr;
-            //
-            abstractImageView.frame = imageRect;
-            abstractImageView.image = abstract.uiImage;
-        });
-    });
+    [self doReloadUI];
 
 }
 

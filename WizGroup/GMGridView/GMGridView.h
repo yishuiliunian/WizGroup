@@ -89,7 +89,7 @@ typedef enum
 @property (nonatomic) BOOL disableEditOnEmptySpaceTap;                // Default is NO
 
 //pull refresh
-@property (nonatomic) EGORefreshTableHeaderView* refreshHeaderView;
+@property (nonatomic, strong) EGORefreshTableHeaderView* refreshHeaderView;
 //
 @property (nonatomic, readonly) UIScrollView *scrollView __attribute__((deprecated)); // The grid now inherits directly from UIScrollView
 

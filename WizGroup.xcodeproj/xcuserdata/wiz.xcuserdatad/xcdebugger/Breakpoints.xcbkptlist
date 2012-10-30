@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373178724.589019"
+         timestampString = "373200256.531611"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "232"
-         endingLineNumber = "232"
+         startingLineNumber = "262"
+         endingLineNumber = "262"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373178505.675918"
+         timestampString = "373198298.840367"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "182"
-         endingLineNumber = "182"
+         startingLineNumber = "204"
+         endingLineNumber = "204"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373178505.675918"
+         timestampString = "373198298.840367"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "183"
-         endingLineNumber = "183"
+         startingLineNumber = "205"
+         endingLineNumber = "205"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -105,6 +105,45 @@
          startingLineNumber = "102"
          endingLineNumber = "102"
          landmarkName = "-registerActiveAccount:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizDbManger/WizTempDataBase.m"
+         timestampString = "373187768.200954"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "-updateAbstract:imageData:guid:type:kbguid:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizApi/WizDownloadObject.m"
+         timestampString = "373201192.060069"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "81"
+         endingLineNumber = "81"
+         landmarkName = "-onDownloadSucceed"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizApi/WizDownloadObject.m"
+         timestampString = "373201278.725066"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "55"
+         endingLineNumber = "55"
+         landmarkName = "-downloadNextPart"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

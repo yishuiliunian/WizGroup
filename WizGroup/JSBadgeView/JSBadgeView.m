@@ -19,8 +19,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define kDefaultBadgeTextColor [UIColor whiteColor]
-#define kDefaultBadgeBackgroundColor [UIColor redColor]
-#define kDefaultOverlayColor [UIColor colorWithWhite:1.0f alpha:0.3]
+//#define kDefaultBadgeBackgroundColor [UIColor redColor]
+#define kDefaultBadgeBackgroundColor [UIColor colorWithRed:252.0/255.0 green:1730./255.0 blue:65.0/255.0 alpha:0.78]
+//#define kDefaultOverlayColor [UIColor colorWithWhite:1.0f alpha:0.3]
+
+#define kDefaultOverlayColor kDefaultBadgeBackgroundColor
 
 #define kDefaultBadgeTextFont [UIFont boldSystemFontOfSize:[UIFont systemFontSize]]
 

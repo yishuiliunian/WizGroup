@@ -14,16 +14,39 @@
 
 #define WGUnreadCountClearKey   -1
 
+@interface WizGroupDocument : NSObject
+@property (nonatomic, retain) NSString* documentKbguid;
+@property (nonatomic, retain) NSString* kbguid;
+@property (nonatomic, retain) NSString* accountUserId;
+@end
+
+@implementation WizGroupDocument
+
+@synthesize documentKbguid;
+@synthesize kbguid;
+@synthesize accountUserId;
+- (void) dealloc
+{
+    [documentKbguid release];
+    [kbguid release];
+    [accountUserId release];
+    [super dealloc];
+}
+
+@end
+
 @interface WGGlobalCache ()
 {
     NSMutableDictionary* observersDictionary;
 }
+@property (nonatomic, retain) NSMutableArray* needGenAbsDocArray;
 @end
 
 @implementation WGGlobalCache
-
+@synthesize needGenAbsDocArray;
 - (void) dealloc
 {
+    [needGenAbsDocArray release];
     [observersDictionary release];
     [super dealloc];
 }
@@ -33,6 +56,8 @@
     self = [super init];
     if (self) {
         observersDictionary = [[NSMutableDictionary alloc] init];
+        needGenAbsDocArray = [[NSMutableArray alloc] init];
+        [NSThread detachNewThreadSelector:@selector(generateAbstract) toTarget:self withObject:nil];
     }
     return self;
 }
@@ -89,11 +114,31 @@
 //    });
 }
 
+- (void) generateAbstract
+{
+    while (true) {
+        NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+        WizGroupDocument* groupDoc = nil;
+        @synchronized(needGenAbsDocArray)
+        {
+            groupDoc = [[self.needGenAbsDocArray lastObject] retain];
+            [self.needGenAbsDocArray removeLastObject];
+        }
+        if (groupDoc) {
+            [self generateAbstractForDocument:groupDoc.documentKbguid accountUserId:groupDoc.accountUserId];
+        }
+        [groupDoc release];
+        [pool release];
+    }
+}
 
 - (BOOL) generateAbstractForDocument:(NSString*)documengGuid    accountUserId:(NSString*)accountUserId
 {
     NSString* sourceFilePath = [[WizFileManager shareManager] getDocumentFilePath:DocumentFileIndexName documentGUID:documengGuid accountUserId:accountUserId];
     
+    
+    static int i = 0;
+        NSLog(@"gen doc abs %d",i++);
     if (![[NSFileManager defaultManager] fileExistsAtPath:sourceFilePath]) {
         return NO;
     }
@@ -176,14 +221,17 @@
     abs.uiImage = compassImage;
     id<WizTemporaryDataBaseDelegate> cacheDb = [[WizDbManager shareInstance] getGlobalCacheDb];
     [self setObject:abs forKey:documengGuid];
+    
+    NSMutableDictionary* userInfo = [NSMutableDictionary dictionary];
+    [WizNotificationCenter addDocumentGuid:documengGuid toUserInfo:userInfo];
+    
+    [[WizNotificationCenter defaultCenter] postNotificationName:WizNMUIDidGenerateAbstract object:nil userInfo:userInfo];
+
+
     return [cacheDb updateAbstract:abstractText imageData:imageData guid:documengGuid type:@"" kbguid:nil];
 }
 
-- (WizAbstract*) abstractForGuid:(NSString *)guid
-{
-    WizAbstract* abstract = [self objectForKey:guid];
-    return abstract;
-}
+
 + (NSString*) unreadCountKey:(NSString*)kbguid  accountUserId:(NSString*)userId
 {
     return [NSString stringWithFormat:@"unreandcount%@-%@",kbguid,userId];
@@ -209,5 +257,31 @@
 {
     NSString* key = [self unreadCountKey:kbguid accountUserId:userId];
     [[WGGlobalCache shareInstance] setObject:[NSNumber numberWithInt:WGUnreadCountClearKey] forKey:key];
+}
+
++ (WizAbstract*) abstractForDoc:(NSString *)docguid  kbguid:(NSString *)kbguid accountUserId:(NSString *)userId
+{
+    WizAbstract* abstract = [[WGGlobalCache shareInstance] objectForKey:docguid];
+    if (abstract == nil) {
+        
+        static int i = 0;
+        
+        WizGroupDocument* doc = [[WizGroupDocument alloc] init];
+        doc.documentKbguid = docguid;
+        doc.kbguid = kbguid;
+        doc.accountUserId = userId;
+        @synchronized([[WGGlobalCache shareInstance] needGenAbsDocArray])
+        {
+            [[[WGGlobalCache shareInstance] needGenAbsDocArray] addObject:doc];
+        }
+        NSLog(@"add doc %d",i++);
+        [doc release];
+    }
+    return abstract;
+}
+
++ (void) clearAbstractForDocument:(NSString*)docguid
+{
+    [[WGGlobalCache shareInstance] removeObjectForKey:docguid];
 }
 @end
