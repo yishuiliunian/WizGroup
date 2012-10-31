@@ -99,6 +99,15 @@
 		7372881C1616A3AE005A3A6B /* WizNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372881B1616A3AE005A3A6B /* WizNotificationCenter.m */; };
 		7372883B1616C880005A3A6B /* WGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883A1616C880005A3A6B /* WGDetailViewController.m */; };
 		7372883E1616C88C005A3A6B /* WGListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7372883D1616C88C005A3A6B /* WGListViewController.m */; };
+		73B6721C163F7FB600FD2318 /* PrettyDrawing.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B67217163F7FB600FD2318 /* PrettyDrawing.m */; };
+		73B6721D163F7FB600FD2318 /* PrettyNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B67219163F7FB600FD2318 /* PrettyNavigationBar.m */; };
+		73B6721E163F7FB600FD2318 /* PrettyToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B6721B163F7FB600FD2318 /* PrettyToolbar.m */; };
+		73B67221163F86CF00FD2318 /* WGNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B67220163F86CF00FD2318 /* WGNavigationBar.m */; };
+		73B67224163F87FD00FD2318 /* WGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B67223163F87FD00FD2318 /* WGBarButtonItem.m */; };
+		73B67226163F88B700FD2318 /* navigationBackgroup1.png in Resources */ = {isa = PBXBuildFile; fileRef = 73B67225163F88B700FD2318 /* navigationBackgroup1.png */; };
+		73B67228163F90A800FD2318 /* listIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73B67227163F90A800FD2318 /* listIcon.png */; };
+		73B6722B163FD6EA00FD2318 /* WGDocDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B6722A163FD6EA00FD2318 /* WGDocDetailView.m */; };
+		73B6722E163FE46A00FD2318 /* WizLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 73B6722D163FE46A00FD2318 /* WizLogger.m */; };
 		73CE190C16227B5800DB4201 /* WGReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73CE190B16227B5800DB4201 /* WGReadViewController.m */; };
 		73D7C66E162F9D1700C27478 /* WGGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D7C66D162F9D1600C27478 /* WGGridViewCell.m */; };
 		73D7C672162F9FFC00C27478 /* a.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 73D7C671162F9FFC00C27478 /* a.PNG */; };
@@ -315,6 +324,22 @@
 		7372883A1616C880005A3A6B /* WGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGDetailViewController.m; path = UI/WGDetailViewController.m; sourceTree = "<group>"; };
 		7372883C1616C88C005A3A6B /* WGListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGListViewController.h; path = UI/WGListViewController.h; sourceTree = "<group>"; };
 		7372883D1616C88C005A3A6B /* WGListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGListViewController.m; path = UI/WGListViewController.m; sourceTree = "<group>"; };
+		73B67216163F7FB600FD2318 /* PrettyDrawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyDrawing.h; sourceTree = "<group>"; };
+		73B67217163F7FB600FD2318 /* PrettyDrawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyDrawing.m; sourceTree = "<group>"; };
+		73B67218163F7FB600FD2318 /* PrettyNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyNavigationBar.h; sourceTree = "<group>"; };
+		73B67219163F7FB600FD2318 /* PrettyNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyNavigationBar.m; sourceTree = "<group>"; };
+		73B6721A163F7FB600FD2318 /* PrettyToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrettyToolbar.h; sourceTree = "<group>"; };
+		73B6721B163F7FB600FD2318 /* PrettyToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrettyToolbar.m; sourceTree = "<group>"; };
+		73B6721F163F86CF00FD2318 /* WGNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGNavigationBar.h; path = CustomUI/WGNavigationBar.h; sourceTree = "<group>"; };
+		73B67220163F86CF00FD2318 /* WGNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGNavigationBar.m; path = CustomUI/WGNavigationBar.m; sourceTree = "<group>"; };
+		73B67222163F87FD00FD2318 /* WGBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGBarButtonItem.h; path = CustomUI/WGBarButtonItem.h; sourceTree = "<group>"; };
+		73B67223163F87FD00FD2318 /* WGBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGBarButtonItem.m; path = CustomUI/WGBarButtonItem.m; sourceTree = "<group>"; };
+		73B67225163F88B700FD2318 /* navigationBackgroup1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBackgroup1.png; sourceTree = "<group>"; };
+		73B67227163F90A800FD2318 /* listIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listIcon.png; sourceTree = "<group>"; };
+		73B67229163FD6E900FD2318 /* WGDocDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGDocDetailView.h; path = CustomUI/WGDocDetailView.h; sourceTree = "<group>"; };
+		73B6722A163FD6EA00FD2318 /* WGDocDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGDocDetailView.m; path = CustomUI/WGDocDetailView.m; sourceTree = "<group>"; };
+		73B6722C163FE46A00FD2318 /* WizLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WizLogger.h; sourceTree = "<group>"; };
+		73B6722D163FE46A00FD2318 /* WizLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WizLogger.m; sourceTree = "<group>"; };
 		73CE190A16227B5800DB4201 /* WGReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGReadViewController.h; path = UI/WGReadViewController.h; sourceTree = "<group>"; };
 		73CE190B16227B5800DB4201 /* WGReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGReadViewController.m; path = UI/WGReadViewController.m; sourceTree = "<group>"; };
 		73D7C66C162F9D1600C27478 /* WGGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGGridViewCell.h; path = GMGridView/WGGridViewCell.h; sourceTree = "<group>"; };
@@ -393,6 +418,12 @@
 				7362A3A61634DEC40031CFEE /* UINavigationBar+WizCustom.m */,
 				73DC3E90163E20BA002BCDE5 /* WGToolBar.h */,
 				73DC3E91163E20BA002BCDE5 /* WGToolBar.m */,
+				73B6721F163F86CF00FD2318 /* WGNavigationBar.h */,
+				73B67220163F86CF00FD2318 /* WGNavigationBar.m */,
+				73B67222163F87FD00FD2318 /* WGBarButtonItem.h */,
+				73B67223163F87FD00FD2318 /* WGBarButtonItem.m */,
+				73B67229163FD6E900FD2318 /* WGDocDetailView.h */,
+				73B6722A163FD6EA00FD2318 /* WGDocDetailView.m */,
 			);
 			name = CustomUI;
 			sourceTree = "<group>";
@@ -400,6 +431,8 @@
 		7362A3AA1634E1920031CFEE /* ListDetail */ = {
 			isa = PBXGroup;
 			children = (
+				7372883C1616C88C005A3A6B /* WGListViewController.h */,
+				7372883D1616C88C005A3A6B /* WGListViewController.m */,
 				7362A3AE1634E4CD0031CFEE /* WGDetailListCell.h */,
 				7362A3AF1634E4CD0031CFEE /* WGDetailListCell.m */,
 			);
@@ -706,8 +739,6 @@
 				734CD8501616D7A400FBC33C /* TreeNode.m */,
 				737288391616C880005A3A6B /* WGDetailViewController.h */,
 				7372883A1616C880005A3A6B /* WGDetailViewController.m */,
-				7372883C1616C88C005A3A6B /* WGListViewController.h */,
-				7372883D1616C88C005A3A6B /* WGListViewController.m */,
 				73CE190A16227B5800DB4201 /* WGReadViewController.h */,
 				73CE190B16227B5800DB4201 /* WGReadViewController.m */,
 				73FCE60F1638ECF8006F597C /* WGTreeNode.h */,
@@ -716,9 +747,24 @@
 			name = detail;
 			sourceTree = "<group>";
 		};
+		73B67214163F7FA000FD2318 /* PrretyKit */ = {
+			isa = PBXGroup;
+			children = (
+				73B67216163F7FB600FD2318 /* PrettyDrawing.h */,
+				73B67217163F7FB600FD2318 /* PrettyDrawing.m */,
+				73B67218163F7FB600FD2318 /* PrettyNavigationBar.h */,
+				73B67219163F7FB600FD2318 /* PrettyNavigationBar.m */,
+				73B6721A163F7FB600FD2318 /* PrettyToolbar.h */,
+				73B6721B163F7FB600FD2318 /* PrettyToolbar.m */,
+			);
+			name = PrretyKit;
+			sourceTree = "<group>";
+		};
 		73D7C670162F9FC400C27478 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73B67227163F90A800FD2318 /* listIcon.png */,
+				73B67225163F88B700FD2318 /* navigationBackgroup1.png */,
 				73DC3EA0163E37D1002BCDE5 /* logloImage.png */,
 				73DC3EA1163E37D1002BCDE5 /* logoWords.png */,
 				73DC3E98163E325E002BCDE5 /* settingButtonImage.png */,
@@ -774,6 +820,8 @@
 				737287A81616A093005A3A6B /* WizGlobals.h */,
 				737287A91616A093005A3A6B /* WizGlobals.mm */,
 				737287C11616A093005A3A6B /* xml-rpc */,
+				73B6722C163FE46A00FD2318 /* WizLogger.h */,
+				73B6722D163FE46A00FD2318 /* WizLogger.m */,
 			);
 			name = WizTools;
 			sourceTree = "<group>";
@@ -881,6 +929,7 @@
 		73DE4E70162E986F004BC0F6 /* OtherFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				73B67214163F7FA000FD2318 /* PrretyKit */,
 				73D983BC163B9C91006AAB22 /* EGOTableViewPullRefresh */,
 				73D8278B163A2CA100027543 /* MBProgressHUD.h */,
 				73D8278C163A2CA100027543 /* MBProgressHUD.m */,
@@ -988,6 +1037,8 @@
 				73DC3E9B163E325E002BCDE5 /* settingButtonImageClicked.png in Resources */,
 				73DC3EA2163E37D1002BCDE5 /* logloImage.png in Resources */,
 				73DC3EA3163E37D1002BCDE5 /* logoWords.png in Resources */,
+				73B67226163F88B700FD2318 /* navigationBackgroup1.png in Resources */,
+				73B67228163F90A800FD2318 /* listIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1092,6 +1143,13 @@
 				73D983CA163B9C91006AAB22 /* EGORefreshTableHeaderView.m in Sources */,
 				73DC3E92163E20BA002BCDE5 /* WGToolBar.m in Sources */,
 				73DC3EA7163E4030002BCDE5 /* WGSettingViewController.m in Sources */,
+				73B6721C163F7FB600FD2318 /* PrettyDrawing.m in Sources */,
+				73B6721D163F7FB600FD2318 /* PrettyNavigationBar.m in Sources */,
+				73B6721E163F7FB600FD2318 /* PrettyToolbar.m in Sources */,
+				73B67221163F86CF00FD2318 /* WGNavigationBar.m in Sources */,
+				73B67224163F87FD00FD2318 /* WGBarButtonItem.m in Sources */,
+				73B6722B163FD6EA00FD2318 /* WGDocDetailView.m in Sources */,
+				73B6722E163FE46A00FD2318 /* WizLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

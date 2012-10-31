@@ -47,6 +47,7 @@
     [self.window addSubview:self.rootControll.view];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    WizLogError(@"asdfasdf");
     return YES;
 }
 

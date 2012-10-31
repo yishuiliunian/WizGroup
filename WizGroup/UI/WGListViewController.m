@@ -11,11 +11,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WizDbManager.h"
 #import "WGReadViewController.h"
-
+#import "WGNavigationBar.h"
 
 #import "WGDetailListCell.h"
+#import "WGBarButtonItem.h"
 
-@interface WGListViewController () <WGReadListDelegate>
+@interface WGListViewController () <WGReadListDelegate, WGDetailCellDelegate>
 {
     NSMutableArray* documentsArray;
 }
@@ -133,11 +134,15 @@
 {
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
+- (void) customizeNavBar {
+    [self.navigationController setValue:[[[WGNavigationBar alloc] init] autorelease] forKeyPath:@"navigationBar"];
+
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self customizeNavBar];
     UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
     cusButton.backgroundColor = [UIColor redColor];
     [cusButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
@@ -146,8 +151,8 @@
     self.navigationItem.rightBarButtonItem  = backToHome;
     [backToHome release];
     
+    WGBarButtonItem* showLeftItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
 
-    UIBarButtonItem* showLeftItem = [[UIBarButtonItem alloc] initWithTitle:@"lest" style:UIBarButtonItemStyleBordered target:self action:@selector(showLeftController)];
     self.navigationItem.leftBarButtonItem = showLeftItem;
     [showLeftItem release];
 }
@@ -177,6 +182,16 @@
     return [documentsArray count];
 }
 
+- (WizDocument*) getCellNeedDisplayDocumentFor:(NSString *)docGuid
+{
+    for (WizDocument* each in documentsArray) {
+        if ([each.strGuid isEqualToString:docGuid]) {
+            return each;
+        }
+    }
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ListCell";
@@ -189,6 +204,7 @@
     cell.documentGuid = doc.strGuid;
     cell.kbGuid = self.kbGuid;
     cell.accountUserId = self.accountUserId;
+    cell.delegate = self;
     return cell;
 }
 

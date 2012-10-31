@@ -10,6 +10,8 @@
 #import "WizDbManager.h"
 #import "WGGlobalCache.h"
 
+
+
 @interface WGDetailListCell ()
 {
     UILabel* titleLabel;
@@ -24,12 +26,11 @@
 @synthesize documentGuid;
 @synthesize kbGuid;
 @synthesize accountUserId;
-
+@synthesize delegate;
 static UIFont* titleFont = nil;
 static UIFont* authorFont = nil;
 static UIFont* detailFont = nil;
 static UIFont* timeFont = nil;
-
 
 - (void) dealloc
 {
@@ -39,7 +40,7 @@ static UIFont* timeFont = nil;
     [authorLabel release];
     [abstractImageView release];
     [abstractLabel release];
-    
+    delegate = nil;
     [super dealloc];
 }
 
@@ -92,8 +93,7 @@ static UIFont* timeFont = nil;
 
 - (void) doReloadUI
 {
-    id<WizMetaDataBaseDelegate> metaDb = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
-    WizDocument* doc = [metaDb documentFromGUID:self.documentGuid];
+    WizDocument* doc = [self.delegate getCellNeedDisplayDocumentFor:self.documentGuid];
 
     WizAbstract* abstract = [WGGlobalCache abstractForDoc:self.documentGuid kbguid:self.kbGuid accountUserId:self.accountUserId];
     
@@ -106,8 +106,8 @@ static UIFont* timeFont = nil;
     float imageHeight = 0;
     float imageStartX = cellSize.width - 10 - cellSize.height;
     if (abstract && abstract.uiImage) {
-        imageWidth = cellSize.height;
-        imageHeight = cellSize.height;
+        imageWidth = cellSize.height - 10;
+        imageHeight = cellSize.height - 10;
         endX = cellSize.width - 10 - imageWidth;
         imageStartX = endX;
     }
@@ -130,7 +130,7 @@ static UIFont* timeFont = nil;
     CGRect timeRect = CGRectMake(startX, titleHeight, timeWidth, timeHeight);
     CGRect authorRect = CGRectMake(authorStartx, titleHeight, authorWidth, authorHeight);
     CGRect detailRect = CGRectMake(startX, titleHeight + timeHeight, detaiWidth, detailHeight);
-    CGRect imageRect = CGRectMake(imageStartX, 0, imageWidth, imageHeight);
+    CGRect imageRect = CGRectMake(imageStartX, 5, imageWidth, imageHeight);
     NSString* authorStr = doc.strOwner;
     if (authorStr) {
         NSInteger indexOf = [authorStr indexOf:@"@"];

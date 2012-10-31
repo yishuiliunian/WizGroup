@@ -112,18 +112,7 @@
     }
     return self;
 }
-- (void) testMulti
-{
-    __block int testInt = 0;
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSLog(@"m start %d",testInt++);
-        NSLog(@"m end");
-        for (int i = 0; i< 10000; i++) {
-            ;
-        }
-    });
-    NSLog(@"end %d",testInt);
-}
+
 - (void) loadView
 {
     [super loadView];
@@ -195,7 +184,8 @@
 - (void) reloadAllGroups
 {
     [self reloadGroupView];
-//    [groupGridView.refreshHeaderView startLoadingAnimation:groupGridView];
+    isRefreshing = YES;
+    [groupGridView.refreshHeaderView startLoadingAnimation:groupGridView];
 }
 
 - (void) reloadGroupView
@@ -238,7 +228,6 @@
     [setButton setBackgroundImage:[UIImage imageNamed:@"settingButtonImageClicked"] forState:UIControlStateHighlighted];
     [setButton addTarget:self action:@selector(settingApp) forControlEvents:UIControlEventTouchUpInside];
     [setButton setImage:[UIImage imageNamed:@"settingButtonImage"] forState:UIControlStateNormal];
-    [setButton setTitle:@"ss" forState:UIControlStateNormal];
     
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:setButton];
     WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];

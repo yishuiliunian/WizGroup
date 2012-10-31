@@ -83,11 +83,11 @@
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = [UIColor whiteColor];
         _textLabel.highlightedTextColor = [UIColor lightGrayColor];
-        _textLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE];
+        _textLabel.font = [UIFont systemFontOfSize:FONT_SIZE];
         _textLabel.numberOfLines = 0;
         _textLabel.frame = CGRectMake(0.0, _imageView.frame.size.height/2 - 20, size.width, 20);
-//        _textLabel.shadowColor = [UIColor lightGrayColor];
-//        _textLabel.shadowOffset = CGSizeMake(0.5, 0.5);
+        _textLabel.shadowColor = [UIColor lightGrayColor];
+        _textLabel.shadowOffset = CGSizeMake(1, -1);
         
         
         [_imageView addSubview:_textLabel];
@@ -96,9 +96,9 @@
         badgeView.hidden = YES;
         
         //
-        coverView = [[UIImageView alloc] initWithFrame:imageRect];
-        coverView.image = [UIImage imageNamed:@"menban"];
-        [_imageView addSubview:coverView];
+//        coverView = [[UIImageView alloc] initWithFrame:imageRect];
+//        coverView.image = [UIImage imageNamed:@"menban"];
+//        [_imageView addSubview:coverView];
         //
         
         self.contentView = _imageView;
