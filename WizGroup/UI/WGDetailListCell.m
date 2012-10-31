@@ -26,7 +26,7 @@
 @synthesize documentGuid;
 @synthesize kbGuid;
 @synthesize accountUserId;
-@synthesize delegate;
+
 static UIFont* titleFont = nil;
 static UIFont* authorFont = nil;
 static UIFont* detailFont = nil;
@@ -40,7 +40,7 @@ static UIFont* timeFont = nil;
     [authorLabel release];
     [abstractImageView release];
     [abstractLabel release];
-    delegate = nil;
+    
     [super dealloc];
 }
 
@@ -50,28 +50,30 @@ static UIFont* timeFont = nil;
     if (self) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            titleFont = [[UIFont systemFontOfSize:16] retain];
-            authorFont = [[UIFont systemFontOfSize:12] retain];
-            detailFont = [[UIFont systemFontOfSize:14] retain];
-            timeFont = [[UIFont systemFontOfSize:12] retain];
+            titleFont = [[UIFont boldSystemFontOfSize:15] retain];
+            authorFont = [[UIFont systemFontOfSize:11] retain];
+            detailFont = [[UIFont systemFontOfSize:11] retain];
+            timeFont = [[UIFont systemFontOfSize:11] retain];
         });
         
         titleLabel = [[UILabel alloc] init];
         [titleLabel setFont:titleFont];
         [self.contentView addSubview:titleLabel];
+        
         //
         timeLabel = [[UILabel alloc] init];
         [timeLabel setFont:timeFont];
         [self.contentView addSubview:timeLabel];
+        timeLabel.textColor = [UIColor lightGrayColor];
         //
         authorLabel = [[UILabel alloc] init];
         [authorLabel setFont:authorFont];
         [self.contentView addSubview:authorLabel];
+        authorLabel.textColor = [UIColor lightGrayColor];
         //
         abstractLabel = [[UILabel alloc] init];
         [abstractLabel setFont:detailFont];
         abstractLabel.numberOfLines = 0;
-        abstractLabel.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:abstractLabel];
         //
         abstractImageView = [[UIImageView alloc] init];
@@ -93,7 +95,8 @@ static UIFont* timeFont = nil;
 
 - (void) doReloadUI
 {
-    WizDocument* doc = [self.delegate getCellNeedDisplayDocumentFor:self.documentGuid];
+    id<WizMetaDataBaseDelegate> metaDb = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
+    WizDocument* doc = [metaDb documentFromGUID:self.documentGuid];
 
     WizAbstract* abstract = [WGGlobalCache abstractForDoc:self.documentGuid kbguid:self.kbGuid accountUserId:self.accountUserId];
     
@@ -126,10 +129,13 @@ static UIFont* timeFont = nil;
     float detaiWidth = titleWidth;
     float detailHeight = 50;
     //
-    CGRect titleRect = CGRectMake(startX, 0.0, titleWidth , titleHeight);
-    CGRect timeRect = CGRectMake(startX, titleHeight, timeWidth, timeHeight);
-    CGRect authorRect = CGRectMake(authorStartx, titleHeight, authorWidth, authorHeight);
-    CGRect detailRect = CGRectMake(startX, titleHeight + timeHeight, detaiWidth, detailHeight);
+    CGRect titleRect = CGRectMake(startX, 5, titleWidth , titleHeight);
+
+    CGRect detailRect = CGRectMake(startX, titleHeight + 5, detaiWidth, detailHeight);
+    
+    CGRect timeRect = CGRectMake(startX, titleHeight + detailHeight +5, timeWidth, timeHeight);
+    CGRect authorRect = CGRectMake(authorStartx, titleHeight + detailHeight +5, authorWidth, authorHeight);
+    
     CGRect imageRect = CGRectMake(imageStartX, 5, imageWidth, imageHeight);
     NSString* authorStr = doc.strOwner;
     if (authorStr) {

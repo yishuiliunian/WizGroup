@@ -30,10 +30,10 @@
 #import <UIKit/UIKit.h>
 #import "GMGridView-Constants.h"
 
-#define WizNavigationTtitleHeaderHeight     44
+#define WizNavigationTtitleHeaderHeight     50
 
 @protocol GMGridViewLayoutStrategy;
-
+ 
 
 typedef enum {
     GMGridViewLayoutVertical = 0,

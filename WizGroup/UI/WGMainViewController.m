@@ -30,6 +30,8 @@
 //
 #import "WGToolBar.h"
 
+#import "WGNavigationViewController.h"
+
 @interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
     GMGridView* groupGridView;
@@ -134,11 +136,11 @@
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
     //
-    titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, self.view.frame.size.width-20, WizNavigationTtitleHeaderHeight)];
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 44)];
 
     [groupGridView addSubview:titleView];
     
-    UIImageView* logolImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 40, WizNavigationTtitleHeaderHeight)];
+    UIImageView* logolImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 40, 40)];
     logolImageView.image = [UIImage imageNamed:@"logloImage"];
 
     [titleView addSubview:logolImageView];
@@ -170,7 +172,7 @@
     
     //
     [logoButton addTarget:self action:@selector(clientLogin) forControlEvents:UIControlEventTouchUpInside];
-    logoButton.frame = CGRectMake(40, 0.0, logoButtonWidth, WizNavigationTtitleHeaderHeight);
+    logoButton.frame = CGRectMake(45, 0.0, logoButtonWidth, WizNavigationTtitleHeaderHeight);
     [titleView addSubview:logoButton];
     
     [gmGridView addSubview:titleView];
@@ -266,22 +268,30 @@
 
 - (NSInteger) numberOfItemsInGMGridView:(GMGridView *)gridView
 {
-    return [groupsArray count];
+    return [groupsArray count] + 1;
 }
 - (CGSize) GMGridView:(GMGridView *)gridView sizeForItemsInInterfaceOrientation:(UIInterfaceOrientation)orientation
 {
-    return CGSizeMake(147.5 , 147.5);
+    return CGSizeMake(147.5 , 120);
 }
 
 - (GMGridViewCell*) GMGridView:(GMGridView *)gridView cellForItemAtIndex:(NSInteger)index
 {
     CGSize size = [self GMGridView:gridView sizeForItemsInInterfaceOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+    
+    
+    if (index == [groupsArray count]) {
+        GMGridViewCell* cell = [[[GMGridViewCell alloc] initWithFrame:CGRectMake(0.0, 0.0, size.width, size.height)] autorelease];
+        cell.backgroundColor = [UIColor lightGrayColor];
+        return cell;
+    }
+    
     WGGridViewCell *cell = (WGGridViewCell*)[gridView dequeueReusableCell];
     if (!cell)
     {
         cell = [[[WGGridViewCell alloc] initWithSize:size] autorelease];
     }
-    
+
     WizGroup* group = [groupsArray objectAtIndex:index];
     cell.textLabel.text =  group.kbName;
     cell.kbguid = group.kbguid;
@@ -313,6 +323,12 @@
 
 - (void) GMGridView:(GMGridView *)gridView didTapOnItemAtIndex:(NSInteger)position
 {
+    if (position == [groupsArray count]) {
+        
+        NSLog(@"add new");
+        return;
+    }
+    
     WizGroup* group = [groupsArray objectAtIndex:position];
     NSString* activeAccountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
     
@@ -326,12 +342,12 @@
     listCon.accountUserId = activeAccountUserId;
     listCon.listType = WGListTypeRecent;
     //
-       UINavigationController* centerNav = [[UINavigationController alloc] initWithRootViewController:listCon];
+    UINavigationController* centerNav = [[UINavigationController alloc] initWithRootViewController:listCon];
     
     PPRevealSideViewController* ppSideController = [[PPRevealSideViewController alloc] initWithRootViewController:centerNav];
     [ppSideController setDirectionsToShowBounce:PPRevealSideDirectionLeft];
     [ppSideController preloadViewController:detailCon forSide:PPRevealSideDirectionLeft];
-    
+ 
     CATransition *tran = [CATransition animation];
     tran.duration = .4f;
     tran.type = kCATransitionPush;

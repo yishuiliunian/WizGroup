@@ -17,19 +17,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizApi/WizSyncMeta.m"
-         timestampString = "372740677.587948"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "122"
-         endingLineNumber = "122"
-         landmarkName = "-wizApiEnd:withSatue:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -60,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373265294.562806"
+         timestampString = "373360322.902605"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "251"
-         endingLineNumber = "251"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373257724.925199"
+         timestampString = "373360322.902605"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "194"
-         endingLineNumber = "194"
+         startingLineNumber = "196"
+         endingLineNumber = "196"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373257724.925199"
+         timestampString = "373360322.902605"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195"
+         startingLineNumber = "197"
+         endingLineNumber = "197"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -121,7 +108,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizApi/WizApi.m"
@@ -137,13 +124,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../WizCoreFunc/WizCoreFunc/WizCore/WizApi/WizDownloadObject.m"
-         timestampString = "373278903.277467"
+         filePath = "WizGroup/CustomUI/WGNavigationViewController.m"
+         timestampString = "373363082.253448"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "62"
-         endingLineNumber = "62"
-         landmarkName = "-start"
+         startingLineNumber = "21"
+         endingLineNumber = "21"
+         landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

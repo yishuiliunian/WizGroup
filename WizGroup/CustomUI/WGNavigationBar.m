@@ -8,21 +8,32 @@
 
 #import "WGNavigationBar.h"
 
+
 @implementation WGNavigationBar
+@synthesize titleLabel;
+
+- (void) dealloc
+{
+    [titleLabel release];
+    [super dealloc];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        titleLabel = [[UILabel alloc] init];
+        titleLabel.font = [UIFont systemFontOfSize:17];
+        titleLabel.textColor = [UIColor blackColor];
+        titleLabel.textAlignment = UITextAlignmentCenter;
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
 {
-    self.tintColor = [UIColor whiteColor];
     UIImage* image = [UIImage imageNamed:@"navigationBackgroup1"];
+    self.titleLabel.frame = CGRectMake(0.0, 0.0, self.frame.size.width, 40);
     [image drawInRect:CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height)];
 }
 

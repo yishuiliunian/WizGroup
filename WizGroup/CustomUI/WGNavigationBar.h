@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WGNavigationBar : UINavigationBar
-
+@property (nonatomic, retain) UILabel* titleLabel;
 @end

@@ -95,27 +95,14 @@
         badgeView = [[JSBadgeView alloc] initWithParentView:_imageView alignment:JSBadgeViewAlignmentTopRight];
         badgeView.hidden = YES;
         
-        //
-//        coverView = [[UIImageView alloc] initWithFrame:imageRect];
-//        coverView.image = [UIImage imageNamed:@"menban"];
-//        [_imageView addSubview:coverView];
-        //
         
         self.contentView = _imageView;
         self.deleteButtonIcon = [UIImage imageNamed:@"close_x.png"];
         self.deleteButtonOffset = CGPointMake(-15, -15);
         
-        //
-//        CALayer* layer = _imageView.layer;
-//
-//        layer.shadowColor = [UIColor grayColor].CGColor;
-//        layer.shadowOffset = CGSizeMake(2, 2);
-//        layer.shadowOpacity = 0.5;
-//        layer.shadowRadius = 2;
-//        layer.cornerRadius = 5;
+
         [_imageView bringSubviewToFront:_textLabel];
-//        [self addObserver:self forKeyPath:@"textLabel.text" options:NSKeyValueObservingOptionNew context:nil];
-        //
+
         float activityViewHeight = 40;
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((size.width - activityViewHeight)/2, (size.height - activityViewHeight)/2, activityViewHeight, activityViewHeight)];
         [_imageView addSubview:activityIndicatorView];
@@ -150,24 +137,6 @@
     [self setBadgeCount];
 }
 
-//- (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    if ([keyPath isEqualToString:@"textLabel.text"]) {
-//        MULTIBACK(^(void)
-//          {
-//            CGFloat height = 0;
-//            @synchronized(self)
-//            {
-//                  NSString* text = [change objectForKey:@"new"];
-//                  height = [self calculateTextHeight:_size.width Content:text];
-//            }
-//            MULTIMAIN(^(void)
-//            {
-//                 _textLabel.frame = CGRectMake(0.0, self.contentView.frame.size.height - height - 8, self.contentView.frame.size.width, height);
-//            });
-//          });
-//    }
-//}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -188,7 +157,7 @@
     {
         badgeView.hidden = NO;
         if (count > 9) {
-            badgeView.badgeText = [NSString stringWithFormat:@"9+"];
+            badgeView.badgeText = [NSString stringWithFormat:@"N"];
         }
         else
         {
@@ -207,6 +176,10 @@
 
 - (void) setBadgeCount
 {
+    badgeView.hidden = YES;
+    if (self.kbguid == nil) {
+        return;
+    }
     [WGGlobalCache getUnreadCountByKbguid:self.kbguid accountUserId:self.accountUserId observer:self];
     [[WGGlobalCache shareInstance] getAbstractImageForKbguid:self.kbguid accountUserId:self.accountUserId observer:self];
 }

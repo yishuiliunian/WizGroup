@@ -130,7 +130,7 @@
         [groupDoc release];
         [pool release];
         if ([needGenAbsDocArray count] == 0) {
-            [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+            sleep(0.5);
         }
     }
 }

@@ -12,6 +12,7 @@
 #import "WizDbManager.h"
 #import "WGListViewController.h"
 #import "PPRevealSideViewController.h"
+#import "WizAccountManager.h"
 
 enum WGFolderListIndex {
     WGFolderListIndexOfCustom = 0,
@@ -22,6 +23,8 @@ enum WGFolderListIndex {
 {
     TreeNode* rootTreeNode;
     NSMutableArray* allNodes;
+    
+    UIView* titleView;
 }
 @property (nonatomic, assign, getter = needDisplayNodesArray) NSMutableArray* needDisplayNodesArray;
 @end
@@ -32,6 +35,9 @@ enum WGFolderListIndex {
 @synthesize accountUserId;
 - (void) dealloc
 {
+    [titleView release];
+    [allNodes release];
+    [rootTreeNode release];
     [kbGuid release];
     [accountUserId release];
     [super dealloc];
@@ -60,6 +66,8 @@ enum WGFolderListIndex {
         [allNodes addObject:customNodes];
         [allNodes addObject:needDisplayTreeNodes];
         
+        //
+        titleView = [[UIView alloc] init];
     }
     return self;
 }
@@ -127,9 +135,27 @@ enum WGFolderListIndex {
 {
     [super viewDidLoad];
     [self reloadAllData];
+     [self loadTitleView];
 }
 
+- (void) loadTitleView
+{
+    titleView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, 80);
+    self.tableView.tableHeaderView = titleView;
+    titleView.backgroundColor = [UIColor lightGrayColor];
+    
+    WizGroup* group = [[WizAccountManager defaultManager] groupForKbguid:self.kbGuid accountUserId:self.accountUserId];
+    
+    UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 -DefaultOffset, 30)];
+    titleLabel.text = group.kbName;
+    [titleView addSubview:titleView];
+    [titleLabel release];
+}
 
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0;
+}
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -137,6 +163,7 @@ enum WGFolderListIndex {
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+   
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

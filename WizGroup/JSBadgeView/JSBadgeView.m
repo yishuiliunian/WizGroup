@@ -47,7 +47,9 @@
 #define kDefaultBadgeAlignment JSBadgeViewAlignmentTopRight
 
 @interface JSBadgeView()
-
+{
+    UIImageView* backgroudView;
+}
 - (void)_init;
 - (CGSize)sizeOfTextForCurrentSettings;
 
@@ -90,6 +92,7 @@
     {
         self.badgeAlignment = alignment;
         [parentView addSubview:self];
+        
     }
     
     return self;
@@ -303,47 +306,50 @@
     {
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         
-        CGRect rectToDraw = CGRectInset(rect, kMarginToDrawInside, kMarginToDrawInside);
+//        CGRect rectToDraw = CGRectInset(rect, kMarginToDrawInside, kMarginToDrawInside);
+        CGRect rectToDraw = CGRectMake(0.0, 0.0, 24, 24);
         
-        UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:rectToDraw byRoundingCorners:(UIRectCorner)UIRectCornerAllCorners cornerRadii:CGSizeMake(kBadgeCornerRadius, kBadgeCornerRadius)];
+        UIImage* orangeImage = [UIImage imageNamed:@"orangeBadgeBackground"];
+        [orangeImage drawInRect:rectToDraw];
         
+//        UIBezierPath *borderPath = [UIBezierPath bezierPathWithRoundedRect:rectToDraw byRoundingCorners:(UIRectCorner)UIRectCornerAllCorners cornerRadii:CGSizeMake(kBadgeCornerRadius, kBadgeCornerRadius)];
         /* Background and shadow */
-        CGContextSaveGState(ctx);
-        {
-            CGContextAddPath(ctx, borderPath.CGPath);
-            
-            CGContextSetFillColorWithColor(ctx, self.badgeBackgroundColor.CGColor);
-//            CGContextSetShadowWithColor(ctx, kShadowOffset, kShadowRadius, kShadowColor.CGColor);
-            
-            CGContextDrawPath(ctx, kCGPathFill);
-        }
-        CGContextRestoreGState(ctx);
+//        CGContextSaveGState(ctx);
+//        {
+//            CGContextAddPath(ctx, borderPath.CGPath);
+//            
+//            CGContextSetFillColorWithColor(ctx, self.badgeBackgroundColor.CGColor);
+////            CGContextSetShadowWithColor(ctx, kShadowOffset, kShadowRadius, kShadowColor.CGColor);
+//            
+//            CGContextDrawPath(ctx, kCGPathFill);
+//        }
+//        CGContextRestoreGState(ctx);
         
-        BOOL colorForOverlayPresent = self.badgeOverlayColor && ![self.badgeOverlayColor isEqual:[UIColor clearColor]];
-        
-        if (colorForOverlayPresent)
-        {
-            /* Gradient overlay */
-            CGContextSaveGState(ctx);
-            {
-                CGContextAddPath(ctx, borderPath.CGPath);
-                CGContextClip(ctx);
-                
-                CGFloat height = rectToDraw.size.height;
-                CGFloat width = rectToDraw.size.width;
-                
-                CGRect rectForOverlayCircle = CGRectMake(rectToDraw.origin.x,
-                                                         rectToDraw.origin.y - ceilf(height * 0.5),
-                                                         width,
-                                                         height);
-                
-                CGContextAddEllipseInRect(ctx, rectForOverlayCircle);
-                CGContextSetFillColorWithColor(ctx, self.badgeOverlayColor.CGColor);
-                
-                CGContextDrawPath(ctx, kCGPathFill);
-            }
-            CGContextRestoreGState(ctx);
-        }
+//        BOOL colorForOverlayPresent = self.badgeOverlayColor && ![self.badgeOverlayColor isEqual:[UIColor clearColor]];
+//        
+//        if (colorForOverlayPresent)
+//        {
+//            /* Gradient overlay */
+//            CGContextSaveGState(ctx);
+//            {
+//                CGContextAddPath(ctx, borderPath.CGPath);
+//                CGContextClip(ctx);
+//                
+//                CGFloat height = rectToDraw.size.height;
+//                CGFloat width = rectToDraw.size.width;
+//                
+//                CGRect rectForOverlayCircle = CGRectMake(rectToDraw.origin.x,
+//                                                         rectToDraw.origin.y - ceilf(height * 0.5),
+//                                                         width,
+//                                                         height);
+//                
+//                CGContextAddEllipseInRect(ctx, rectForOverlayCircle);
+//                CGContextSetFillColorWithColor(ctx, self.badgeOverlayColor.CGColor);
+//                
+//                CGContextDrawPath(ctx, kCGPathFill);
+//            }
+//            CGContextRestoreGState(ctx);
+//        }
         
 //        /* Stroke */
 //        CGContextSaveGState(ctx);

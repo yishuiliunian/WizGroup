@@ -12,6 +12,9 @@
 #import "WizSyncCenter.h"
 #import "WizNotificationCenter.h"
 #import "WizDbManager.h"
+#import "WGToolBar.h"
+#import "WGBarButtonItem.h"
+#import "WGNavigationViewController.h"
 
 @interface WGReadViewController () <UIScrollViewDelegate>
 {
@@ -22,6 +25,8 @@
     //
     UIBarButtonItem* checkNextButtonItem;
     UIBarButtonItem* checkPreButtonItem;
+    //
+    WGToolBar* toolBar;
 }
 
 @end
@@ -42,6 +47,7 @@
     [readWebView release];
     [backgroudScrollView release];
     //
+    [toolBar release];
     [super dealloc];
 }
 
@@ -88,6 +94,8 @@
         //
         titleLabel = [[UILabel alloc] init];
         backgroudScrollView = [[UIScrollView alloc] init];
+        //
+        toolBar = [[WGToolBar alloc] init];
     }
     return self;
 }
@@ -141,7 +149,7 @@
     [super viewDidLoad];
 
     CGSize contentSize = [self contentViewSize];
-    float titleLabelHeight = 80;
+    float titleLabelHeight = 40;
     
     readWebView.frame = CGRectMake(0.0, titleLabelHeight +1, contentSize.width, contentSize.height);
     readWebView.scrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
@@ -149,8 +157,8 @@
     [backgroudScrollView addSubview:readWebView];
     [backgroudScrollView addSubview:titleLabel];
     backgroudScrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
-    backgroudScrollView.frame= CGRectMake(0.0, 0.0, contentSize.width, contentSize.height-10);
-    backgroudScrollView.contentSize= CGSizeMake(contentSize.width, contentSize.height + titleLabelHeight-10);
+    backgroudScrollView.frame= CGRectMake(0.0, 0.0, contentSize.width, contentSize.height);
+    backgroudScrollView.contentSize= CGSizeMake(contentSize.width, contentSize.height + titleLabelHeight);
     [self.view addSubview:backgroudScrollView];
     
     [self checkCurrentDocument];
@@ -172,6 +180,7 @@
     
     [nextItem release];
     [preItem release];
+     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void) downloadCurrentDocument
@@ -182,9 +191,31 @@
     [center downloadDocument:doc kbguid:self.kbguid accountUserId:self.accountUserId];
 }
 
+- (void) customToolBar
+{
+    [self.navigationController setToolbarHidden:NO];
+    toolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
+    [self.navigationController.toolbar addSubview:toolBar];
+    
+    UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    WGBarButtonItem* backToList = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
+    WGBarButtonItem* nextItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
+    checkNextButtonItem = nextItem;
+    WGBarButtonItem* preItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
+    checkPreButtonItem = preItem;
+    [toolBar setItems:@[backToList,flexItem,preItem,nextItem]];
+    [backToList release];
+    [nextItem release];
+    [preItem release];
+}
+
+- (void) backToList
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void) loadDocument:(WizDocument*)doc
 {
-
     if (doc.bServerChanged == 0) {
         NSString* indexPath = [[WizFileManager shareManager] getDocumentFilePath:DocumentFileIndexName documentGUID:doc.strGuid accountUserId:self.accountUserId];
         if ([[WizFileManager shareManager] fileExistsAtPath:indexPath]) {
@@ -198,11 +229,12 @@
     }
 }
 
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+   
     [self checkCurrentDocument];
+    [self customToolBar];
 }
 
 - (void)viewDidUnload

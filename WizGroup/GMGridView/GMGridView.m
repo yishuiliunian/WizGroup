@@ -31,6 +31,7 @@
 #import "GMGridViewCell+Extended.h"
 #import "GMGridViewLayoutStrategies.h"
 #import "UIGestureRecognizer+GMGridViewAdditions.h"
+#import "WGGridViewCell.h"
 
 static const NSInteger kTagOffset = 50;
 static const CGFloat kDefaultAnimationDuration = 0.3;
@@ -1456,7 +1457,7 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 
 - (void)queueReusableCell:(GMGridViewCell *)cell
 {
-    if (cell) 
+    if (cell && [cell isKindOfClass:[WGGridViewCell class]])
     {
         [cell prepareForReuse];
         cell.alpha = 1;

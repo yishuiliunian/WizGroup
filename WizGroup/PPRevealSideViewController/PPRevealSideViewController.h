@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define DefaultOffset 44.0
 // define some macros 
 #ifndef __has_feature
 #define __has_feature(x) 0

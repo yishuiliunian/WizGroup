@@ -15,10 +15,13 @@
 
 #import "WGDetailListCell.h"
 #import "WGBarButtonItem.h"
+#import "WGToolBar.h"
+#import "WGNavigationViewController.h"
 
-@interface WGListViewController () <WGReadListDelegate, WGDetailCellDelegate>
+@interface WGListViewController () <WGReadListDelegate>
 {
     NSMutableArray* documentsArray;
+    WGToolBar*      wgToolBar;
 }
 @property (nonatomic, retain) NSIndexPath* lastIndexPath;
 @end
@@ -53,6 +56,7 @@
     if (self) {
         [self addObserver:self forKeyPath:@"listKey" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew  context:nil];
         documentsArray = [[NSMutableArray alloc] init];
+        wgToolBar = [[WGToolBar alloc] init];
     }
     return self;
 }
@@ -61,18 +65,25 @@
 {
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
     [documentsArray addObjectsFromArray:[db recentDocuments]];
+    
+    self.title = WizStrRecentNotes;
 }
 
 - (void) loadTagDocument
 {
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
     [documentsArray addObjectsFromArray:[db documentsByTag:self.listKey]];
+    
+    WizTag* tag = [db tagFromGuid:self.listKey];
+    self.title = getTagDisplayName(tag.strTitle);
 }
 
 - (void) loadUnreadDocument
 {
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
     [documentsArray addObjectsFromArray:[db unreadDocuments]];
+    
+    self.title = WizStrUnreadNotes;
 }
 - (void) reloadAllData
 {
@@ -80,6 +91,7 @@
     switch (listType) {
         case WGListTypeRecent:
             [self loadRecentsDocument];
+
             break;
         case WGListTypeTag:
             [self loadTagDocument];
@@ -111,14 +123,38 @@
     [self.navigationController.view.layer addAnimation:tran forKey:@"TransitionDownUp"];
     [self.revealSideViewController dismissModalViewControllerAnimated:YES];
 }
+
+
+- (void) reloadToolBarItems
+{
+    
+    wgToolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
+    [self.navigationController.toolbar addSubview:wgToolBar];
+    
+    WGBarButtonItem* backToHomeItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
+    [wgToolBar setItems:@[backToHomeItem]];
+    [backToHomeItem release];
+
+}
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     [self reloadAllData];
-    
+    [self reloadToolBarItems];
     self.revealSideViewController.panInteractionsWhenClosed = PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar;
 }
-
+- (void) viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+    for (UIView* each in [self.navigationController.view subviews]) {
+        if ([each isKindOfClass:[WGToolBar class]]) {
+            break;
+        }
+    }
+}
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -135,26 +171,35 @@
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
 - (void) customizeNavBar {
-    [self.navigationController setValue:[[[WGNavigationBar alloc] init] autorelease] forKeyPath:@"navigationBar"];
-
+    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor blackColor],
+                                UITextAttributeTextColor,
+                                [UIColor clearColor],
+                                UITextAttributeTextShadowColor, nil];
+    [navBar setTitleTextAttributes:attributes];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    
+//    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
+//    cusButton.backgroundColor = [UIColor redColor];
+//    [cusButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem* backToHome = [[UIBarButtonItem alloc] initWithCustomView:cusButton];
+//    [cusButton release];
+//    self.navigationItem.rightBarButtonItem  = backToHome;
+//    [backToHome release];
+    
+    WGBarButtonItem* showLeftItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
+    
+    self.navigationItem.leftBarButtonItem = showLeftItem;
+    [showLeftItem release];
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self customizeNavBar];
-    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
-    cusButton.backgroundColor = [UIColor redColor];
-    [cusButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* backToHome = [[UIBarButtonItem alloc] initWithCustomView:cusButton];
-    [cusButton release];
-    self.navigationItem.rightBarButtonItem  = backToHome;
-    [backToHome release];
-    
-    WGBarButtonItem* showLeftItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
 
-    self.navigationItem.leftBarButtonItem = showLeftItem;
-    [showLeftItem release];
 }
 
 - (void)viewDidUnload
@@ -182,16 +227,6 @@
     return [documentsArray count];
 }
 
-- (WizDocument*) getCellNeedDisplayDocumentFor:(NSString *)docGuid
-{
-    for (WizDocument* each in documentsArray) {
-        if ([each.strGuid isEqualToString:docGuid]) {
-            return each;
-        }
-    }
-    return nil;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ListCell";
@@ -204,13 +239,12 @@
     cell.documentGuid = doc.strGuid;
     cell.kbGuid = self.kbGuid;
     cell.accountUserId = self.accountUserId;
-    cell.delegate = self;
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 95;
 }
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
