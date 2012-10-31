@@ -8,20 +8,20 @@
 
 #import "WGBarButtonItem.h"
 
+
 @implementation WGBarButtonItem
-- (id) initWithImage:(UIImage*)image hightedImage:(UIImage*)hightImage target:(id)target selector:(SEL)selector
+
+
++ (UIBarButtonItem*) barButtonItemWithImage:(UIImage*)image hightedImage:(UIImage*)hightImage target:(id)target selector:(SEL)selector
 {
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0.0, 0.0, 30, 30);
-    [button setImage:image forState:UIControlStateNormal];
-    [button setImage:hightImage forState:UIControlStateHighlighted];
-    [button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
-    self = [super initWithCustomView:button];
-    [button release];
-    if (self) {
-        
-    }
-    return self;
+    UIButton* customButtom = [UIButton buttonWithType:UIButtonTypeCustom];
+    customButtom.frame = CGRectMake(0.0, 0.0, 30, 30);
+    [customButtom setImage:image forState:UIControlStateNormal];
+    [customButtom setImage:hightImage forState:UIControlStateHighlighted];
+    [customButtom addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:customButtom];
+    return [item autorelease];
 }
+
 @end

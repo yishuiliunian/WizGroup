@@ -142,13 +142,14 @@ enum WGFolderListIndex {
 {
     titleView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, 80);
     self.tableView.tableHeaderView = titleView;
-    titleView.backgroundColor = [UIColor lightGrayColor];
+    titleView.backgroundColor = [UIColor whiteColor];
     
     WizGroup* group = [[WizAccountManager defaultManager] groupForKbguid:self.kbGuid accountUserId:self.accountUserId];
     
     UILabel* titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20 -DefaultOffset, 30)];
     titleLabel.text = group.kbName;
-    [titleView addSubview:titleView];
+    [titleView addSubview:titleLabel];
+    titleLabel.backgroundColor = [UIColor clearColor];
     [titleLabel release];
 }
 

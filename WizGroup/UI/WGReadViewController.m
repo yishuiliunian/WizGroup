@@ -96,6 +96,14 @@
         backgroudScrollView = [[UIScrollView alloc] init];
         //
         toolBar = [[WGToolBar alloc] init];
+        UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+        
+        UIBarButtonItem* backToList = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
+        UIBarButtonItem* nextItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
+        checkNextButtonItem = nextItem;
+        UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
+        checkPreButtonItem = preItem;
+        [toolBar setItems:@[backToList,flexItem,preItem,nextItem]];
     }
     return self;
 }
@@ -162,25 +170,8 @@
     [self.view addSubview:backgroudScrollView];
     
     [self checkCurrentDocument];
-    
-//    NSArray* controls = @[@"N",@"P"];
-//    UISegmentedControl* moveControl  = [[ UISegmentedControl alloc] initWithItems:controls];
-//    UIBarButtonItem* moveItem = [[UIBarButtonItem alloc] initWithCustomView:moveControl];
-//    self.navigationItem.rightBarButtonItem = moveItem;
-//    [moveControl release ];
-//    [moveItem release];
-	// Do any additional setup after loading the view.
-#warning  need fix to ios4
-    UIBarButtonItem* nextItem = [[UIBarButtonItem alloc] initWithTitle:@"N" style:UIBarButtonItemStyleBordered target:self action:@selector(checkNextDocument)];
-    UIBarButtonItem* preItem = [[UIBarButtonItem alloc] initWithTitle:@"P" style:UIBarButtonItemStyleBordered target:self action:@selector(checkPreDocument)];
-    self.navigationItem.rightBarButtonItems = @[preItem,nextItem];
-    
-    checkNextButtonItem = nextItem;
-    checkPreButtonItem = preItem;
-    
-    [nextItem release];
-    [preItem release];
-     [self.navigationController setNavigationBarHidden:YES];
+
+//     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void) downloadCurrentDocument
@@ -197,17 +188,7 @@
     toolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
     [self.navigationController.toolbar addSubview:toolBar];
     
-    UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
-    WGBarButtonItem* backToList = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
-    WGBarButtonItem* nextItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
-    checkNextButtonItem = nextItem;
-    WGBarButtonItem* preItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
-    checkPreButtonItem = preItem;
-    [toolBar setItems:@[backToList,flexItem,preItem,nextItem]];
-    [backToList release];
-    [nextItem release];
-    [preItem release];
+
 }
 
 - (void) backToList

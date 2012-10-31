@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WGBarButtonItem : UIBarButtonItem
-- (id) initWithImage:(UIImage*)image hightedImage:(UIImage*)hightImage target:(id)target selector:(SEL)selector;
++ (UIBarButtonItem*) barButtonItemWithImage:(UIImage*)image hightedImage:(UIImage*)hightImage target:(id)target selector:(SEL)selector;
 @end

@@ -57,6 +57,8 @@
         [self addObserver:self forKeyPath:@"listKey" options:NSKeyValueObservingOptionOld|NSKeyValueObservingOptionNew  context:nil];
         documentsArray = [[NSMutableArray alloc] init];
         wgToolBar = [[WGToolBar alloc] init];
+        UIBarButtonItem* backToHomeItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
+        [wgToolBar setItems:@[backToHomeItem]];
     }
     return self;
 }
@@ -131,16 +133,14 @@
     wgToolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
     [self.navigationController.toolbar addSubview:wgToolBar];
     
-    WGBarButtonItem* backToHomeItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
-    [wgToolBar setItems:@[backToHomeItem]];
-    [backToHomeItem release];
+
 
 }
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO];
-    [self.navigationController setNavigationBarHidden:NO];
+
     [self reloadAllData];
     [self reloadToolBarItems];
     self.revealSideViewController.panInteractionsWhenClosed = PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar;
@@ -148,17 +148,11 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
-    for (UIView* each in [self.navigationController.view subviews]) {
-        if ([each isKindOfClass:[WGToolBar class]]) {
-            break;
-        }
-    }
 }
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -171,14 +165,14 @@
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
 - (void) customizeNavBar {
-    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor blackColor],
-                                UITextAttributeTextColor,
-                                [UIColor clearColor],
-                                UITextAttributeTextShadowColor, nil];
-    [navBar setTitleTextAttributes:attributes];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+//    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//                                [UIColor blackColor],
+//                                UITextAttributeTextColor,
+//                                [UIColor clearColor],
+//                                UITextAttributeTextShadowColor, nil];
+//    [navBar setTitleTextAttributes:attributes];
+//    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
     
 //    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
 //    cusButton.backgroundColor = [UIColor redColor];
@@ -188,7 +182,7 @@
 //    self.navigationItem.rightBarButtonItem  = backToHome;
 //    [backToHome release];
     
-    WGBarButtonItem* showLeftItem = [[WGBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
+    UIBarButtonItem* showLeftItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
     
     self.navigationItem.leftBarButtonItem = showLeftItem;
     [showLeftItem release];
