@@ -12,9 +12,15 @@
 #import "WizDbManager.h"
 #import "WizFileManager.h"
 
+#define WGLockHaveData      1
+#define WGLockNotHaveData   0
+
 #define WGUnreadCountClearKey   -1
 
 @interface WizGroupDocument : NSObject
+{
+    
+}
 @property (nonatomic, retain) NSString* documentKbguid;
 @property (nonatomic, retain) NSString* kbguid;
 @property (nonatomic, retain) NSString* accountUserId;
@@ -27,6 +33,7 @@
 @synthesize accountUserId;
 - (void) dealloc
 {
+    
     [documentKbguid release];
     [kbguid release];
     [accountUserId release];
@@ -37,6 +44,7 @@
 
 @interface WGGlobalCache ()
 {
+    NSConditionLock* docAbastractLock;
     NSMutableDictionary* observersDictionary;
 }
 @property (nonatomic, retain) NSMutableArray* needGenAbsDocArray;
@@ -46,6 +54,7 @@
 @synthesize needGenAbsDocArray;
 - (void) dealloc
 {
+    [docAbastractLock release];
     [needGenAbsDocArray release];
     [observersDictionary release];
     [super dealloc];
@@ -57,6 +66,7 @@
     if (self) {
         observersDictionary = [[NSMutableDictionary alloc] init];
         needGenAbsDocArray = [[NSMutableArray alloc] init];
+        docAbastractLock = [[NSConditionLock alloc] init];
         [NSThread detachNewThreadSelector:@selector(generateAbstract) toTarget:self withObject:nil];
     }
     return self;
@@ -118,23 +128,24 @@
 {
     while (true) {
         NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-        WizGroupDocument* groupDoc = nil;
-        @synchronized(needGenAbsDocArray)
-        {
-            groupDoc = [[self.needGenAbsDocArray lastObject] retain];
-            [self.needGenAbsDocArray removeLastObject];
-        }
+        [docAbastractLock lockWhenCondition:WGLockHaveData];
+        WizGroupDocument* groupDoc = [[self.needGenAbsDocArray lastObject] retain];
+        [self.needGenAbsDocArray removeLastObject];
         if (groupDoc) {
             [self generateAbstractForDocument:groupDoc.documentKbguid accountUserId:groupDoc.accountUserId];
         }
         [groupDoc release];
         [pool release];
-        if ([needGenAbsDocArray count] == 0) {
-            sleep(0.5);
-        }
+        int count = [self.needGenAbsDocArray count];
+        [docAbastractLock unlockWithCondition:(count>0)?WGLockHaveData : WGLockNotHaveData];
     }
 }
-
+- (void) addNeedGenAbstractDoc:(WizGroupDocument*)doc
+{
+    [docAbastractLock lock];
+    [self.needGenAbsDocArray addObject:doc];
+    [docAbastractLock unlockWithCondition:WGLockHaveData];
+}
 - (BOOL) generateAbstractForDocument:(NSString*)documengGuid    accountUserId:(NSString*)accountUserId
 {
     NSString* sourceFilePath = [[WizFileManager shareManager] getDocumentFilePath:DocumentFileIndexName documentGUID:documengGuid accountUserId:accountUserId];
@@ -266,18 +277,12 @@
 {
     WizAbstract* abstract = [[WGGlobalCache shareInstance] objectForKey:docguid];
     if (abstract == nil) {
-        
-        static int i = 0;
-        
+    
         WizGroupDocument* doc = [[WizGroupDocument alloc] init];
         doc.documentKbguid = docguid;
         doc.kbguid = kbguid;
         doc.accountUserId = userId;
-        @synchronized([[WGGlobalCache shareInstance] needGenAbsDocArray])
-        {
-            [[[WGGlobalCache shareInstance] needGenAbsDocArray] addObject:doc];
-        }
-        NSLog(@"add doc %d",i++);
+        [[WGGlobalCache shareInstance] addNeedGenAbstractDoc:doc];
         [doc release];
     }
     return abstract;

@@ -122,6 +122,11 @@
 		73D82788163A2AC300027543 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 73D82785163A2AC300027543 /* SVProgressHUD.bundle */; };
 		73D82789163A2AC300027543 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D82787163A2AC300027543 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		73D8278D163A2CA100027543 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D8278C163A2CA100027543 /* MBProgressHUD.m */; };
+		73D9667B1642247900222435 /* password.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D966791642247900222435 /* password.png */; };
+		73D9667C1642247900222435 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9667A1642247900222435 /* user.png */; };
+		73D9667E164227BF00222435 /* loginBackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9667D164227BF00222435 /* loginBackArrow.png */; };
+		73D9668916426A8300222435 /* readFeedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9668716426A8300222435 /* readFeedIcon.png */; };
+		73D9668A16426A8300222435 /* readShareIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9668816426A8300222435 /* readShareIcon.png */; };
 		73D983CA163B9C91006AAB22 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D983C0163B9C91006AAB22 /* EGORefreshTableHeaderView.m */; };
 		73D983CB163B9C91006AAB22 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D983C2163B9C91006AAB22 /* blackArrow.png */; };
 		73D983CC163B9C91006AAB22 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D983C3163B9C91006AAB22 /* blackArrow@2x.png */; };
@@ -137,7 +142,6 @@
 		73D9AB5B16364853004D6B8D /* gridBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9AB5A16364853004D6B8D /* gridBackgroud.png */; };
 		73DC3E92163E20BA002BCDE5 /* WGToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73DC3E91163E20BA002BCDE5 /* WGToolBar.m */; };
 		73DC3E96163E28E3002BCDE5 /* toolbarBackgroud.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DC3E94163E28E3002BCDE5 /* toolbarBackgroud.png */; };
-		73DC3E97163E28E3002BCDE5 /* toolbarBackgroud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DC3E95163E28E3002BCDE5 /* toolbarBackgroud@2x.png */; };
 		73DC3E9A163E325E002BCDE5 /* settingButtonImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DC3E98163E325E002BCDE5 /* settingButtonImage.png */; };
 		73DC3E9B163E325E002BCDE5 /* settingButtonImageClicked.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DC3E99163E325E002BCDE5 /* settingButtonImageClicked.png */; };
 		73DC3EA2163E37D1002BCDE5 /* logloImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 73DC3EA0163E37D1002BCDE5 /* logloImage.png */; };
@@ -161,9 +165,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		731365B11641312D00DA8692 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		731365B5164131D400DA8692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		731365B7164131E900DA8692 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
 		73136755164143DE00DA8692 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		73136757164143E300DA8692 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		734CD84F1616D7A400FBC33C /* TreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
@@ -380,6 +382,13 @@
 		73D82787163A2AC300027543 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		73D8278B163A2CA100027543 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		73D8278C163A2CA100027543 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		73D966791642247900222435 /* password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password.png; sourceTree = "<group>"; };
+		73D9667A1642247900222435 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		73D9667D164227BF00222435 /* loginBackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackArrow.png; sourceTree = "<group>"; };
+		73D966851642699E00222435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		73D966861642699E00222435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		73D9668716426A8300222435 /* readFeedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = readFeedIcon.png; sourceTree = "<group>"; };
+		73D9668816426A8300222435 /* readShareIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = readShareIcon.png; sourceTree = "<group>"; };
 		73D983BF163B9C91006AAB22 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		73D983C0163B9C91006AAB22 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		73D983C2163B9C91006AAB22 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -398,7 +407,6 @@
 		73DC3E90163E20BA002BCDE5 /* WGToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGToolBar.h; path = CustomUI/WGToolBar.h; sourceTree = "<group>"; };
 		73DC3E91163E20BA002BCDE5 /* WGToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGToolBar.m; path = CustomUI/WGToolBar.m; sourceTree = "<group>"; };
 		73DC3E94163E28E3002BCDE5 /* toolbarBackgroud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = toolbarBackgroud.png; path = Resources/toolbarBackgroud.png; sourceTree = "<group>"; };
-		73DC3E95163E28E3002BCDE5 /* toolbarBackgroud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "toolbarBackgroud@2x.png"; path = "Resources/toolbarBackgroud@2x.png"; sourceTree = "<group>"; };
 		73DC3E98163E325E002BCDE5 /* settingButtonImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingButtonImage.png; sourceTree = "<group>"; };
 		73DC3E99163E325E002BCDE5 /* settingButtonImageClicked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settingButtonImageClicked.png; sourceTree = "<group>"; };
 		73DC3EA0163E37D1002BCDE5 /* logloImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logloImage.png; path = Resources/logloImage.png; sourceTree = "<group>"; };
@@ -804,6 +812,11 @@
 		73D7C670162F9FC400C27478 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73D9667D164227BF00222435 /* loginBackArrow.png */,
+				73D9668716426A8300222435 /* readFeedIcon.png */,
+				73D9668816426A8300222435 /* readShareIcon.png */,
+				73D966791642247900222435 /* password.png */,
+				73D9667A1642247900222435 /* user.png */,
 				73DD6B1B1640FF09008EB251 /* orangeBadgeBackground.png */,
 				73E0CBB0164117C3004A3AF4 /* treePhoneItemClosed.png */,
 				73E0CBB1164117C3004A3AF4 /* treePhoneItemClosed@2x.png */,
@@ -821,7 +834,6 @@
 				73DC3E98163E325E002BCDE5 /* settingButtonImage.png */,
 				73DC3E99163E325E002BCDE5 /* settingButtonImageClicked.png */,
 				73DC3E94163E28E3002BCDE5 /* toolbarBackgroud.png */,
-				73DC3E95163E28E3002BCDE5 /* toolbarBackgroud@2x.png */,
 				73D9AB54163643AB004D6B8D /* navigationBackGroud.png */,
 				73D9AB4E1636342F004D6B8D /* menban.png */,
 				73D9AB5A16364853004D6B8D /* gridBackgroud.png */,
@@ -1047,6 +1059,7 @@
 			knownRegions = (
 				en,
 				zh,
+				"zh-Hans",
 			);
 			mainGroup = 737286EC1616960F005A3A6B;
 			productRefGroup = 737286F81616960F005A3A6B /* Products */;
@@ -1084,7 +1097,6 @@
 				73D983D1163B9C91006AAB22 /* whiteArrow.png in Resources */,
 				73D983D2163B9C91006AAB22 /* whiteArrow@2x.png in Resources */,
 				73DC3E96163E28E3002BCDE5 /* toolbarBackgroud.png in Resources */,
-				73DC3E97163E28E3002BCDE5 /* toolbarBackgroud@2x.png in Resources */,
 				73DC3E9A163E325E002BCDE5 /* settingButtonImage.png in Resources */,
 				73DC3E9B163E325E002BCDE5 /* settingButtonImageClicked.png in Resources */,
 				73DC3EA2163E37D1002BCDE5 /* logloImage.png in Resources */,
@@ -1104,6 +1116,11 @@
 				731365B4164131D400DA8692 /* Localizable.strings in Resources */,
 				73136756164143DF00DA8692 /* Icon.png in Resources */,
 				73136758164143E400DA8692 /* Icon@2x.png in Resources */,
+				73D9667B1642247900222435 /* password.png in Resources */,
+				73D9667C1642247900222435 /* user.png in Resources */,
+				73D9667E164227BF00222435 /* loginBackArrow.png in Resources */,
+				73D9668916426A8300222435 /* readFeedIcon.png in Resources */,
+				73D9668A16426A8300222435 /* readShareIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1227,7 +1244,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				731365B5164131D400DA8692 /* en */,
-				731365B7164131E900DA8692 /* zh */,
+				73D966861642699E00222435 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1236,7 +1253,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				737287051616960F005A3A6B /* en */,
-				731365B11641312D00DA8692 /* zh */,
+				73D966851642699E00222435 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

@@ -19,6 +19,6 @@ enum WGListType {
 @property (nonatomic, retain) NSString* accountUserId;
 @property (nonatomic, assign) enum WGListType listType;
 @property (nonatomic, retain) NSString* listKey;
-
+@property (nonatomic, retain) WizGroup* kbGroup;
 - (void) reloadAllData;
 @end

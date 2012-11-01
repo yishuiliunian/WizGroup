@@ -8,6 +8,7 @@
 
 #import "WGNavigationViewController.h"
 #import "WGToolBar.h"
+#import "WGNavigationBar.h"
 @interface WGNavigationViewController ()
 {
     WGToolBar* wgToolBar;
@@ -31,11 +32,20 @@
 }
 - (void) setWgToolItems:(NSArray*)array
 {
+    
+    if (array == nil) {
+        [self setToolbarHidden:YES];
+    }
+    else
+    {
+        [self setToolbarHidden:NO];
+    }
     [wgToolBar setItems:array];
 }
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     wgToolBar.frame = CGRectMake(0.0, 0.0, self.toolbar.frame.size.width, self.toolbar.frame.size.height);
     [self.toolbar addSubview:wgToolBar];
 	// Do any additional setup after loading the view.

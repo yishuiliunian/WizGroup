@@ -32,9 +32,11 @@
 @synthesize listType;
 @synthesize listKey;
 @synthesize lastIndexPath;
+@synthesize kbGroup;
 - (void) dealloc
 {
     [self removeObserver:self forKeyPath:@"listKey"];
+    [kbGroup release];
     [listKey release];
     [lastIndexPath release];
     [documentsArray release];
@@ -68,7 +70,7 @@
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
     [documentsArray addObjectsFromArray:[db recentDocuments]];
     
-    self.title = WizStrRecentNotes;
+    self.title = [NSString stringWithFormat:@"%@(%@)",self.kbGroup.kbName, NSLocalizedString(@"New", nil)];
 }
 
 - (void) loadTagDocument
@@ -129,12 +131,10 @@
 
 - (void) reloadToolBarItems
 {
+    WGNavigationViewController* nav = (WGNavigationViewController*)self.navigationController;
     
-    wgToolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
-    [self.navigationController.toolbar addSubview:wgToolBar];
-    
-
-
+    UIBarButtonItem* backToHomeItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
+    [nav setWgToolItems:@[backToHomeItem]];
 }
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -166,6 +166,7 @@
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
 - (void) customizeNavBar {
+   
     WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIColor blackColor],
@@ -174,14 +175,6 @@
                                 UITextAttributeTextShadowColor, nil];
     [navBar setTitleTextAttributes:attributes];
     [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
-    
-//    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
-//    cusButton.backgroundColor = [UIColor redColor];
-//    [cusButton addTarget:self action:@selector(backToHome) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem* backToHome = [[UIBarButtonItem alloc] initWithCustomView:cusButton];
-//    [cusButton release];
-//    self.navigationItem.rightBarButtonItem  = backToHome;
-//    [backToHome release];
     
     UIBarButtonItem* showLeftItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
     

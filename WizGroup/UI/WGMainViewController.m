@@ -341,8 +341,9 @@
     listCon.kbGuid = group.kbguid;
     listCon.accountUserId = activeAccountUserId;
     listCon.listType = WGListTypeRecent;
+    listCon.kbGroup = group;
     //
-    UINavigationController* centerNav = [[UINavigationController alloc] initWithRootViewController:listCon];
+    WGNavigationViewController* centerNav = [[WGNavigationViewController alloc] initWithRootViewController:listCon];
     
     PPRevealSideViewController* ppSideController = [[PPRevealSideViewController alloc] initWithRootViewController:centerNav];
     [ppSideController setDirectionsToShowBounce:PPRevealSideDirectionLeft];

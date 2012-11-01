@@ -7,6 +7,7 @@
 //
 
 #import "WGSettingViewController.h"
+#import "WGBarButtonItem.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface WGSettingViewController ()
@@ -28,17 +29,16 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem* backItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"back", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(popSelf)];
+    UIBarButtonItem* backItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"loginBackArrow"] hightedImage:nil target:self selector:@selector(popSelf)];
     self.navigationItem.leftBarButtonItem = backItem;
-    [backItem release];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // self.navigationItem.rightBarButtonItem = self.editButtonIte
+    ;
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

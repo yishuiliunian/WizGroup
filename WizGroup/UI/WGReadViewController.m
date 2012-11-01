@@ -170,8 +170,6 @@
     [self.view addSubview:backgroudScrollView];
     
     [self checkCurrentDocument];
-
-     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void) downloadCurrentDocument
@@ -181,14 +179,31 @@
     
     [center downloadDocument:doc kbguid:self.kbguid accountUserId:self.accountUserId];
 }
+- (void) shareCurrentDoc
+{
+    [WizGlobals reportWarningWithString:@"您将分享此文档"];
+}
 
+- (void) feedbackCurrentDoc
+{
+    [WizGlobals reportWarningWithString:@"评论此文档"];
+}
 - (void) customToolBar
 {
-    [self.navigationController setToolbarHidden:NO];
-    toolBar.frame = CGRectMake(0.0, 0.0, self.navigationController.toolbar.frame.size.width, self.navigationController.toolbar.frame.size.height);
-    [self.navigationController.toolbar addSubview:toolBar];
+    WGNavigationViewController* nav = (WGNavigationViewController*)self.navigationController;
     
-
+    UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    UIBarButtonItem* backToList = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
+    UIBarButtonItem* nextItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
+    checkNextButtonItem = nextItem;
+    UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
+    checkPreButtonItem = preItem;
+    
+    
+    UIBarButtonItem* shareItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"readShareIcon"] hightedImage:nil target:self selector:@selector(shareCurrentDoc)];
+    UIBarButtonItem* feedIem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"readFeedIcon"] hightedImage:nil target:self selector:@selector(feedbackCurrentDoc)];
+    [nav setWgToolItems:@[backToList,flexItem,shareItem,feedIem,preItem,nextItem]];
 }
 
 - (void) backToList
@@ -213,11 +228,15 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [self checkCurrentDocument];
     [self customToolBar];
 }
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

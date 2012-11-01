@@ -10,12 +10,18 @@
 #import "WizApiClientLogin.h"
 #import "WizAccountManager.h"
 #import "MBProgressHUD.h"
+#import "WGNavigationBar.h"
+#import "WGBarButtonItem.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface WGLoginViewController () <WizApiLoginDelegate, UIGestureRecognizerDelegate>
 {
     UITextField* usernameTextField;
     UITextField* passwordTextField;
     UIButton* clientLoginButton;
     UIScrollView* backgroudView;
+    
+    UIView* inputBackgroudView;
 }
 @property (nonatomic, retain) NSString* userName;
 @property (nonatomic, retain) NSString* password;
@@ -29,6 +35,7 @@
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [inputBackgroudView release];
     [backgroudView release];
     [checkToolApi release];
     [userName release];
@@ -49,17 +56,36 @@
     if (self) {
         // Custom initialization
         usernameTextField = [[UITextField alloc] init];
-        usernameTextField.borderStyle = UITextBorderStyleRoundedRect;
+        usernameTextField.borderStyle = UITextBorderStyleNone;
         usernameTextField.placeholder = NSLocalizedString(@"Username", nil);
         usernameTextField.textAlignment = UITextAlignmentLeft;
         usernameTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        
+        
+        UIImageView* userImView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"user"]];
+        userImView.frame = CGRectMake(0.0, 0.0, 30, 30);
+        usernameTextField.leftViewMode = UITextFieldViewModeAlways;
+        usernameTextField.leftView = userImView;
+        [userImView release];
         //
+        
         passwordTextField = [[UITextField alloc] init];
         passwordTextField.secureTextEntry = YES;
-        passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
+        passwordTextField.borderStyle = UITextBorderStyleNone;
         passwordTextField.placeholder = NSLocalizedString(@"Password", nil);
         passwordTextField.textAlignment = UITextAlignmentLeft;
         passwordTextField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        UIImageView* passImView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"password"]];
+        passImView.frame = CGRectMake(20, 0.0, 30, 30);
+        passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+        passwordTextField.leftView = passImView;
+        [passImView release];
+        //
+        inputBackgroudView = [[UIView alloc] init];
+        CALayer* layer = inputBackgroudView.layer;
+        layer.borderColor = [UIColor lightGrayColor].CGColor;
+        layer.borderWidth = 1.0f;
+        layer.cornerRadius = 5.0f;
         //
         clientLoginButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
         [clientLoginButton addTarget:self action:@selector(clientLogin) forControlEvents:UIControlEventTouchUpInside];
@@ -138,22 +164,49 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor blackColor],
+                                UITextAttributeTextColor,
+                                [UIColor clearColor],
+                                UITextAttributeTextShadowColor, nil];
+    [navBar setTitleTextAttributes:attributes];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    
+    //
     backgroudView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
     backgroudView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:backgroudView];
     //
     float startX = 10;
     float width = self.view.frame.size.width - 20;
-    usernameTextField.frame = CGRectMake(startX, 40, width, 40);
-    passwordTextField.frame = CGRectMake(startX, 120, width, 40);
-    clientLoginButton.frame = CGRectMake(startX, 180, width, 40);
+    usernameTextField.frame = CGRectMake(0.0, 0.0, width, 40);
+    passwordTextField.frame = CGRectMake(0.0, 40, width, 40);
+    //
     
-    [backgroudView addSubview:usernameTextField];
-    [backgroudView addSubview:passwordTextField];
+    UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 39.5, width, 1)];
+    lineView.backgroundColor = [UIColor lightGrayColor];
+    [inputBackgroudView addSubview:lineView];
+    [lineView release];
+    [inputBackgroudView addSubview:usernameTextField];
+    [inputBackgroudView addSubview:passwordTextField];
+    //
+    inputBackgroudView.frame = CGRectMake(startX, 40, width, 80);
+    [backgroudView addSubview:inputBackgroudView];
+    
+    clientLoginButton.frame = CGRectMake(startX, 140, width, 40);
+    [clientLoginButton setBackgroundImage:[UIImage imageNamed:@"loginButtonBackgroud"] forState:UIControlStateNormal];
+    clientLoginButton.titleLabel.textColor = [UIColor whiteColor];
     [backgroudView addSubview:clientLoginButton];
+    //
+    UIBarButtonItem* backItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"loginBackArrow"] hightedImage:nil target:self selector:@selector(backToHome)];
+    self.navigationItem.leftBarButtonItem = backItem;
 	// Do any additional setup after loading the view.
 }
-
+- (void) backToHome
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -60,7 +60,7 @@ enum WGFolderListIndex {
         //
         NSMutableArray*  customNodes = [NSMutableArray array];
         //
-        [customNodes addObject:NSLocalizedString(@"Rectent Notes", nil)];
+        [customNodes addObject:WizStrRecentNotes];
         [customNodes addObject:NSLocalizedString(@"Unread Notes", nil)];
         allNodes = [[NSMutableArray array] retain];
         [allNodes addObject:customNodes];
