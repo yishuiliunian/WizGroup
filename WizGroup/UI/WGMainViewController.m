@@ -160,7 +160,7 @@
         loginLabel.text = activeUserId;
     }
     
-    loginLabel.textAlignment = UITextAlignmentCenter;
+    loginLabel.textAlignment = UITextAlignmentLeft;
     [logoButton addSubview:loginLabel];
     [loginLabel release];
     

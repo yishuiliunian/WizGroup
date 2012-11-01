@@ -140,7 +140,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:NO];
-
+[self.navigationController setNavigationBarHidden:NO];
     [self reloadAllData];
     [self reloadToolBarItems];
     self.revealSideViewController.panInteractionsWhenClosed = PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar;
@@ -148,11 +148,12 @@
 - (void) viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+     
 }
 - (void) viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO];
+   
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -165,14 +166,14 @@
     [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 }
 - (void) customizeNavBar {
-//    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
-//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-//                                [UIColor blackColor],
-//                                UITextAttributeTextColor,
-//                                [UIColor clearColor],
-//                                UITextAttributeTextShadowColor, nil];
-//    [navBar setTitleTextAttributes:attributes];
-//    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor blackColor],
+                                UITextAttributeTextColor,
+                                [UIColor clearColor],
+                                UITextAttributeTextShadowColor, nil];
+    [navBar setTitleTextAttributes:attributes];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
     
 //    UIButton* cusButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 40, 90)];
 //    cusButton.backgroundColor = [UIColor redColor];
@@ -185,7 +186,7 @@
     UIBarButtonItem* showLeftItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listIcon"] hightedImage:[UIImage imageNamed:@"listIcon"] target:self selector:@selector(showLeftController)];
     
     self.navigationItem.leftBarButtonItem = showLeftItem;
-    [showLeftItem release];
+
 }
 
 

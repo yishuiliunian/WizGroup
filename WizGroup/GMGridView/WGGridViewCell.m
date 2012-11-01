@@ -78,14 +78,14 @@
         
         _textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 60, size.width, 20)];
     
-        _textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        _textLabel.textAlignment = UITextAlignmentCenter;
+
+        _textLabel.textAlignment = UITextAlignmentLeft;
         _textLabel.backgroundColor = [UIColor clearColor];
         _textLabel.textColor = [UIColor whiteColor];
         _textLabel.highlightedTextColor = [UIColor lightGrayColor];
         _textLabel.font = [UIFont systemFontOfSize:FONT_SIZE];
         _textLabel.numberOfLines = 0;
-        _textLabel.frame = CGRectMake(0.0, _imageView.frame.size.height/2 - 20, size.width, 20);
+        _textLabel.frame = CGRectMake(10, 10, size.width - 40, 20);
         _textLabel.shadowColor = [UIColor lightGrayColor];
         _textLabel.shadowOffset = CGSizeMake(1, -1);
         
@@ -104,7 +104,7 @@
         [_imageView bringSubviewToFront:_textLabel];
 
         float activityViewHeight = 40;
-        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((size.width - activityViewHeight)/2, (size.height - activityViewHeight)/2, activityViewHeight, activityViewHeight)];
+        activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((size.width - activityViewHeight), (size.height - activityViewHeight) , activityViewHeight, activityViewHeight)];
         [_imageView addSubview:activityIndicatorView];
         [_imageView bringSubviewToFront:activityIndicatorView];
         //

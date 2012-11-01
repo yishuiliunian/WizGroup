@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		731365B4164131D400DA8692 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 731365B6164131D400DA8692 /* Localizable.strings */; };
+		73136756164143DF00DA8692 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73136755164143DE00DA8692 /* Icon.png */; };
+		73136758164143E400DA8692 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73136757164143E300DA8692 /* Icon@2x.png */; };
 		734CD8541616D9BE00FBC33C /* TreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CD8501616D7A400FBC33C /* TreeNode.m */; };
 		734CD8551616D9F400FBC33C /* WizPadTreeTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 734CD8531616D8BA00FBC33C /* WizPadTreeTableCell.m */; };
 		7362A3A71634DEC40031CFEE /* UINavigationBar+WizCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 7362A3A61634DEC40031CFEE /* UINavigationBar+WizCustom.m */; };
@@ -158,6 +161,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		731365B11641312D00DA8692 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		731365B5164131D400DA8692 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		731365B7164131E900DA8692 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/Localizable.strings; sourceTree = "<group>"; };
+		73136755164143DE00DA8692 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		73136757164143E300DA8692 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		734CD84F1616D7A400FBC33C /* TreeNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TreeNode.h; sourceTree = "<group>"; };
 		734CD8501616D7A400FBC33C /* TreeNode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TreeNode.m; sourceTree = "<group>"; };
 		734CD8521616D8BA00FBC33C /* WizPadTreeTableCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizPadTreeTableCell.h; sourceTree = "<group>"; };
@@ -169,7 +177,7 @@
 		7362A3AF1634E4CD0031CFEE /* WGDetailListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGDetailListCell.m; path = UI/WGDetailListCell.m; sourceTree = "<group>"; };
 		7362A45E163525E10031CFEE /* NSString+WizString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WizString.h"; sourceTree = "<group>"; };
 		7362A45F163525E10031CFEE /* NSString+WizString.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+WizString.mm"; sourceTree = "<group>"; };
-		737286F71616960F005A3A6B /* WizGroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WizGroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		737286F71616960F005A3A6B /* wizgroup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wizgroup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		737286FB1616960F005A3A6B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		737286FD1616960F005A3A6B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		737286FF1616960F005A3A6B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -472,6 +480,8 @@
 		737286EC1616960F005A3A6B = {
 			isa = PBXGroup;
 			children = (
+				73136757164143E300DA8692 /* Icon@2x.png */,
+				73136755164143DE00DA8692 /* Icon.png */,
 				73D7C678162FA61C00C27478 /* Default-568h@2x.png */,
 				737287011616960F005A3A6B /* WizGroup */,
 				737286FA1616960F005A3A6B /* Frameworks */,
@@ -482,7 +492,7 @@
 		737286F81616960F005A3A6B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				737286F71616960F005A3A6B /* WizGroup.app */,
+				737286F71616960F005A3A6B /* wizgroup.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -522,6 +532,7 @@
 				737287041616960F005A3A6B /* InfoPlist.strings */,
 				737287071616960F005A3A6B /* main.m */,
 				737287091616960F005A3A6B /* WizGroup-Prefix.pch */,
+				731365B6164131D400DA8692 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1016,7 +1027,7 @@
 			);
 			name = WizGroup;
 			productName = WizGroup;
-			productReference = 737286F71616960F005A3A6B /* WizGroup.app */;
+			productReference = 737286F71616960F005A3A6B /* wizgroup.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1035,6 +1046,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				zh,
 			);
 			mainGroup = 737286EC1616960F005A3A6B;
 			productRefGroup = 737286F81616960F005A3A6B /* Products */;
@@ -1089,6 +1101,9 @@
 				73E0CBB5164117C3004A3AF4 /* treePhoneItemClosed@2x.png in Resources */,
 				73E0CBB6164117C3004A3AF4 /* treePhoneItemOpened.png in Resources */,
 				73E0CBB7164117C3004A3AF4 /* treePhoneItemOpened@2x.png in Resources */,
+				731365B4164131D400DA8692 /* Localizable.strings in Resources */,
+				73136756164143DF00DA8692 /* Icon.png in Resources */,
+				73136758164143E400DA8692 /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,10 +1223,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		731365B6164131D400DA8692 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				731365B5164131D400DA8692 /* en */,
+				731365B7164131E900DA8692 /* zh */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		737287041616960F005A3A6B /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				737287051616960F005A3A6B /* en */,
+				731365B11641312D00DA8692 /* zh */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1226,7 +1251,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1241,7 +1266,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1253,7 +1279,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1261,8 +1287,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1271,10 +1298,15 @@
 		737287101616960F005A3A6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
 				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = wizgroup;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1282,10 +1314,15 @@
 		737287111616960F005A3A6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
 				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = wizgroup;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -138,7 +138,7 @@
 //            newFrame.origin.x = superviewWidth - (viewWidth / 2.0f);
 //            newFrame.origin.y = -viewHeight / 2.0f;
             newFrame.origin.x = superviewWidth - viewWidth ;
-            newFrame.origin.y = 0.0f;
+            newFrame.origin.y = 10.0f;
             break;
         case JSBadgeViewAlignmentTopCenter:
             newFrame.origin.x = (superviewWidth - viewWidth) / 2.0f;
@@ -307,7 +307,7 @@
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         
 //        CGRect rectToDraw = CGRectInset(rect, kMarginToDrawInside, kMarginToDrawInside);
-        CGRect rectToDraw = CGRectMake(0.0, 0.0, 24, 24);
+        CGRect rectToDraw = CGRectMake(0.0, 0.0, 20, 20);
         
         UIImage* orangeImage = [UIImage imageNamed:@"orangeBadgeBackground"];
         [orangeImage drawInRect:rectToDraw];
