@@ -124,7 +124,7 @@
 - (void) loadActiveAccountName
 {
     NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
-    if ([activeUserId isEqualToString:WGDefaultChineseUserName]) {
+    if ([activeUserId isEqualToString:WGDefaultAccountUserId]) {
 //        self.userNameLabel.text = NSLocalizedString(@"Click To Login", nil);
         self.userNameLabel.text = [NSString stringWithFormat:@"%@ (%@)",activeUserId,@"积分3388"];
     }

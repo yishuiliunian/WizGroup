@@ -25,12 +25,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     WizAccountManager* accountManager = [WizAccountManager defaultManager];
-    [accountManager updateAccount:WGDefaultChineseUserName password:WGDefaultChinesePassword];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     WGMainViewController* mainController = [[WGMainViewController alloc] init];
-    
     
     NSString* activeAccountUserId = [accountManager activeAccountUserId];
     [accountManager registerActiveAccount:activeAccountUserId];
@@ -43,7 +41,6 @@
     [self.window addSubview:self.rootControll.view];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    WizLogError(@"asdfasdf");
     return YES;
 }
 
