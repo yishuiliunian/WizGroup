@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373360322.902605"
+         timestampString = "373457110.599106"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "253"
-         endingLineNumber = "253"
+         startingLineNumber = "286"
+         endingLineNumber = "286"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373360322.902605"
+         timestampString = "373457077.512818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "196"
-         endingLineNumber = "196"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "WizGroup/UI/WGMainViewController.m"
-         timestampString = "373360322.902605"
+         timestampString = "373457077.512818"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
+         startingLineNumber = "211"
+         endingLineNumber = "211"
          landmarkName = "-reloadGroupView"
          landmarkType = "5">
       </FileBreakpoint>

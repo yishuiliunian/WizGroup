@@ -93,6 +93,9 @@
         readWebView.scrollView.delegate = self;
         //
         titleLabel = [[UILabel alloc] init];
+        titleLabel.textAlignment = UITextAlignmentCenter;
+        titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        
         backgroudScrollView = [[UIScrollView alloc] init];
         //
         toolBar = [[WGToolBar alloc] init];
@@ -159,16 +162,21 @@
     CGSize contentSize = [self contentViewSize];
     float titleLabelHeight = 40;
     
-    readWebView.frame = CGRectMake(0.0, titleLabelHeight +1, contentSize.width, contentSize.height);
+    UIView* lineBreak = [[UIView alloc] initWithFrame:CGRectMake(0.0, titleLabelHeight-1, self.view.frame.size.width, 1)];
+    lineBreak.backgroundColor = WGDetailCellBackgroudColor;
+
+    readWebView.frame = CGRectMake(0.0, titleLabelHeight, contentSize.width, contentSize.height);
     readWebView.scrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     titleLabel.frame = CGRectMake(0.0, 0.0, contentSize.width, titleLabelHeight);
+    [titleLabel addSubview:lineBreak];
+    [lineBreak release];
+    
     [backgroudScrollView addSubview:readWebView];
     [backgroudScrollView addSubview:titleLabel];
     backgroudScrollView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     backgroudScrollView.frame= CGRectMake(0.0, 0.0, contentSize.width, contentSize.height);
     backgroudScrollView.contentSize= CGSizeMake(contentSize.width, contentSize.height + titleLabelHeight);
     [self.view addSubview:backgroudScrollView];
-    
     [self checkCurrentDocument];
 }
 

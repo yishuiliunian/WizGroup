@@ -26,7 +26,6 @@
 {
     WizAccountManager* accountManager = [WizAccountManager defaultManager];
     [accountManager updateAccount:WGDefaultChineseUserName password:WGDefaultChinesePassword];
-    [accountManager registerActiveAccount:WGDefaultChineseUserName];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.

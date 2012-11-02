@@ -14,7 +14,7 @@
 #import "WizAccountManager.h"
 #import "WGLoginViewController.h"
 #import "WGSettingViewController.h"
-
+#import "WGNavigationBar.h"
 #import "PPRevealSideViewController.h"
 
 #import "WGDetailViewController.h"
@@ -31,6 +31,8 @@
 #import "WGToolBar.h"
 
 #import "WGNavigationViewController.h"
+//
+#import "WGBarButtonItem.h"
 
 @interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
@@ -40,11 +42,15 @@
     UIView*     titleView;
     BOOL    isRefreshing;
 }
+@property (nonatomic, retain) UILabel* userNameLabel;
 @property (atomic, assign) NSInteger numberOfSyncingGroups;
 
 @end
 
 @implementation WGMainViewController
+
+@synthesize numberOfSyncingGroups;
+@synthesize userNameLabel;
 
 - (void) dealloc
 {
@@ -52,6 +58,7 @@
     [titleView release];
     [groupGridView release];
     [groupsArray release];
+    [userNameLabel release];
     [super dealloc];
 }
 - (void) startSync:(NSNotification*)nc
@@ -114,7 +121,19 @@
     }
     return self;
 }
-
+- (void) loadActiveAccountName
+{
+    NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+    if ([activeUserId isEqualToString:WGDefaultChineseUserName]) {
+//        self.userNameLabel.text = NSLocalizedString(@"Click To Login", nil);
+        self.userNameLabel.text = [NSString stringWithFormat:@"%@ (%@)",activeUserId,@"积分3388"];
+    }
+    else
+    {
+        self.userNameLabel.text = activeUserId;
+    }
+    
+}
 - (void) loadView
 {
     [super loadView];
@@ -133,6 +152,7 @@
     gmGridView.layoutStrategy = [GMGridViewLayoutStrategyFactory strategyFromType:GMGridViewLayoutVertical];
     gmGridView.refreshHeaderView.delegate = self;
     gmGridView.delegate = self;
+    gmGridView.backgroundColor = WGDetailCellBackgroudColor;
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
     //
@@ -146,25 +166,18 @@
     [titleView addSubview:logolImageView];
     [logolImageView release];
     UIButton* logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    float logoButtonWidth = 90;
-    UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 20, logoButtonWidth, 20)];
-
+    float logoButtonWidth = 180;
+    UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 21, logoButtonWidth, 20)];
+    self.userNameLabel = loginLabel;
+    loginLabel.backgroundColor = [UIColor clearColor];
     loginLabel.highlightedTextColor = [UIColor lightTextColor];
     loginLabel.adjustsFontSizeToFitWidth = YES;
-    NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
-    if ([activeUserId isEqualToString:WGDefaultChineseUserName]) {
-        loginLabel.text = NSLocalizedString(@"Login", nil);
-    }
-    else
-    {
-        loginLabel.text = activeUserId;
-    }
-    
+
     loginLabel.textAlignment = UITextAlignmentLeft;
     [logoButton addSubview:loginLabel];
     [loginLabel release];
     
-    UIImageView* logoWordImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, logoButtonWidth, 20)];
+    UIImageView* logoWordImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 90, 20)];
     logoWordImageView.backgroundColor = [UIColor lightGrayColor];
     logoWordImageView.image = [UIImage imageNamed:@"logoWords"];
     [logoButton addSubview:logoWordImageView];
@@ -175,6 +188,7 @@
     logoButton.frame = CGRectMake(45, 0.0, logoButtonWidth, WizNavigationTtitleHeaderHeight);
     [titleView addSubview:logoButton];
     
+    titleView.backgroundColor = WGDetailCellBackgroudColor;
     [gmGridView addSubview:titleView];
 }
 - (void) clearGroupView
@@ -222,6 +236,10 @@
     [login release];
 }
 
+- (void) userCenter
+{
+    
+}
 - (void) setupToolBar
 {
     
@@ -233,9 +251,13 @@
     
     UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:setButton];
     WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
-    [toolBar setItems:@[item]];
+    
+    UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
+    UIBarButtonItem* userCenterItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listUsersIcon"] hightedImage:nil target:self selector:@selector(userCenter)];
+    
+    [toolBar setItems:@[item, flexItem, userCenterItem]];
     [self.view addSubview:toolBar];
-
 }
 
 - (void)viewDidLoad
@@ -243,6 +265,17 @@
     [super viewDidLoad];
     [self setupToolBar];
     
+    //
+    
+    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIColor blackColor],
+                                UITextAttributeTextColor,
+                                [UIColor clearColor],
+                                UITextAttributeTextShadowColor, nil];
+    [navBar setTitleTextAttributes:attributes];
+    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+    //
     groupGridView.mainSuperView = self.navigationController.view;
     groupGridView.dataSource = self;
     groupGridView.actionDelegate = self;
@@ -282,7 +315,28 @@
     
     if (index == [groupsArray count]) {
         GMGridViewCell* cell = [[[GMGridViewCell alloc] initWithFrame:CGRectMake(0.0, 0.0, size.width, size.height)] autorelease];
-        cell.backgroundColor = [UIColor lightGrayColor];
+        
+        float labelWidth = 100;
+        float labelHeight = 20;
+        
+        
+        UILabel* addNewLabel = [[UILabel alloc] initWithFrame:CGRectMake((size.width-labelWidth)/2 + labelHeight, (size.height - labelHeight)/2, labelWidth, labelHeight)];
+        
+
+        
+        addNewLabel.font = [UIFont systemFontOfSize:16];
+        addNewLabel.textColor = [UIColor lightGrayColor];
+        addNewLabel.backgroundColor = [UIColor clearColor];
+        addNewLabel.text = NSLocalizedString(@"Add Group", nil);
+        [cell addSubview:addNewLabel];
+        [addNewLabel release];
+        //
+        UIImageView* addNewImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"addNewGroupIcon"]];
+        addNewImageView.frame = CGRectMake(addNewLabel.frame.origin.x - labelHeight, addNewLabel.frame.origin.y, labelHeight, labelHeight);
+        [cell addSubview:addNewImageView];
+        [addNewImageView release];
+        //
+        cell.backgroundColor = [UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1.0];
         return cell;
     }
     
@@ -392,5 +446,6 @@
     [super viewWillAppear:animated];
     [groupGridView reloadData];
     [self.navigationController setNavigationBarHidden:YES];
+    [self loadActiveAccountName];
 }
 @end

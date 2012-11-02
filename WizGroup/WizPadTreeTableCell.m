@@ -89,7 +89,7 @@
     CGFloat indentationLevel = 10* ((treeNodeDeep > WizTreeMaxDeep ? WizTreeMaxDeep : treeNodeDeep) -1);
     static float  buttonWith = 44;
     expandedButton.frame = CGRectMake(indentationLevel, 0.0, buttonWith, buttonWith);
-    titleLabel.frame = CGRectMake(buttonWith+indentationLevel, 0.0, self.frame.size.width - buttonWith - indentationLevel, 25);
+    titleLabel.frame = CGRectMake(buttonWith+indentationLevel, (rect.size.height-25)/2, self.frame.size.width - buttonWith - indentationLevel, 25);
     detailLabel.frame = CGRectMake(buttonWith+indentationLevel, 25, self.frame.size.width - buttonWith - indentationLevel, 15);
     [self.delegate decorateTreeCell:self];
     [self showExpandedIndicatory];

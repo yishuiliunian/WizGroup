@@ -164,14 +164,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    WGNavigationBar* navBar = [[[WGNavigationBar alloc] init] autorelease];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [UIColor blackColor],
-                                UITextAttributeTextColor,
-                                [UIColor clearColor],
-                                UITextAttributeTextShadowColor, nil];
-    [navBar setTitleTextAttributes:attributes];
-    [self.navigationController setValue:navBar forKeyPath:@"navigationBar"];
+
     
     //
     backgroudView.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);

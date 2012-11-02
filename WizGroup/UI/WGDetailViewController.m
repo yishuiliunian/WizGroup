@@ -14,6 +14,8 @@
 #import "PPRevealSideViewController.h"
 #import "WizAccountManager.h"
 
+
+
 enum WGFolderListIndex {
     WGFolderListIndexOfCustom = 0,
     WGFolderListIndexOfUserTree = 1
@@ -51,6 +53,8 @@ enum WGFolderListIndex {
 {
     self = [super initWithStyle:style];
     if (self) {
+        
+        
         TreeNode* folderRootNode = [[TreeNode alloc] init];
         folderRootNode.title   = @"key";
         folderRootNode.keyString = @"key";
@@ -60,12 +64,11 @@ enum WGFolderListIndex {
         //
         NSMutableArray*  customNodes = [NSMutableArray array];
         //
-        [customNodes addObject:WizStrRecentNotes];
+        [customNodes addObject:WizStrRecent];
         [customNodes addObject:NSLocalizedString(@"Unread Notes", nil)];
         allNodes = [[NSMutableArray array] retain];
         [allNodes addObject:customNodes];
         [allNodes addObject:needDisplayTreeNodes];
-        
         //
         titleView = [[UIView alloc] init];
     }
@@ -107,12 +110,9 @@ enum WGFolderListIndex {
 
 - (void) reloadTagRootNode
 {
-    
     NSArray* tagArray = [[[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid ] allTagsForTree];
     TreeNode* tagRootNode = rootTreeNode;
-    
     [tagRootNode removeAllChildrenNodes];
-    
     for (WizTag* each in tagArray) {
         if (each.strTitle != nil && ![each.strTitle isEqualToString:@""]) {
             [self addTagTreeNodeToParent:each rootNode:tagRootNode allTags:tagArray];
@@ -136,6 +136,7 @@ enum WGFolderListIndex {
     [super viewDidLoad];
     [self reloadAllData];
      [self loadTitleView];
+    self.tableView.backgroundColor = WGDetailCellBackgroudColor;
 }
 
 - (void) loadTitleView
@@ -150,6 +151,7 @@ enum WGFolderListIndex {
     titleLabel.text = group.kbName;
     [titleView addSubview:titleLabel];
     titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:20];
     [titleLabel release];
 }
 
@@ -196,6 +198,7 @@ enum WGFolderListIndex {
             cell = [[[WizPadTreeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
             cell.delegate = self;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.contentView.backgroundColor = WGDetailCellBackgroudColor;
         }
         
         if (indexPath.section == WGFolderListIndexOfUserTree) {
@@ -212,6 +215,8 @@ enum WGFolderListIndex {
         if(!cell)
         {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIndentifier2] autorelease];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.contentView.backgroundColor = WGDetailCellBackgroudColor;
         }
         cell.textLabel.text = [[allNodes objectAtIndex:WGFolderListIndexOfCustom] objectAtIndex:indexPath.row];
         return cell;
@@ -390,6 +395,7 @@ enum WGFolderListIndex {
             break;
         }
     }
+
 }
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {

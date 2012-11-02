@@ -127,14 +127,27 @@
     [self.navigationController.view.layer addAnimation:tran forKey:@"TransitionDownUp"];
     [self.revealSideViewController dismissModalViewControllerAnimated:YES];
 }
-
-
+- (void) editComment
+{
+    
+}
+- (void) feedbackCenter
+{
+    
+}
 - (void) reloadToolBarItems
 {
     WGNavigationViewController* nav = (WGNavigationViewController*)self.navigationController;
     
+    
+    UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    
     UIBarButtonItem* backToHomeItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
-    [nav setWgToolItems:@[backToHomeItem]];
+    UIBarButtonItem* editItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listEditIcon"] hightedImage:nil target:self selector:@selector(editComment)];
+    UIBarButtonItem* feedBackItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listFeedbackIcon"] hightedImage:nil target:self selector:@selector(feedbackCenter)];
+   
+    
+    [nav setWgToolItems:@[backToHomeItem,flexItem,feedBackItem,editItem]];
 }
 - (void) viewWillAppear:(BOOL)animated
 {

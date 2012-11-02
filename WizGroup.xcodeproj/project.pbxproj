@@ -127,6 +127,7 @@
 		73D9667E164227BF00222435 /* loginBackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9667D164227BF00222435 /* loginBackArrow.png */; };
 		73D9668916426A8300222435 /* readFeedIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9668716426A8300222435 /* readFeedIcon.png */; };
 		73D9668A16426A8300222435 /* readShareIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9668816426A8300222435 /* readShareIcon.png */; };
+		73D9668C1642749700222435 /* listUsersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D9668B1642749700222435 /* listUsersIcon.png */; };
 		73D983CA163B9C91006AAB22 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73D983C0163B9C91006AAB22 /* EGORefreshTableHeaderView.m */; };
 		73D983CB163B9C91006AAB22 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D983C2163B9C91006AAB22 /* blackArrow.png */; };
 		73D983CC163B9C91006AAB22 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73D983C3163B9C91006AAB22 /* blackArrow@2x.png */; };
@@ -160,6 +161,9 @@
 		73E0CBB5164117C3004A3AF4 /* treePhoneItemClosed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E0CBB1164117C3004A3AF4 /* treePhoneItemClosed@2x.png */; };
 		73E0CBB6164117C3004A3AF4 /* treePhoneItemOpened.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E0CBB2164117C3004A3AF4 /* treePhoneItemOpened.png */; };
 		73E0CBB7164117C3004A3AF4 /* treePhoneItemOpened@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 73E0CBB3164117C3004A3AF4 /* treePhoneItemOpened@2x.png */; };
+		73EAF76E16427DFF0058C151 /* addNewGroupIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EAF76D16427DFF0058C151 /* addNewGroupIcon.png */; };
+		73EAF7711642813D0058C151 /* listEditIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EAF7701642813D0058C151 /* listEditIcon.png */; };
+		73EAF7731642814F0058C151 /* listFeedbackIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 73EAF7721642814F0058C151 /* listFeedbackIcon.png */; };
 		73FCE6111638ECF8006F597C /* WGTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FCE6101638ECF8006F597C /* WGTreeNode.m */; };
 		73FCE6241638F9E2006F597C /* WGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 73FCE6231638F9E2006F597C /* WGLoginViewController.m */; };
 /* End PBXBuildFile section */
@@ -389,6 +393,7 @@
 		73D966861642699E00222435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		73D9668716426A8300222435 /* readFeedIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = readFeedIcon.png; sourceTree = "<group>"; };
 		73D9668816426A8300222435 /* readShareIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = readShareIcon.png; sourceTree = "<group>"; };
+		73D9668B1642749700222435 /* listUsersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listUsersIcon.png; sourceTree = "<group>"; };
 		73D983BF163B9C91006AAB22 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		73D983C0163B9C91006AAB22 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		73D983C2163B9C91006AAB22 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
@@ -429,6 +434,9 @@
 		73E0CBB1164117C3004A3AF4 /* treePhoneItemClosed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treePhoneItemClosed@2x.png"; sourceTree = "<group>"; };
 		73E0CBB2164117C3004A3AF4 /* treePhoneItemOpened.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = treePhoneItemOpened.png; sourceTree = "<group>"; };
 		73E0CBB3164117C3004A3AF4 /* treePhoneItemOpened@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "treePhoneItemOpened@2x.png"; sourceTree = "<group>"; };
+		73EAF76D16427DFF0058C151 /* addNewGroupIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addNewGroupIcon.png; sourceTree = "<group>"; };
+		73EAF7701642813D0058C151 /* listEditIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listEditIcon.png; sourceTree = "<group>"; };
+		73EAF7721642814F0058C151 /* listFeedbackIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listFeedbackIcon.png; sourceTree = "<group>"; };
 		73FCE60F1638ECF8006F597C /* WGTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGTreeNode.h; path = UI/WGTreeNode.h; sourceTree = "<group>"; };
 		73FCE6101638ECF8006F597C /* WGTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WGTreeNode.m; path = UI/WGTreeNode.m; sourceTree = "<group>"; };
 		73FCE6221638F9E2006F597C /* WGLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WGLoginViewController.h; path = UI/Account/WGLoginViewController.h; sourceTree = "<group>"; };
@@ -812,6 +820,10 @@
 		73D7C670162F9FC400C27478 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				73EAF7721642814F0058C151 /* listFeedbackIcon.png */,
+				73EAF7701642813D0058C151 /* listEditIcon.png */,
+				73EAF76D16427DFF0058C151 /* addNewGroupIcon.png */,
+				73D9668B1642749700222435 /* listUsersIcon.png */,
 				73D9667D164227BF00222435 /* loginBackArrow.png */,
 				73D9668716426A8300222435 /* readFeedIcon.png */,
 				73D9668816426A8300222435 /* readShareIcon.png */,
@@ -1121,6 +1133,10 @@
 				73D9667E164227BF00222435 /* loginBackArrow.png in Resources */,
 				73D9668916426A8300222435 /* readFeedIcon.png in Resources */,
 				73D9668A16426A8300222435 /* readShareIcon.png in Resources */,
+				73D9668C1642749700222435 /* listUsersIcon.png in Resources */,
+				73EAF76E16427DFF0058C151 /* addNewGroupIcon.png in Resources */,
+				73EAF7711642813D0058C151 /* listEditIcon.png in Resources */,
+				73EAF7731642814F0058C151 /* listFeedbackIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1315,8 +1331,8 @@
 		737287101616960F005A3A6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
 				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
@@ -1331,8 +1347,8 @@
 		737287111616960F005A3A6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "WizGroup/WizGroup-Prefix.pch";
 				INFOPLIST_FILE = "WizGroup/WizGroup-Info.plist";
