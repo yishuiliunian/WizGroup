@@ -9,6 +9,12 @@
 #import "WGDetailListCell.h"
 #import "WizDbManager.h"
 #import "WGGlobalCache.h"
+#import "WizNotificationCenter.h"
+typedef enum WGDetailListCellLayoutType
+{
+    WGDetailListCellLayoutTypeFull = 0,
+    WGDetailListCellLayoutTypeNoImage = 1
+} WGDetailListCellLayout;
 
 
 
@@ -50,10 +56,10 @@ static UIFont* timeFont = nil;
     if (self) {
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
-            titleFont = [[UIFont boldSystemFontOfSize:15] retain];
-            authorFont = [[UIFont systemFontOfSize:11] retain];
-            detailFont = [[UIFont systemFontOfSize:11] retain];
-            timeFont = [[UIFont systemFontOfSize:11] retain];
+            titleFont = [[UIFont boldSystemFontOfSize:16] retain];
+            authorFont = [[UIFont systemFontOfSize:12] retain];
+            detailFont = [[UIFont systemFontOfSize:12] retain];
+            timeFont = [[UIFont systemFontOfSize:12] retain];
         });
         
         titleLabel = [[UILabel alloc] init];
@@ -101,7 +107,7 @@ static UIFont* timeFont = nil;
     WizAbstract* abstract = [WGGlobalCache abstractForDoc:self.documentGuid kbguid:self.kbGuid accountUserId:self.accountUserId];
     
     static float startX = 10;
-    
+    static float startY = 10;
     CGSize cellSize = self.contentView.frame.size;
     float endX = cellSize.width - 20;
     //
@@ -109,8 +115,8 @@ static UIFont* timeFont = nil;
     float imageHeight = 0;
     float imageStartX = cellSize.width - 10 - cellSize.height;
     if (abstract && abstract.uiImage) {
-        imageWidth = cellSize.height - 10;
-        imageHeight = cellSize.height - 10;
+        imageWidth = cellSize.height - 20;
+        imageHeight = cellSize.height - 20;
         endX = cellSize.width - 10 - imageWidth;
         imageStartX = endX;
     }
@@ -121,7 +127,6 @@ static UIFont* timeFont = nil;
     float timeWidth = 80 - startX;
     float timeHeight = 15;
     //
-    
     float authorWidth = 80;
     float authorStartx = endX - authorWidth;
     float authorHeight = 15;
@@ -129,14 +134,13 @@ static UIFont* timeFont = nil;
     float detaiWidth = titleWidth;
     float detailHeight = 50;
     //
-    CGRect titleRect = CGRectMake(startX, 5, titleWidth , titleHeight);
+    CGRect titleRect = CGRectMake(startX, startY, titleWidth , titleHeight);
 
-    CGRect detailRect = CGRectMake(startX, titleHeight + 5, detaiWidth, detailHeight);
+    CGRect detailRect = CGRectMake(startX, titleHeight + startY + 3, detaiWidth, detailHeight);
     
-    CGRect timeRect = CGRectMake(startX, titleHeight + detailHeight +5, timeWidth, timeHeight);
-    CGRect authorRect = CGRectMake(authorStartx, titleHeight + detailHeight +5, authorWidth, authorHeight);
-    
-    CGRect imageRect = CGRectMake(imageStartX, 5, imageWidth, imageHeight);
+    CGRect timeRect = CGRectMake(startX, titleHeight + detailHeight + startY + 6, timeWidth, timeHeight);
+    CGRect authorRect = CGRectMake(authorStartx, titleHeight + detailHeight + startX + 6, authorWidth, authorHeight);
+    CGRect imageRect = CGRectMake(imageStartX, startY , imageWidth, imageHeight);
     NSString* authorStr = doc.strOwner;
     if (authorStr) {
         NSInteger indexOf = [authorStr indexOf:@"@"];

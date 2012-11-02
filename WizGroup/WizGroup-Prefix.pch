@@ -14,5 +14,4 @@
     #import "WizGlobals.h"
     #import "CommonString.h"
     #import "WizNotificationCenter.h"
-    #import "NSString+WizString.h"
 #endif

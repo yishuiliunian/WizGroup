@@ -12,6 +12,7 @@
 #import "MBProgressHUD.h"
 #import "WGNavigationBar.h"
 #import "WGBarButtonItem.h"
+#import "CommonString.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface WGLoginViewController () <WizApiLoginDelegate, UIGestureRecognizerDelegate>
