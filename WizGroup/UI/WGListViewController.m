@@ -128,7 +128,7 @@
 - (void) loadNotagDocuments
 {
     id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
-    [documentsArray addObjectsFromArray:[db documentsByTag:self.listKey]];
+    [documentsArray addObjectsFromArray:[db documentsByNotag]];
     self.title = self.kbGroup.kbName;
 }
 

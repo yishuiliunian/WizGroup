@@ -397,7 +397,7 @@ enum WGFolderListIndex {
                 listKeyStr = nil;
                 break;
             case 2:
-                listType = WGListTypeTag;
+                listType = WGListTypeNoTags;
                 listKeyStr = @"";
                 break;
             default:
