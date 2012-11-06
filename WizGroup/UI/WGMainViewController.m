@@ -252,12 +252,8 @@
     UIBarButtonItem* setItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"group_list_settings"] hightedImage:nil target:self selector:@selector(settingApp)];
     
     WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
-    
     UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-    
-    UIBarButtonItem* userCenterItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listUsersIcon"] hightedImage:nil target:self selector:@selector(userCenter)];
-    
-    [toolBar setItems:@[setItem, flexItem, userCenterItem]];
+    [toolBar setItems:@[setItem, flexItem ]];
     [self.view addSubview:toolBar];
 }
 
@@ -286,15 +282,6 @@
 
     [self reloadGroupView];
     
-    //
-    UIBarButtonItem* refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshGroupData)];
-    self.navigationItem.rightBarButtonItem = refresh;
-    [refresh release];
-    //
-    UIBarButtonItem* setItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(settingApp)];
-	self.navigationItem.leftBarButtonItem = setItem;
-    [setItem release];
-    //
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = WGGroupListRefreshButtonTag;
     
@@ -432,7 +419,7 @@
     CATransition *tran = [CATransition animation];
     tran.duration = .4f;
     tran.type = kCATransitionPush;
-tran.subtype = kCATransitionFromTop; //Bottom for the opposite direction
+    tran.subtype = kCATransitionFromTop; //Bottom for the opposite direction
     tran.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     tran.removedOnCompletion  = YES;
     [self.navigationController.view.layer addAnimation:tran forKey:@"TransitionDownUp"];

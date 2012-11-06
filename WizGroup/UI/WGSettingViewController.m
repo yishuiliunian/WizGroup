@@ -32,12 +32,7 @@
     UIBarButtonItem* backItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"loginBackArrow"] hightedImage:nil target:self selector:@selector(popSelf)];
     self.navigationItem.leftBarButtonItem = backItem;
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonIte
-    ;
+    self.tableView.backgroundColor = [UIColor whiteColor];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -146,4 +141,5 @@
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
+
 @end
