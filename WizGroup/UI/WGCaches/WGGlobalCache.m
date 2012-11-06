@@ -112,13 +112,15 @@
         [docAbastractLock lockWhenCondition:WGLockHaveData];
         WizGroupDocument* groupDoc = [[self.needGenAbsDocArray lastObject] retain];
         [self.needGenAbsDocArray removeLastObject];
+        int count = [self.needGenAbsDocArray count];
+        [docAbastractLock unlockWithCondition:(count>0)?WGLockHaveData : WGLockNotHaveData];
+
         if (groupDoc) {
             [self generateAbstractForDocument:groupDoc.documentKbguid accountUserId:groupDoc.accountUserId];
         }
         [groupDoc release];
         [pool release];
-        int count = [self.needGenAbsDocArray count];
-        [docAbastractLock unlockWithCondition:(count>0)?WGLockHaveData : WGLockNotHaveData];
+        
     }
 }
 - (void) addNeedGenAbstractDoc:(WizGroupDocument*)doc
