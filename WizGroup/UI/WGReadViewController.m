@@ -28,7 +28,6 @@
     UIBarButtonItem* checkNextButtonItem;
     UIBarButtonItem* checkPreButtonItem;
     //
-    WGToolBar* toolBar;
 }
 
 @end
@@ -49,7 +48,6 @@
     [readWebView release];
     [backgroudScrollView release];
     //
-    [toolBar release];
     [super dealloc];
 }
 
@@ -101,15 +99,6 @@
         
         backgroudScrollView = [[UIScrollView alloc] init];
         //
-        toolBar = [[WGToolBar alloc] init];
-        UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
-        
-        UIBarButtonItem* backToList = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
-        UIBarButtonItem* nextItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
-        checkNextButtonItem = nextItem;
-        UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
-        checkPreButtonItem = preItem;
-        [toolBar setItems:@[backToList,flexItem,preItem,nextItem]];
     }
     return self;
 }
@@ -227,9 +216,7 @@
     checkPreButtonItem = preItem;
     
     
-    UIBarButtonItem* shareItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"readShareIcon"] hightedImage:nil target:self selector:@selector(shareCurrentDoc)];
-    UIBarButtonItem* feedIem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"readFeedIcon"] hightedImage:nil target:self selector:@selector(feedbackCurrentDoc)];
-    [nav setWgToolItems:@[backToList,flexItem,shareItem,feedIem,preItem,nextItem]];
+    [nav setWgToolItems:@[backToList,flexItem,preItem,nextItem]];
 }
 
 - (void) backToList
