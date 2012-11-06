@@ -34,6 +34,9 @@
 //
 #import "WGBarButtonItem.h"
 
+//
+#define WGGroupListRefreshButtonTag 3934
+
 @interface WGMainViewController () <GMGridViewDataSource, GMGridViewActionDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
     GMGridView* groupGridView;
@@ -44,13 +47,16 @@
 }
 @property (nonatomic, retain) UILabel* userNameLabel;
 @property (atomic, assign) NSInteger numberOfSyncingGroups;
-
+@property (nonatomic, retain) UIButton* refreshButton;
+@property (nonatomic, retain) UIImageView* refreshImageView;
 @end
 
 @implementation WGMainViewController
 
 @synthesize numberOfSyncingGroups;
 @synthesize userNameLabel;
+@synthesize refreshButton;
+@synthesize refreshImageView;
 
 - (void) dealloc
 {
@@ -59,6 +65,10 @@
     [groupGridView release];
     [groupsArray release];
     [userNameLabel release];
+    //
+    [refreshImageView release];
+    [refreshButton release];
+    //
     [super dealloc];
 }
 - (void) startSync:(NSNotification*)nc
@@ -73,6 +83,7 @@
     self.numberOfSyncingGroups --;
     if (self.numberOfSyncingGroups == 0) {
         [self doneLoadingTableViewData];
+        [self showReloadButton];
     }
 }
 
@@ -93,8 +104,7 @@
 - (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
 {
     isRefreshing = YES;
-    NSString* accountUserId = [[WizAccountManager defaultManager] activeAccountUserId];
-    [[WizSyncCenter defaultCenter] refreshGroupsListFor:accountUserId];
+    [self refreshGroupData];
 }
 
 - (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
@@ -125,8 +135,7 @@
 {
     NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
     if ([activeUserId isEqualToString:WGDefaultAccountUserId]) {
-//        self.userNameLabel.text = NSLocalizedString(@"Click To Login", nil);
-        self.userNameLabel.text = [NSString stringWithFormat:@"%@ (%@)",activeUserId,@"积分3388"];
+        self.userNameLabel.text = NSLocalizedString(@"Click To Login", nil);
     }
     else
     {
@@ -137,11 +146,6 @@
 - (void) loadView
 {
     [super loadView];
-    //
-    UIImageView* backgroudView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"gridBackgroud"]];
-    backgroudView.frame = [UIScreen mainScreen].bounds;
-//    [self.view addSubview:backgroudView];
-    [backgroudView release];
     //
     GMGridView *gmGridView = [[GMGridView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - 44)];
     gmGridView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -156,12 +160,12 @@
     [self.view addSubview:gmGridView];
     groupGridView = gmGridView;
     //
-    titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 44)];
+    titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 30)];
 
     [groupGridView addSubview:titleView];
     
     UIImageView* logolImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0, 0.0, 40, 40)];
-    logolImageView.image = [UIImage imageNamed:@"logloImage"];
+    logolImageView.image = [UIImage imageNamed:@"group_list_logol"];
 
     [titleView addSubview:logolImageView];
     [logolImageView release];
@@ -170,7 +174,6 @@
     UILabel* loginLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 21, logoButtonWidth, 20)];
     self.userNameLabel = loginLabel;
     loginLabel.backgroundColor = [UIColor clearColor];
-    loginLabel.highlightedTextColor = [UIColor lightTextColor];
     loginLabel.adjustsFontSizeToFitWidth = YES;
 
     loginLabel.textAlignment = UITextAlignmentLeft;
@@ -178,8 +181,7 @@
     [loginLabel release];
     
     UIImageView* logoWordImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 90, 20)];
-    logoWordImageView.backgroundColor = [UIColor lightGrayColor];
-    logoWordImageView.image = [UIImage imageNamed:@"logoWords"];
+    logoWordImageView.image = [UIImage imageNamed:@"group_list_logol_words"];
     [logoButton addSubview:logoWordImageView];
     [logoWordImageView release];
     
@@ -189,6 +191,10 @@
     [titleView addSubview:logoButton];
     
     titleView.backgroundColor = WGDetailCellBackgroudColor;
+    [self showReloadButton];
+    //
+
+    //
     [gmGridView addSubview:titleView];
 }
 - (void) clearGroupView
@@ -243,20 +249,15 @@
 - (void) setupToolBar
 {
     
-    UIButton* setButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    setButton.frame = CGRectMake(0.0, 0.0, 30, 30);
-    [setButton setBackgroundImage:[UIImage imageNamed:@"settingButtonImageClicked"] forState:UIControlStateHighlighted];
-    [setButton addTarget:self action:@selector(settingApp) forControlEvents:UIControlEventTouchUpInside];
-    [setButton setImage:[UIImage imageNamed:@"settingButtonImage"] forState:UIControlStateNormal];
+    UIBarButtonItem* setItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"group_list_settings"] hightedImage:nil target:self selector:@selector(settingApp)];
     
-    UIBarButtonItem* item = [[UIBarButtonItem alloc] initWithCustomView:setButton];
     WGToolBar* toolBar = [[WGToolBar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 44, self.view.frame.size.width, 44)];
     
     UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
     UIBarButtonItem* userCenterItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"listUsersIcon"] hightedImage:nil target:self selector:@selector(userCenter)];
     
-    [toolBar setItems:@[item, flexItem, userCenterItem]];
+    [toolBar setItems:@[setItem, flexItem, userCenterItem]];
     [self.view addSubview:toolBar];
 }
 
@@ -294,7 +295,30 @@
 	self.navigationItem.leftBarButtonItem = setItem;
     [setItem release];
     //
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.tag = WGGroupListRefreshButtonTag;
     
+    
+    UIImage* normalImage = [UIImage imageNamed:@"group_list_refresh"];
+    UIImage* refreshImage1 = [UIImage imageNamed:@"group_list_refresh1"];
+    UIImage* refreshImage2 = [UIImage imageNamed:@"group_list_refresh2"];
+    UIImage* refreshImage3 = [UIImage imageNamed:@"group_list_refresh3"];
+    UIImageView* imageView = [[UIImageView alloc] initWithImage:normalImage];
+    imageView.animationImages = @[normalImage,refreshImage1,refreshImage2,refreshImage3];
+    imageView.animationDuration = 0.5;
+    //test
+    [imageView startAnimating];
+    //
+    imageView.frame = CGRectMake(5.0, 5.0, 30, 30);
+    [button addSubview:imageView];
+    button.frame = CGRectMake(titleView.frame.size.width - 50, 0, 40, 40);
+    [button addTarget:self
+               action:@selector(refreshGroupData)
+     forControlEvents:UIControlEventTouchUpInside];
+    [titleView addSubview:button];
+    self.refreshButton = button;
+    self.refreshImageView = imageView;
+    [imageView release];
     //
 
 }
@@ -367,6 +391,8 @@
 {
     [super viewDidUnload];
     groupsArray = nil;
+    self.refreshButton = nil;
+    self.refreshImageView = nil;
     // Release any retained subviews of the main view.
 }
 
@@ -406,7 +432,7 @@
     CATransition *tran = [CATransition animation];
     tran.duration = .4f;
     tran.type = kCATransitionPush;
-    tran.subtype = kCATransitionFromTop; //Bottom for the opposite direction
+tran.subtype = kCATransitionFromTop; //Bottom for the opposite direction
     tran.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     tran.removedOnCompletion  = YES;
     [self.navigationController.view.layer addAnimation:tran forKey:@"TransitionDownUp"];
@@ -417,29 +443,28 @@
     [ppSideController release];
     [centerNav release];
 }
+
+- (void) removeOldRefreshButton
+{
+    for (UIView* each in [titleView subviews]) {
+        if (each.tag  == WGGroupListRefreshButtonTag) {
+            [each removeFromSuperview];
+        }
+    }
+}
+
 - (void)showReloadButton {
-    UIBarButtonItem *refreshItem = [[UIBarButtonItem alloc]
-                                    initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh
-                                    target:self
-                                    action:@selector(refreshGroupData)];
-    self.navigationItem.rightBarButtonItem = refreshItem;
-    [refreshItem release];
+    [self.refreshImageView stopAnimating];
 }
 
 - (void)showActivityIndicator {
-    UIActivityIndicatorView *activityIndicator =
-    [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [activityIndicator startAnimating];
-    UIBarButtonItem *activityItem =
-    [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    [activityIndicator release];
-    self.navigationItem.rightBarButtonItem = activityItem;
-    [activityItem release];
+    [self.refreshImageView startAnimating];
 }
 - (void) refreshGroupData
 {
     NSString* userId = [[WizAccountManager defaultManager] activeAccountUserId];
     [[WizSyncCenter defaultCenter] refreshGroupsListFor:userId];
+    [self.refreshImageView startAnimating];
 }
 - (void) viewWillAppear:(BOOL)animated
 {

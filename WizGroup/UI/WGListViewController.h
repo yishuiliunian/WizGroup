@@ -11,7 +11,8 @@
 enum WGListType {
     WGListTypeRecent = 0,
     WGListTypeTag = 1,
-    WGListTypeUnread = 2
+    WGListTypeUnread = 2,
+    WGListTypeNoTags = 3
     };
 
 @interface WGListViewController : UITableViewController

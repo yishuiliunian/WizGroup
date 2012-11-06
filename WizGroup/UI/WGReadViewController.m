@@ -15,8 +15,10 @@
 #import "WGToolBar.h"
 #import "WGBarButtonItem.h"
 #import "WGNavigationViewController.h"
+//
+#import "MBProgressHUD.h"
 
-@interface WGReadViewController () <UIScrollViewDelegate>
+@interface WGReadViewController () <UIScrollViewDelegate, UIWebViewDelegate>
 {
     UILabel* titleLabel;
     UIWebView*  readWebView;
@@ -91,6 +93,7 @@
         [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(didDownloadDocument:) name:WizNMDidDownloadDocument object:nil];
         readWebView = [[UIWebView alloc] init];
         readWebView.scrollView.delegate = self;
+        readWebView.delegate = self;
         //
         titleLabel = [[UILabel alloc] init];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -119,9 +122,24 @@
     }
     return self;
 }
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+}
+
+- (void) webViewDidStartLoad:(UIWebView *)webView
+{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+}
 - (void) downloadDocument:(WizDocument*)doc
 {
     [[WizSyncCenter defaultCenter] downloadDocument:doc kbguid:self.kbguid accountUserId:self.accountUserId];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 - (void) checkCurrentDocument

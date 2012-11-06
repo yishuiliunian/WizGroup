@@ -18,12 +18,19 @@
 #import "WGToolBar.h"
 #import "WGNavigationViewController.h"
 
-@interface WGListViewController () <WGReadListDelegate>
+#import "EGORefreshTableHeaderView.h"
+#import "WizSyncCenter.h"
+
+#import "WizNotificationCenter.h"
+
+@interface WGListViewController () <WGReadListDelegate,EGORefreshTableHeaderDelegate>
 {
     NSMutableArray* documentsArray;
     WGToolBar*      wgToolBar;
+    BOOL    isRefreshing;
 }
 @property (nonatomic, retain) NSIndexPath* lastIndexPath;
+@property (nonatomic, retain) EGORefreshTableHeaderView* pullToRefreshView;
 @end
 
 @implementation WGListViewController
@@ -33,9 +40,12 @@
 @synthesize listKey;
 @synthesize lastIndexPath;
 @synthesize kbGroup;
+@synthesize pullToRefreshView;
 - (void) dealloc
 {
     [self removeObserver:self forKeyPath:@"listKey"];
+    [[WizNotificationCenter defaultCenter] removeObserver:self];
+    [pullToRefreshView release];
     [kbGroup release];
     [listKey release];
     [lastIndexPath release];
@@ -61,8 +71,34 @@
         wgToolBar = [[WGToolBar alloc] init];
         UIBarButtonItem* backToHomeItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"homeBtnImage"] hightedImage:nil target:self selector:@selector(backToHome)];
         [wgToolBar setItems:@[backToHomeItem]];
+        
+        isRefreshing = NO;
+        //
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(startRefreshingGroup:) name:WizNMSyncGroupStart object:nil
+         ];
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshGroup:) name:WizNMSyncGroupEnd object:nil];
+        [[WizNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshGroup:) name:WizNMSyncGroupError object:nil];
     }
     return self;
+}
+- (void) startRefreshingGroup:(NSNotification*)nc
+{
+    NSString* guid = [WizNotificationCenter getGuidFromNc:nc];
+    if ([self.kbGuid isEqualToString:guid]) {
+        isRefreshing = YES;
+        [self.pullToRefreshView startLoadingAnimation:self.tableView];
+    }
+    
+}
+
+- (void) endRefreshGroup:(NSNotification*)nc
+{
+    NSString* guid = [WizNotificationCenter getGuidFromNc:nc];
+    if ([self.kbGuid isEqualToString:guid]) {
+        isRefreshing = NO;
+        [self.pullToRefreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+        [self reloadAllData];
+    }
 }
 
 - (void) loadRecentsDocument
@@ -89,19 +125,28 @@
     
     self.title = WizStrUnreadNotes;
 }
+- (void) loadNotagDocuments
+{
+    id<WizMetaDataBaseDelegate> db = [[WizDbManager shareInstance] getMetaDataBaseForAccount:self.accountUserId kbGuid:self.kbGuid];
+    [documentsArray addObjectsFromArray:[db documentsByTag:self.listKey]];
+    self.title = self.kbGroup.kbName;
+}
+
 - (void) reloadAllData
 {
     [documentsArray removeAllObjects];
     switch (listType) {
         case WGListTypeRecent:
             [self loadRecentsDocument];
-
             break;
         case WGListTypeTag:
             [self loadTagDocument];
             break;
         case WGListTypeUnread:
             [self loadUnreadDocument];
+            break;
+        case WGListTypeNoTags:
+            [self loadNotagDocuments];
             break;
         default:
             [self loadRecentsDocument];
@@ -201,11 +246,28 @@
     [super viewDidLoad];
     [self customizeNavBar];
 
+    
+    self.pullToRefreshView = [[[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, self.view.frame.size.width, self.tableView.bounds.size.height)] autorelease];
+    self.pullToRefreshView.delegate = self;
+    [self.tableView addSubview:self.pullToRefreshView];
+    
+    //
+    isRefreshing = [[WizSyncCenter defaultCenter] isSyncingGrop:self.kbGuid accountUserId:self.accountUserId];
+    if (isRefreshing) {
+        [self.pullToRefreshView startLoadingAnimation:self.tableView];
+    }
+    else
+    {
+        [self.pullToRefreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+    }
+    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [self.pullToRefreshView removeFromSuperview];
+    self.pullToRefreshView = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -225,7 +287,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
-    return [documentsArray count];
+    NSInteger count = [documentsArray count];
+    if (count) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    else
+    {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -323,9 +393,38 @@
         self.lastIndexPath = [NSIndexPath indexPathForRow:self.lastIndexPath.row -1 inSection:0];
     }
 }
-
+- (void) refreshGroupData
+{
+    [[WizSyncCenter defaultCenter] refreshGroupData:self.kbGuid accountUserId:self.accountUserId];
+}
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [cell setNeedsDisplay];
+}
+#pragma mark -
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.pullToRefreshView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void) scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    [self.pullToRefreshView egoRefreshScrollViewDidEndDragging:scrollView];
+}
+
+- (void) egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView *)view
+{
+    isRefreshing = YES;
+    [self refreshGroupData];
+}
+- (BOOL) egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView *)view
+{
+    return isRefreshing;
+}
+
+- (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
+{
+    return [NSDate date];
 }
 @end

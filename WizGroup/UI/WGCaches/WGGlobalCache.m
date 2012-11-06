@@ -103,25 +103,6 @@
         [observer didGetImage:image forKbguid:kbguid];
         return;
     }
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//        id<WizTemporaryDataBaseDelegate> db = [[WizDbManager shareInstance] getGlobalCacheDb];
-//        
-//        UIImage* image = [UIImage imageNamed:@"a.PNG"];
-//        UIImage* imageData =  [image compressedImageWidth:120];
-//        @synchronized(self)
-//        {
-//            [db updateAbstract:@"asdfasd" imageData:[imageData compressedData] guid:kbguid type:@"adf" kbguid:nil];
-//            WizAbstract* abstract =  [db abstractFoGuid:kbguid];
-//            if (abstract != nil) {
-//                [self setObject:abstract.uiImage forKey:kbguid];
-//            }
-//            [self setObject:image forKey:key];
-//        }
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [observer didGetImage:image forKbguid:kbguid];
-//        });
-//    });
 }
 
 - (void) generateAbstract
@@ -148,18 +129,20 @@
 }
 - (BOOL) generateAbstractForDocument:(NSString*)documengGuid    accountUserId:(NSString*)accountUserId
 {
-    NSString* sourceFilePath = [[WizFileManager shareManager] getDocumentFilePath:DocumentFileIndexName documentGUID:documengGuid accountUserId:accountUserId];
+    NSString* sourceFilePath = [[WizFileManager shareManager]
+                                getDocumentFilePath:DocumentFileIndexName
+                                documentGUID:documengGuid
+                                accountUserId:accountUserId];
     
-    
-    static int i = 0;
-        NSLog(@"gen doc abs %d",i++);
     if (![[NSFileManager defaultManager] fileExistsAtPath:sourceFilePath]) {
         return NO;
     }
     NSString* abstractText = nil;
     if ([WizGlobals fileLength:sourceFilePath] < 1024*1024) {
         
-        NSString* sourceStr = [NSString stringWithContentsOfFile:sourceFilePath usedEncoding:nil error:nil];
+        NSString* sourceStr = [NSString stringWithContentsOfFile:sourceFilePath
+                                                    usedEncoding:nil
+                                                           error:nil];
         if (sourceStr.length > 1024*50) {
             sourceStr = [sourceStr substringToIndex:1024*50];
         }
@@ -211,10 +194,6 @@
     if (nil != maxImageFilePath) {
         float compassWidth=140;
         float compassHeight = 140;
-        if (WizDeviceIsPad) {
-            compassWidth = 350;
-            compassHeight = 170;
-        }
         UIImage* image = [[UIImage alloc] initWithContentsOfFile:maxImageFilePath];
         
         if (nil != image)

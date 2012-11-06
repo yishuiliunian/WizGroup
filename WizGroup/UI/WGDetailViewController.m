@@ -64,8 +64,7 @@ enum WGFolderListIndex {
         //
         NSMutableArray*  customNodes = [NSMutableArray array];
         //
-        [customNodes addObject:WizStrRecent];
-        [customNodes addObject:NSLocalizedString(@"Unread Notes", nil)];
+
         allNodes = [[NSMutableArray array] retain];
         [allNodes addObject:customNodes];
         [allNodes addObject:needDisplayTreeNodes];
@@ -119,14 +118,28 @@ enum WGFolderListIndex {
         }
     }
 }
+- (void) reloadCustomNodes
+{
+    NSMutableArray* customNodes = [allNodes objectAtIndex:WGFolderListIndexOfCustom];
+    [customNodes removeAllObjects];
+    
+    [customNodes addObject:WizStrRecent];
+    [customNodes addObject:NSLocalizedString(@"Unread Notes", nil)];
+    id<WizSettingsDbDelegate> db = [[WizDbManager shareInstance] getGlobalSettingDb];
+    WizGroup* curretnGroup = [ db groupFromGuid:self.kbGuid accountUserId:self.accountUserId];
+    [customNodes addObject:curretnGroup.kbName];
+}
+
 - (void )reloadAllTreeNodes
 {
+    [self reloadCustomNodes];
     [self reloadTagRootNode];
 }
 
 - (void) reloadAllData
 {
     [self reloadAllTreeNodes];
+    //
     [self.needDisplayNodesArray removeAllObjects];
     [self.needDisplayNodesArray addObjectsFromArray:[rootTreeNode allExpandedChildrenNodes]];
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
@@ -134,6 +147,7 @@ enum WGFolderListIndex {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self reloadAllData];
      [self loadTitleView];
     self.tableView.backgroundColor = WGDetailCellBackgroudColor;
@@ -382,6 +396,10 @@ enum WGFolderListIndex {
                 listType = WGListTypeUnread;
                 listKeyStr = nil;
                 break;
+            case 2:
+                listType = WGListTypeTag;
+                listKeyStr = @"";
+                break;
             default:
                 break;
         }
@@ -395,6 +413,8 @@ enum WGFolderListIndex {
             break;
         }
     }
+
+    [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 
 }
 - (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
