@@ -11,7 +11,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WizAccountManager.h"
 #import "WGLoginViewController.h"
-
+#import "SVWebViewController.h"
+#import "WizFileManager.h"
 typedef enum _WGSettingSectionIndex {
     WGSettingSectionIndexAccount = 0,
     WGSettingSectionIndexNetwork = 9,
@@ -184,7 +185,11 @@ typedef enum _WGSettingSectionIndex {
 
 - (void) userFeedback
 {
-    
+    NSString* logFile = [WizFileManager logFilePath];
+    NSURL* url = [NSURL fileURLWithPath:logFile];
+    SVWebViewController* webController = [[SVWebViewController alloc] initWithURL:url];
+    [self.navigationController pushViewController:webController animated:YES];
+    [webController release];
 }
 
 - (void) showAppRunLog

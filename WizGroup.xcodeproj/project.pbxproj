@@ -180,9 +180,10 @@
 		87B169CA1643551D00C36731 /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B169811643551D00C36731 /* XMLRPCRequest.m */; };
 		87B169CB1643551D00C36731 /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B169831643551D00C36731 /* XMLRPCResponse.m */; };
 		87B169CD164357D000C36731 /* scb.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B169CC164357D000C36731 /* scb.png */; };
-		87B516A6164A08AC0032B06E /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A2164A08AC0032B06E /* SVModalWebViewController.m */; };
+		87B516A6164A08AC0032B06E /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A2164A08AC0032B06E /* SVModalWebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		87B516A7164A08AC0032B06E /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87B516A3164A08AC0032B06E /* SVWebViewController.bundle */; };
-		87B516A8164A08AC0032B06E /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A5164A08AC0032B06E /* SVWebViewController.m */; };
+		87B516A8164A08AC0032B06E /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A5164A08AC0032B06E /* SVWebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		87B516AA164A09470032B06E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B516A9164A09470032B06E /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -479,6 +480,7 @@
 		87B516A3164A08AC0032B06E /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
 		87B516A4164A08AC0032B06E /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		87B516A5164A08AC0032B06E /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		87B516A9164A09470032B06E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +488,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B516AA164A09470032B06E /* MessageUI.framework in Frameworks */,
 				737288181616A162005A3A6B /* libz.dylib in Frameworks */,
 				737288161616A15D005A3A6B /* libsqlite3.dylib in Frameworks */,
 				737288141616A157005A3A6B /* libxml2.dylib in Frameworks */,
@@ -534,6 +537,7 @@
 		737286EC1616960F005A3A6B = {
 			isa = PBXGroup;
 			children = (
+				87B516A9164A09470032B06E /* MessageUI.framework */,
 				87B169CC164357D000C36731 /* scb.png */,
 				73136757164143E300DA8692 /* Icon@2x.png */,
 				73136755164143DE00DA8692 /* Icon.png */,
