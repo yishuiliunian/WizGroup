@@ -9,12 +9,27 @@
 #import "WGSettingViewController.h"
 #import "WGBarButtonItem.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WizAccountManager.h"
+#import "WGLoginViewController.h"
+
+typedef enum _WGSettingSectionIndex {
+    WGSettingSectionIndexAccount = 0,
+    WGSettingSectionIndexNetwork = 9,
+    WGSettingSectionIndexAbout  =1,
+    WGsettingSectionIndexCount = 2
+} WGSettingSectionIndex;
 
 @interface WGSettingViewController ()
-
+@property (nonatomic, retain) NSMutableArray* settingsArray;
 @end
 
 @implementation WGSettingViewController
+@synthesize settingsArray;
+- (void) dealloc
+{
+    [settingsArray release];
+    [super dealloc];
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,7 +39,10 @@
     }
     return self;
 }
-
+- (void) reloadSettings
+{
+   
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,27 +62,66 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return WGsettingSectionIndexCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (section == WGSettingSectionIndexAbout) {
+        return 3;
+    }
+    
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier ];
     
-    // Configure the cell...
-    
+    //
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier] autorelease];
+    }
+    if (indexPath.section == WGSettingSectionIndexNetwork) {
+        if (indexPath.row == 0) {
+            cell.textLabel.text =WizStrSyncOnlgByWifi;
+        }
+    }
+    else if (indexPath.section == WGSettingSectionIndexAbout)
+    {
+        if (indexPath.row == 0) {
+            cell.textLabel.text =  NSLocalizedString(@"Feedback", nil);
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = NSLocalizedString(@"Log", nil);
+        }
+        else if (indexPath.row == 2)
+        {
+            cell.textLabel.text = NSLocalizedString(@"Version", nil);
+            cell.detailTextLabel.text = [WizGlobals wizNoteVersion];
+        }
+    }
+    else if (indexPath.section == WGSettingSectionIndexAccount)
+    {
+        if (indexPath.row == 0) {
+            NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+            if ([activeUserId isEqualToString:WGDefaultAccountUserId]) {
+                cell.textLabel.text = WizStrLogIn;
+            }
+            else
+            {
+                cell.textLabel.text = activeUserId;
+            }
+ 
+        }
+    }
     return cell;
 }
+
 - (void) popSelf
 {
     CATransition *tran = [CATransition animation];
@@ -117,16 +174,57 @@
 
 #pragma mark - Table view delegate
 
+- (void) clientLogin
+{
+    WGLoginViewController* login = [[WGLoginViewController alloc] init];
+    [self.navigationController pushViewController:login animated:YES];
+    [login release];
+    
+}
+
+- (void) userFeedback
+{
+    
+}
+
+- (void) showAppRunLog
+{
+    
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    if (indexPath.section == WGSettingSectionIndexNetwork) {
+        if (indexPath.row == 0) {
+        }
+    }
+    else if (indexPath.section == WGSettingSectionIndexAbout)
+    {
+        if (indexPath.row == 0) {
+            [self userFeedback];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self showAppRunLog];
+        }
+        else if (indexPath.row == 2)
+        {
+        }
+    }
+    else if (indexPath.section == WGSettingSectionIndexAccount)
+    {
+        if (indexPath.row == 0) {
+            NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+            if ([activeUserId isEqualToString:WGDefaultAccountUserId]) {
+                [self clientLogin];
+            }
+            else
+            {
+                [self clientLogin];
+            }
+            
+        }
+    }
+
 }
 
 //

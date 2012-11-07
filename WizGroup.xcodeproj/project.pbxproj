@@ -180,6 +180,9 @@
 		87B169CA1643551D00C36731 /* XMLRPCRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B169811643551D00C36731 /* XMLRPCRequest.m */; };
 		87B169CB1643551D00C36731 /* XMLRPCResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B169831643551D00C36731 /* XMLRPCResponse.m */; };
 		87B169CD164357D000C36731 /* scb.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B169CC164357D000C36731 /* scb.png */; };
+		87B516A6164A08AC0032B06E /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A2164A08AC0032B06E /* SVModalWebViewController.m */; };
+		87B516A7164A08AC0032B06E /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87B516A3164A08AC0032B06E /* SVWebViewController.bundle */; };
+		87B516A8164A08AC0032B06E /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A5164A08AC0032B06E /* SVWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -471,6 +474,11 @@
 		87B169821643551D00C36731 /* XMLRPCResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLRPCResponse.h; sourceTree = "<group>"; };
 		87B169831643551D00C36731 /* XMLRPCResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLRPCResponse.m; sourceTree = "<group>"; };
 		87B169CC164357D000C36731 /* scb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scb.png; sourceTree = "<group>"; };
+		87B516A1164A08AC0032B06E /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		87B516A2164A08AC0032B06E /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		87B516A3164A08AC0032B06E /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		87B516A4164A08AC0032B06E /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		87B516A5164A08AC0032B06E /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -802,6 +810,7 @@
 		73DE4E70162E986F004BC0F6 /* OtherFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				87B516A0164A08AC0032B06E /* SVWebViewController */,
 				73B67214163F7FA000FD2318 /* PrretyKit */,
 				73D983BC163B9C91006AAB22 /* EGOTableViewPullRefresh */,
 				73D8278B163A2CA100027543 /* MBProgressHUD.h */,
@@ -1064,6 +1073,19 @@
 			path = "xml-rpc";
 			sourceTree = "<group>";
 		};
+		87B516A0164A08AC0032B06E /* SVWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				87B516A1164A08AC0032B06E /* SVModalWebViewController.h */,
+				87B516A2164A08AC0032B06E /* SVModalWebViewController.m */,
+				87B516A3164A08AC0032B06E /* SVWebViewController.bundle */,
+				87B516A4164A08AC0032B06E /* SVWebViewController.h */,
+				87B516A5164A08AC0032B06E /* SVWebViewController.m */,
+			);
+			name = SVWebViewController;
+			path = otherFrames/SVWebViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1180,6 +1202,7 @@
 				8775CB861648C9CD0002EE50 /* group_list_refresh2@2x.png in Resources */,
 				8775CB871648C9CD0002EE50 /* group_list_refresh3.png in Resources */,
 				8775CB881648C9CD0002EE50 /* group_list_refresh3@2x.png in Resources */,
+				87B516A7164A08AC0032B06E /* SVWebViewController.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1317,8 @@
 				87B169CA1643551D00C36731 /* XMLRPCRequest.m in Sources */,
 				87B169CB1643551D00C36731 /* XMLRPCResponse.m in Sources */,
 				8775CB221647C0630002EE50 /* WGGroupListTileView.m in Sources */,
+				87B516A6164A08AC0032B06E /* SVModalWebViewController.m in Sources */,
+				87B516A8164A08AC0032B06E /* SVWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

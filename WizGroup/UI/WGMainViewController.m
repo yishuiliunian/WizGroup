@@ -114,7 +114,9 @@
 
 - (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
 {
-    return [NSDate date];
+    NSString* activeAccount = [[WizAccountManager defaultManager] activeAccountUserId];
+    id<WizSettingsDbDelegate> db = [[WizDbManager shareInstance] getGlobalSettingDb];
+    return [db lastUpdateTimeForGroup:nil accountUserId:activeAccount];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

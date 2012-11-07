@@ -423,6 +423,7 @@
 
 - (NSDate*) egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView *)view
 {
-    return [NSDate date];
+    id<WizSettingsDbDelegate> db = [[WizDbManager shareInstance] getGlobalSettingDb];
+    return [db lastUpdateTimeForGroup:self.kbGuid accountUserId:self.accountUserId];
 }
 @end
