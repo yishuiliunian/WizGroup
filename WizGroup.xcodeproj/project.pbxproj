@@ -184,6 +184,12 @@
 		87B516A7164A08AC0032B06E /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 87B516A3164A08AC0032B06E /* SVWebViewController.bundle */; };
 		87B516A8164A08AC0032B06E /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516A5164A08AC0032B06E /* SVWebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		87B516AA164A09470032B06E /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B516A9164A09470032B06E /* MessageUI.framework */; };
+		87B516B9164A42690032B06E /* doc_list_home.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B516B5164A42690032B06E /* doc_list_home.png */; };
+		87B516BA164A42690032B06E /* doc_list_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B516B6164A42690032B06E /* doc_list_home@2x.png */; };
+		87B516BB164A42690032B06E /* doc_list_tocategory.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B516B7164A42690032B06E /* doc_list_tocategory.png */; };
+		87B516BC164A42690032B06E /* doc_list_tocategory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87B516B8164A42690032B06E /* doc_list_tocategory@2x.png */; };
+		87B516BD164A442D0032B06E /* WizCheckAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516B1164A41670032B06E /* WizCheckAttachment.m */; };
+		87B516BE164A442D0032B06E /* WizCheckAttachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B516B3164A41670032B06E /* WizCheckAttachments.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -481,6 +487,15 @@
 		87B516A4164A08AC0032B06E /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
 		87B516A5164A08AC0032B06E /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
 		87B516A9164A09470032B06E /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		87B516B0164A41670032B06E /* WizCheckAttachment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizCheckAttachment.h; sourceTree = "<group>"; };
+		87B516B1164A41670032B06E /* WizCheckAttachment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WizCheckAttachment.m; sourceTree = "<group>"; };
+		87B516B2164A41670032B06E /* WizCheckAttachments.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizCheckAttachments.h; sourceTree = "<group>"; };
+		87B516B3164A41670032B06E /* WizCheckAttachments.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WizCheckAttachments.m; sourceTree = "<group>"; };
+		87B516B4164A41670032B06E /* WizPadCheckAttachmentDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WizPadCheckAttachmentDelegate.h; sourceTree = "<group>"; };
+		87B516B5164A42690032B06E /* doc_list_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = doc_list_home.png; path = Resources/doc_list_home.png; sourceTree = "<group>"; };
+		87B516B6164A42690032B06E /* doc_list_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "doc_list_home@2x.png"; path = "Resources/doc_list_home@2x.png"; sourceTree = "<group>"; };
+		87B516B7164A42690032B06E /* doc_list_tocategory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = doc_list_tocategory.png; path = Resources/doc_list_tocategory.png; sourceTree = "<group>"; };
+		87B516B8164A42690032B06E /* doc_list_tocategory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "doc_list_tocategory@2x.png"; path = "Resources/doc_list_tocategory@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -629,6 +644,7 @@
 		737288381616C72F005A3A6B /* detail */ = {
 			isa = PBXGroup;
 			children = (
+				87B516AF164A41430032B06E /* Attachments */,
 				73DC3EA4163E4010002BCDE5 /* SettingView */,
 				73D8278E163A325900027543 /* MainView */,
 				73FCE6171638F79B006F597C /* Account */,
@@ -663,6 +679,10 @@
 		73D7C670162F9FC400C27478 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				87B516B5164A42690032B06E /* doc_list_home.png */,
+				87B516B6164A42690032B06E /* doc_list_home@2x.png */,
+				87B516B7164A42690032B06E /* doc_list_tocategory.png */,
+				87B516B8164A42690032B06E /* doc_list_tocategory@2x.png */,
 				8775CB811648C9CC0002EE50 /* group_list_refresh2.png */,
 				8775CB821648C9CC0002EE50 /* group_list_refresh2@2x.png */,
 				8775CB831648C9CC0002EE50 /* group_list_refresh3.png */,
@@ -1090,6 +1110,18 @@
 			path = otherFrames/SVWebViewController;
 			sourceTree = "<group>";
 		};
+		87B516AF164A41430032B06E /* Attachments */ = {
+			isa = PBXGroup;
+			children = (
+				87B516B0164A41670032B06E /* WizCheckAttachment.h */,
+				87B516B1164A41670032B06E /* WizCheckAttachment.m */,
+				87B516B2164A41670032B06E /* WizCheckAttachments.h */,
+				87B516B3164A41670032B06E /* WizCheckAttachments.m */,
+				87B516B4164A41670032B06E /* WizPadCheckAttachmentDelegate.h */,
+			);
+			name = Attachments;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1207,6 +1239,10 @@
 				8775CB871648C9CD0002EE50 /* group_list_refresh3.png in Resources */,
 				8775CB881648C9CD0002EE50 /* group_list_refresh3@2x.png in Resources */,
 				87B516A7164A08AC0032B06E /* SVWebViewController.bundle in Resources */,
+				87B516B9164A42690032B06E /* doc_list_home.png in Resources */,
+				87B516BA164A42690032B06E /* doc_list_home@2x.png in Resources */,
+				87B516BB164A42690032B06E /* doc_list_tocategory.png in Resources */,
+				87B516BC164A42690032B06E /* doc_list_tocategory@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1253,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87B516BD164A442D0032B06E /* WizCheckAttachment.m in Sources */,
+				87B516BE164A442D0032B06E /* WizCheckAttachments.m in Sources */,
 				734CD8551616D9F400FBC33C /* WizPadTreeTableCell.m in Sources */,
 				734CD8541616D9BE00FBC33C /* TreeNode.m in Sources */,
 				737287081616960F005A3A6B /* main.m in Sources */,

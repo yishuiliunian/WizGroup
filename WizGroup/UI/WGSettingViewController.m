@@ -11,8 +11,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "WizAccountManager.h"
 #import "WGLoginViewController.h"
-#import "SVWebViewController.h"
+#import "SVModalWebViewController.h"
 #import "WizFileManager.h"
+
+//
+#import <MessageUI/MessageUI.h>
+
 typedef enum _WGSettingSectionIndex {
     WGSettingSectionIndexAccount = 0,
     WGSettingSectionIndexNetwork = 9,
@@ -20,7 +24,7 @@ typedef enum _WGSettingSectionIndex {
     WGsettingSectionIndexCount = 2
 } WGSettingSectionIndex;
 
-@interface WGSettingViewController ()
+@interface WGSettingViewController () <MFMailComposeViewControllerDelegate>
 @property (nonatomic, retain) NSMutableArray* settingsArray;
 @end
 
@@ -115,12 +119,27 @@ typedef enum _WGSettingSectionIndex {
             }
             else
             {
-                cell.textLabel.text = activeUserId;
+                cell.textLabel.text = NSLocalizedString(@"Change User", nil);
             }
  
         }
     }
     return cell;
+}
+
+- (NSString*) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if (section == WGSettingSectionIndexAccount) {
+        NSString* activeUserId = [[WizAccountManager defaultManager] activeAccountUserId];
+        if ([activeUserId isEqualToString:WGDefaultAccountUserId]) {
+            return  WizStrLogIn;
+        }
+        else
+        {
+            return activeUserId;
+        }
+    }
+    return nil;
 }
 
 - (void) popSelf
@@ -182,19 +201,41 @@ typedef enum _WGSettingSectionIndex {
     [login release];
     
 }
-
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [controller dismissModalViewControllerAnimated:YES];
+}
 - (void) userFeedback
 {
-    NSString* logFile = [WizFileManager logFilePath];
-    NSURL* url = [NSURL fileURLWithPath:logFile];
-    SVWebViewController* webController = [[SVWebViewController alloc] initWithURL:url];
-    [self.navigationController pushViewController:webController animated:YES];
-    [webController release];
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController* mailPocker = [[MFMailComposeViewController alloc] init];
+        mailPocker.mailComposeDelegate = self;
+        [mailPocker setSubject:[NSString stringWithFormat:@"[%@] %@ by %@",[[UIDevice currentDevice] model],NSLocalizedString(@"Feedback", nil),[[WizAccountManager defaultManager] activeAccountUserId]]];
+        NSArray* toRecipients = [NSArray arrayWithObjects:@"support@wiz.cn",@"ios@wiz.cn",nil];
+        NSString* mailBody = [NSString stringWithFormat:@"%@:\n\n\n\n\n\n\n\n\n\n\n\n\n\n %@\n %@ \n%@"
+                              ,NSLocalizedString(@"Your advice", nil)
+                              ,[[UIDevice currentDevice] systemName]
+                              ,[[UIDevice currentDevice] systemVersion]
+                              ,[WizGlobals wizNoteVersion]];
+        [mailPocker setToRecipients:toRecipients];
+        [mailPocker setMessageBody:mailBody isHTML:NO];
+        //
+        NSString* logFilePath = [WizFileManager logFilePath];
+        NSData* logData = [NSData dataWithContentsOfFile:logFilePath];
+        [mailPocker addAttachmentData:logData mimeType:@"txt" fileName:@"log.txt"];
+        mailPocker.modalPresentationStyle = UIModalPresentationFormSheet;
+        [self presentModalViewController: mailPocker animated:YES];
+        [mailPocker release];
+    }
 }
 
 - (void) showAppRunLog
 {
-    
+    NSString* logFile = [WizFileManager logFilePath];
+    NSURL* url = [NSURL fileURLWithPath:logFile];
+    SVModalWebViewController* webController = [[SVModalWebViewController alloc] initWithURL:url];
+    [self.navigationController presentModalViewController:webController animated:YES];
+    [webController release];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -230,6 +271,10 @@ typedef enum _WGSettingSectionIndex {
         }
     }
 
+}
+- (void) sendFeedback
+{
+    
 }
 
 //

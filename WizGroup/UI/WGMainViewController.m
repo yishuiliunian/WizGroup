@@ -431,6 +431,7 @@
     [listCon release];
     [ppSideController release];
     [centerNav release];
+    
 }
 
 - (void) removeOldRefreshButton

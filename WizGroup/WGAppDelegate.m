@@ -11,7 +11,31 @@
 #import "WizAccountManager.h"
 #import "WizSettingsDataBase.h"
 #import "WizFileManager.h"
+#import "WizGlobals.h"
+static void handleRootException ( NSException* exception)
+{
+    NSString* name = [ exception name ];
+    NSString* reason = [ exception reason ];
+    NSArray* symbols = [ exception callStackSymbols ]; // 异常发生时的调用栈
+    NSMutableString* strSymbols = [ [ NSMutableString alloc ] init ]; // 将调用栈拼成输出日志的字符串
+    for ( NSString* item in symbols )
+    {
+        [ strSymbols appendString: item ];
+        [ strSymbols appendString: @"\r\n" ];
+    }
+    
+    // 写日志，级别为ERROR
+    writeCinLog( __FUNCTION__, WizLogLevelError, @"[ Uncaught Exception ]\r\nName: %@, Reason: %@\r\n[ Fe Symbols Start ]\r\n%@[ Fe Symbols End ]", name, reason, strSymbols );
+    [ strSymbols release ];
+    
+    
+    // 这儿必须Hold住当前线程，等待日志线程将日志成功输出，当前线程再继续运行
+    sleep(1.0);
 
+    // 写一个文件，记录此时此刻发生了异常。这个挺有用的哦
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:WizCrashHanppend];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 
 
 @implementation WGAppDelegate
@@ -22,8 +46,20 @@
     [super dealloc];
 }
 
+- (void) showLastCrash
+{
+    BOOL isCrash = [[NSUserDefaults standardUserDefaults] boolForKey:WizCrashHanppend];
+    if (isCrash) {
+        NSLog(@"crash******");
+    }
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:WizCrashHanppend];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSSetUncaughtExceptionHandler(handleRootException);
+    [self showLastCrash];
     WizAccountManager* accountManager = [WizAccountManager defaultManager];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];

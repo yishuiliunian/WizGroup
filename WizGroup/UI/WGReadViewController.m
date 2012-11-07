@@ -17,7 +17,7 @@
 #import "WGNavigationViewController.h"
 //
 #import "MBProgressHUD.h"
-
+#import "WizCheckAttachments.h"
 @interface WGReadViewController () <UIScrollViewDelegate, UIWebViewDelegate>
 {
     UILabel* titleLabel;
@@ -203,6 +203,19 @@
 {
     [WizGlobals reportWarningWithString:@"评论此文档"];
 }
+
+- (void) checkAttachment
+{
+    WizCheckAttachments* check = [[WizCheckAttachments alloc] init];
+    check.doc = [self.listDelegate currentDocument];
+    check.kbguid = self.kbguid;
+    check.accountUserId = self.accountUserId;
+    WGNavigationViewController* nav = [[WGNavigationViewController alloc] initWithRootViewController:check];
+    [self.navigationController presentModalViewController:nav animated:YES];
+    [nav release];
+    [check release];
+}
+
 - (void) customToolBar
 {
     WGNavigationViewController* nav = (WGNavigationViewController*)self.navigationController;
@@ -215,8 +228,9 @@
     UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
     checkPreButtonItem = preItem;
     
+    UIBarButtonItem* attachmentItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:nil target:self selector:@selector(checkAttachment)];
     
-    [nav setWgToolItems:@[backToList,flexItem,preItem,nextItem]];
+    [nav setWgToolItems:@[backToList,flexItem,attachmentItem,preItem,nextItem]];
 }
 
 - (void) backToList
