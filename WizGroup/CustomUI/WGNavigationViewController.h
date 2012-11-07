@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "WGBarButtonItem.h"
 @interface WGNavigationViewController : UINavigationController
 - (void) setWgToolItems:(NSArray*)array;
 @end

@@ -18,6 +18,9 @@
 //
 #import "MBProgressHUD.h"
 #import "WizCheckAttachments.h"
+
+#import "DocumentInfoViewController.h"
+
 @interface WGReadViewController () <UIScrollViewDelegate, UIWebViewDelegate>
 {
     UILabel* titleLabel;
@@ -165,6 +168,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self customToolBar];
 
     CGSize contentSize = [self contentViewSize];
     float titleLabelHeight = 40;
@@ -215,6 +219,13 @@
     [nav release];
     [check release];
 }
+- (void) checkInfo
+{
+    DocumentInfoViewController* infoCheck = [[DocumentInfoViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    infoCheck.doc = [self.listDelegate currentDocument];
+    [self.navigationController pushViewController:infoCheck animated:YES];
+    [infoCheck release];
+}
 
 - (void) customToolBar
 {
@@ -222,15 +233,16 @@
     
     UIBarButtonItem* flexItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
     
-    UIBarButtonItem* backToList = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
-    UIBarButtonItem* nextItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkNextDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
+    UIBarButtonItem* backToList = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"read_back"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(backToList)];
+    UIBarButtonItem* nextItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"read_next"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkNextDocument)];
     checkNextButtonItem = nextItem;
-    UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"checkPreDoc"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
+    UIBarButtonItem* preItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"read_previous"] hightedImage:[UIImage imageNamed:@""] target:self selector:@selector(checkPreDocument)];
     checkPreButtonItem = preItem;
     
-    UIBarButtonItem* attachmentItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"backToListIcon"] hightedImage:nil target:self selector:@selector(checkAttachment)];
+    UIBarButtonItem* attachmentItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"read_attachment"] hightedImage:nil target:self selector:@selector(checkAttachment)];
+    UIBarButtonItem* infoItem = [WGBarButtonItem barButtonItemWithImage:[UIImage imageNamed:@"read_info"] hightedImage:nil target:self selector:@selector(checkInfo)];
     
-    [nav setWgToolItems:@[backToList,flexItem,attachmentItem,preItem,nextItem]];
+    [nav setWgToolItems:@[backToList,flexItem,infoItem,attachmentItem,preItem,nextItem]];
 }
 
 - (void) backToList
@@ -256,7 +268,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [self checkCurrentDocument];
     [self customToolBar];
 }
 - (void) viewDidAppear:(BOOL)animated
